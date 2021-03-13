@@ -1,21 +1,58 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hellllloo 1</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+ import React from 'react';
+ import {
+   SafeAreaView,
+   StyleSheet,
+   ScrollView,
+   View,
+   Text,
+   StatusBar,
+   ImageBackground,
+ } from 'react-native';
+ 
+ import {
+   Header,
+   LearnMoreLinks,
+   Colors,
+   DebugInstructions,
+   ReloadInstructions,
+ } from 'react-native/Libraries/NewAppScreen';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import { NativeRouter, Route, Link } from "react-router-native";
+
+ 
+import HomeScreen from './components/HomeScreen/home';
+import LoginScreen from './components/LoginScreen/login';
+ 
+ 
+ const App = () => {
+   
+   return (
+    <NativeRouter>
+      <View style={styles.container}>        
+        <StatusBar style="auto"/>
+        <Route exact path="/" component={HomeScreen} />
+        <Route path="/login" component={LoginScreen} />
+      </View>
+     </NativeRouter>
+   );
+  }
+ 
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: '#61AAFD',
+      padding: 10,
+      paddingTop: 35,
+      height: '100%',
+    },
+  });
+ 
+export default App;
+ 
