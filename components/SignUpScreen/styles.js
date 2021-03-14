@@ -1,6 +1,6 @@
 import {StyleSheet}  from 'react-native';
 const styles = StyleSheet.create({
-    loginContainer: {
+    signupContainer: {
         flex:1,
         backgroundColor:'#61AAFD',
     },
@@ -45,10 +45,6 @@ const styles = StyleSheet.create({
         borderBottomWidth:1,
         borderBottomColor:'#3F4246',
         paddingBottom:5,
-    },
-
-    action__eye: {
-        marginLeft: 'auto',
     },
 
     textInput: {

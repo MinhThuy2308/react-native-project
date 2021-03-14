@@ -22,7 +22,7 @@ const ButtonHomeScreen = (props) => {
       </Link>
 
       <Link
-        to={`/`}
+        to={`/signup`}
         style={styles.signup}
       >
         <Text style={styles.textUp}>Sign Up</Text>

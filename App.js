@@ -30,7 +30,7 @@ import { NativeRouter, Route, Link } from "react-router-native";
  
 import HomeScreen from './components/HomeScreen/home';
 import LoginScreen from './components/LoginScreen/login';
- 
+import SignUpScreen from './components/SignUpScreen/signup'
  
  const App = () => {
    
@@ -40,6 +40,7 @@ import LoginScreen from './components/LoginScreen/login';
         <StatusBar style="auto"/>
         <Route exact path="/" component={HomeScreen} />
         <Route path="/login" component={LoginScreen} />
+        <Route path="/signup" component={SignUpScreen} />
       </View>
      </NativeRouter>
    );
