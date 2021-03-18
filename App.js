@@ -8,52 +8,47 @@
 
  import React from 'react';
  import {
-   SafeAreaView,
    StyleSheet,
-   ScrollView,
    View,
    Text,
-   StatusBar,
-   ImageBackground,
+   Image
  } from 'react-native';
- 
- import {
-   Header,
-   LearnMoreLinks,
-   Colors,
-   DebugInstructions,
-   ReloadInstructions,
- } from 'react-native/Libraries/NewAppScreen';
 
-import { NativeRouter, Route, Link } from "react-router-native";
+import { DrawerTab } from './components/Screens/DrawerTab';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator} from '@react-navigation/drawer';
+import Loading from './components/Screens/Loading';
+import LoginScreen from './components/Screens/LoginScreen';
+import Register from './components/Screens/Register';
+import BottomTab from './components/Screens/BottomTab';
 
- 
-import HomeScreen from './components/HomeScreen/home';
-import LoginScreen from './components/LoginScreen/login';
-import SignUpScreen from './components/SignUpScreen/signup'
- 
+
+
+const Drawer = createDrawerNavigator();
+
+
+
  const App = () => {
    
    return (
-    <NativeRouter>
-      <View style={styles.container}>        
-        <StatusBar style="auto"/>
-        <Route exact path="/" component={HomeScreen} />
-        <Route path="/login" component={LoginScreen} />
-        <Route path="/signup" component={SignUpScreen} />
-      </View>
-     </NativeRouter>
+      <NavigationContainer>
+        <Drawer.Navigator drawerContent={props => <DrawerTab {...props} />}>
+          <Drawer.Screen name="Homepage" component={BottomTab} />
+          {/* <Drawer.Screen name="Profile" component={ProStackScreen} /> */}
+        </Drawer.Navigator>
+
+        {/* <Stack.Navigator>
+          <Stack.Screen name="Loading" component={Loading} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={Register} />
+        </Stack.Navigator> */}
+      </NavigationContainer>
+    
    );
   }
- 
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#61AAFD',
-      padding: 10,
-      paddingTop: 35,
-      height: '100%',
-    },
-  });
+
+  
+
  
 export default App;
  
