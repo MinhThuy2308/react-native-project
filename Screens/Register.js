@@ -6,7 +6,7 @@ import React from 'react';
    Image,
    TouchableOpacity
  } from 'react-native';
- import mainLogo from '../../assets/images/background.jpg';
+ import mainLogo from '../assets/images/background.jpg';
  import Feather from 'react-native-vector-icons/Feather';
  import { TextInput } from 'react-native-gesture-handler';;
 

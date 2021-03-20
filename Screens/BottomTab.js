@@ -16,6 +16,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 const Tab = createMaterialBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const ProStack = createStackNavigator();
+const VideoStack = createStackNavigator();
 
 const BottomTab = (props) => {
     return (
@@ -36,9 +37,9 @@ const BottomTab = (props) => {
       />
       <Tab.Screen
         name="Videos"
-        component={VideoScreen}
+        component={VideoStackScreen}
         options={{
-          tabBarLabel: 'Videos',
+          tabBarLabel: 'Video',
           tabBarIcon: ({ color }) => (
             <Icon name="videocam" color={color} size={26} />
           ),
@@ -104,6 +105,30 @@ const HomeStackScreen = ({navigation}) => {
           }}
          />
       </ProStack.Navigator>
+    )
+     
+  };
+
+  const VideoStackScreen = ({navigation}) => {
+    return(
+      <VideoStack.Navigator screenOptions={{
+        headerStyle: {
+          backgroundColor:'#4862D5',
+          
+        },
+        headerTintColor:'#fff',
+      }}>
+        <VideoStack.Screen name="Video" component={VideoScreen} options={{
+            headerLeft: () => (
+              <Icon.Button name="menu-outline" 
+                           size={30} 
+                           backgroundColor="#4862D5" 
+                           onPress={() => navigation.openDrawer()}>
+              </Icon.Button>
+            )
+          }}
+         />
+      </VideoStack.Navigator>
     )
      
   };

@@ -6,8 +6,9 @@ import {
    Image,
    TouchableOpacity,
  } from 'react-native';
-import mainLogo from '../../assets/images/background.jpg';
+import mainLogo from '../assets/images/background.jpg';
 import * as Animatable from 'react-native-animatable';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
  const Loading = ({navigation}) => {
@@ -26,7 +27,7 @@ import * as Animatable from 'react-native-animatable';
             <Text style={styles.title}>Yoga is harmony.</Text>
             <View style={styles.button}>
                 <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                  <Text style={styles.textlog}>Come With Us</Text>  
+                  <Text style={styles.textlog}>Come With Us</Text>
                 </TouchableOpacity>
             </View>
         </Animatable.View>
@@ -73,7 +74,8 @@ import * as Animatable from 'react-native-animatable';
 
       button: {
         alignItems: 'flex-end',
-        marginTop: 30
+        marginTop: 30,
+        
       },
 
       textlog: {

@@ -9,12 +9,10 @@ import {
 
  const VideoScreen = ({navigation}) => {
      return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-        onPress={() => navigation.navigate('Profile')}
-        title="Go to profile"
-      />
-    </View>
+        <View>
+          <Text>This is Video</Text>
+        </View>
+    
      )
  }
 
