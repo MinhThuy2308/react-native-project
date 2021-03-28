@@ -93,9 +93,7 @@ import { login } from '../services/auth';
         password,
       }).then(res => {
         logIn(res);
-        Alert.alert('Login Success');
         return;
-       
       })
     }
     // if( foundUser.length == 0) {
