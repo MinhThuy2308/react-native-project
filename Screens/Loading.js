@@ -41,7 +41,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
   const styles = StyleSheet.create ({
       container: {
           flex:1,
-          backgroundColor:'#4862D5',
+          backgroundColor:'#1995ad',
       },
 
       header: {
@@ -68,7 +68,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
       title: {
           fontSize:30,
           fontWeight:'bold',
-          color:'#4862D5',
+          color:'#1995ad',
 
       },
 
@@ -79,7 +79,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
       },
 
       textlog: {
-        backgroundColor:'#4862D5',
+        backgroundColor:'#1995ad',
         borderRadius: 50,
         flexDirection: 'row',
         color: '#fff',
