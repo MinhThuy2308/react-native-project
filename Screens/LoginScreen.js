@@ -11,7 +11,7 @@ import { createAnimatableComponent } from 'react-native-animatable';
 import { TextInput } from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons';
 import Feather from 'react-native-vector-icons/Feather'
-import mainLogo from '../assets/images/background.jpg';
+import mainLogo from '../assets/images/logo1.jpg';
 import * as Animatable from 'react-native-animatable';
 import { AuthContext } from '../components/context';
 import { login } from '../services/auth';
@@ -19,7 +19,7 @@ import { login } from '../services/auth';
  const LoginScreen = ({ navigation }) => {
 
   const [data, setData] = React.useState({
-    email:'',
+    username:'',
     password:'',
     check_textInputChange: false,
     secureTextEntry: true,
@@ -30,17 +30,17 @@ import { login } from '../services/auth';
   const { logIn } = React.useContext(AuthContext);
 
   const textInputChange = (val) => {
-    if(val.trim().length >= 6) {
+    if(val.trim().length >= 8) {
       setData ({
         ...data,
-        email: val,
+        username: val,
         check_textInputChange: true,
         isValidUser: true
       });
     } else {
       setData ({
         ...data,
-        email: val,
+        username: val,
         check_textInputChange: false,
         isValidUser: false
       });
@@ -79,9 +79,9 @@ import { login } from '../services/auth';
     }
   }
 
-  const loginHandle = async (eMail, password) => {
+  const loginHandle = async (userName, password) => {
 
-    if( data.email.length == 0 || data.password.length == 0 ) {
+    if( data.username.length == 0 || data.password.length == 0 ) {
       Alert.alert('Wrong input','Email or password field cannot be empty', [
         {text:'OK'}
       ]);
@@ -89,7 +89,7 @@ import { login } from '../services/auth';
     } 
      else {
       await login({
-        identifier: eMail,
+        identifier: userName,
         password,
       }).then(res => {
         logIn(res);
@@ -118,12 +118,12 @@ import { login } from '../services/auth';
             <Text style={styles.textIntro}>Healthy Body</Text>
             <View style={styles.action}>
               <Feather
-                name="mail"
+                name="user"
                 size={30}
                 style={styles.icon}
               />
               <TextInput 
-                placeholder="Email" 
+                placeholder="Username" 
                 style={styles.textInput} 
                 autoCapitalize="none"
                 onChangeText={(val) => textInputChange(val)}
@@ -142,7 +142,7 @@ import { login } from '../services/auth';
             </View>
             { data.isValidUser ? null :
             <Animatable.View animation="fadeInLeft" duration={500}>
-              <Text style={styles.error}>Email must be 6 characters long</Text>
+              <Text style={styles.error}>Username must be 8 characters long</Text>
             </Animatable.View>
             }
 
@@ -172,7 +172,7 @@ import { login } from '../services/auth';
                 <Text style={{color: '#fff', marginTop:15, right:'20%',}}>Forgot password?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.signIn} onPress={() => {loginHandle(data.email, data.password)}}>
+            <TouchableOpacity style={styles.signIn} onPress={() => {loginHandle(data.username, data.password)}}>
                 <Text style={styles.textSign}>Login</Text>
             </TouchableOpacity>
             

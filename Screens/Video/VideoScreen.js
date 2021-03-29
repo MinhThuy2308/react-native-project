@@ -32,15 +32,23 @@ const VideoScreen = (props) => {
     //         getVideo();
     //     }, [])
 
+    // const listVideo = [
+    //     {id: '1', url:'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'},
+    //     {id: '2', url:'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'},
+    //     {id: '3', url:'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'},
+    //     {id: '4', url:'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'},
+
+    // ]
+
     //     const renderItem = ({ item }) => (
-    //         <VideoItem data={item} />
+    //         <VideoItem item={item} />
     //     );
 
     return (
         <View style={styles.container}>
 
             {/* <FlatList
-                data={video}
+                data={listVideo}
                 renderItem={renderItem}
                 keyExtractor={item => item.id.toString()}
 

@@ -9,18 +9,18 @@ import Video from 'react-native-video';
 
 
 
-const VideoItem = ({ data }) => {
+const VideoItem = ({ item }) => {
     return (
         <>
             <View >
-                <Text style={styles.title}>{data.Title}</Text>
+                <Text style={styles.title}>{item.url}</Text>
             </View>
             {/* <View>
                 <Video source={{uri: "https://youtu.be/wqHX9YmqeyQ?list=RDMMwqHX9YmqeyQ"}} /> 
             </View> */}
-            <View>
+            {/* <View>
                 <Text>{data.Description}</Text>
-            </View>
+            </View> */}
 
         </>
     )

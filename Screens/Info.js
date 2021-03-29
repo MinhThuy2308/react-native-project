@@ -125,13 +125,13 @@ const Info = ({ navigation }) => {
 
             </View>
 
-            {
+            {/* {
                 userBMI && (
                     <View style={styles.userBMI}>
                         <Text>Your BMI is {userBMI}</Text>
                     </View>
                 )
-            }
+            } */}
 
 
 

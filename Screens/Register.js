@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Alert
 } from 'react-native';
-import mainLogo from '../assets/images/background.jpg';
+import mainLogo from '../assets/images/logo1.jpg';
 import Feather from 'react-native-vector-icons/Feather';
 import { TextInput } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
@@ -19,45 +19,47 @@ const Register = ({ navigation }) => {
   const [data, setData] = React.useState({
     email: '',
     password: '',
-    username:'',
+    username: '',
     check_textInputChange: false,
     secureTextEntry: true,
     isValidUser: true,
     isValidPassword: true,
+    isValidMail: true,
   });
 
   const { reGister } = React.useContext(AuthContext);
 
   const textInputChange = (val) => {
-    if (val.trim().length >= 6) {
+    if (val.trim().length >= 8) {
       setData({
         ...data,
-        email: val,
-        check_textInputChange: true,
+        username: val,
         isValidUser: true
       });
     } else {
       setData({
         ...data,
-        email: val,
-        check_textInputChange: false,
+        username: val,
         isValidUser: false
       });
 
     }
   }
 
-  const textUserChange = (val) => {
-    if (val.trim().length >= 4) {
+
+  const handleMailChange = (val) => {
+    if (val.trim().length >= 6) {
       setData({
         ...data,
-        username: val,
+        email: val,
+        isValidMail: true,
         check_textInputChange: true,
       });
     } else {
       setData({
         ...data,
-        username: val,
+        email: val,
+        isValidMail: false,
         check_textInputChange: false,
       });
 
@@ -96,17 +98,19 @@ const Register = ({ navigation }) => {
   }
 
 
-  const registerHandle = async (email, password, username ) => {
+  const registerHandle = async (email, password, username) => {
     await register({
-      email,   
+      email,
       password,
       username
-      
+
     }).then(res => {
       reGister(res);
-      Alert.alert('Successfully','You can login now');
+      Alert.alert('Successfully', 'You can login now');
       return;
     })
+
+    navigation.navigate('Information')
   }
 
   return (
@@ -130,7 +134,7 @@ const Register = ({ navigation }) => {
             placeholder="Email"
             style={styles.textInput}
             autoCapitalize="none"
-            onChangeText={(val) => textInputChange(val)}
+            onChangeText={(val) => handleMailChange(val)}
             onEndEditing={(e) => handleValidEmail(e.nativeEvent.text)}
           >
           </TextInput>
@@ -144,9 +148,30 @@ const Register = ({ navigation }) => {
             </Animatable.View>
             : null}
         </View>
-        {data.isValidUser ? null :
+        {data.isValidMail ? null :
           <Animatable.View animation="fadeInLeft" duration={500}>
             <Text style={styles.error}>Email must be 6 characters long</Text>
+          </Animatable.View>
+        }
+
+        <View style={styles.action}>
+          <Feather
+            name="user"
+            size={30}
+            style={styles.icon}
+          />
+          <TextInput
+            placeholder="Username"
+            style={styles.textInput}
+            autoCapitalize="none"
+            onChangeText={(val) => textInputChange(val)}
+            
+          >
+          </TextInput>
+        </View>
+        {data.isValidUser ? null :
+          <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.error}>Username must be 8 characters long</Text>
           </Animatable.View>
         }
 
@@ -171,20 +196,7 @@ const Register = ({ navigation }) => {
           </Animatable.View>
         }
 
-        <View style={styles.action}>
-          <Feather
-            name="user"
-            size={30}
-            style={styles.icon}
-          />
-          <TextInput
-            placeholder="Username"
-            style={styles.textInput}
-            autoCapitalize="none"
-            onChangeText={(val) => textUserChange(val)}
-          >
-          </TextInput>
-        </View>
+
 
         {/* <View style={styles.action}>
           <Feather
@@ -212,8 +224,8 @@ const Register = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate('Information')}>
-            <Text style={styles.textLog1}>Log in</Text>
-          </TouchableOpacity>
+          <Text style={styles.textLog1}>Log in</Text>
+        </TouchableOpacity>
       </View>
 
 

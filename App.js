@@ -30,6 +30,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Menu from './Screens/Menu/Menu';
 import Activity from './Screens/Activity/Activity';
+import BasicYoga from './Screens/Activity/BasicYoga';
+import Loseweight from './Screens/Activity/Loseweight';
+import Gainweight from './Screens/Activity/Gainweight';
+import AdvancedYoga from './Screens/Activity/AdvancedYoga';
 
 const Drawer = createDrawerNavigator();
 
@@ -39,7 +43,7 @@ const Drawer = createDrawerNavigator();
 
   const initialLoginState  = {
     isLoading: true,
-    eMail: null,
+    userName: null,
     userToken: null,
   };
 
@@ -62,14 +66,14 @@ const Drawer = createDrawerNavigator();
       case 'Login' :
         return {
           ...prevState,
-          eMail: action.id,
+          userName: action.id,
           userToken: action.token,
           isLoading: false,
         };
       case 'Logout' :
         return {
           ...prevState,
-          eMail: null,
+          userName: null,
           userToken: null,
           isLoading: false,
         };
@@ -93,15 +97,15 @@ const Drawer = createDrawerNavigator();
       // setIsLoading(false);
       console.log('foundUser', foundUser);
       const userToken = String(foundUser.jwt);
-      const eMail = foundUser.user.email;
+      const userName = foundUser.user.username;
         try{
           await AsyncStorage.setItem('userToken', userToken);
-          await AsyncStorage.setItem('eMail', eMail);
+          await AsyncStorage.setItem('userName', userName);
         } catch(e) {
           console.log(e);
         }
       // console.log('user token: ', userToken)
-      dispatch({ type: 'Login', id: eMail, token: userToken });
+      dispatch({ type: 'Login', id: userName, token: userToken });
     },
     reGister: async () => {
      
@@ -160,6 +164,10 @@ const Drawer = createDrawerNavigator();
             <Drawer.Screen name="Appointment" component={AppointStack} />
             <Drawer.Screen name="Menu" component={MenuStack} />
             <Drawer.Screen name="Activity" component={ActivityStack} />
+            <Drawer.Screen name="Basic" component={BasicStack} />
+            <Drawer.Screen name="LoseWeight" component={LoseStack} />
+            <Drawer.Screen name="GainWeight" component={GainStack} />
+            <Drawer.Screen name="Advanced" component={AdvancedStack} />
           </Drawer.Navigator> 
         )
       :
@@ -232,6 +240,106 @@ function ActivityStack({navigation}) {
       headerTintColor:'#f1f1f2',
     }}>
       <Stack.Screen name="Activity" component={Activity} options={{
+            headerLeft: () => (
+              <Icon.Button name="arrow-back" 
+                           size={30} 
+                           backgroundColor="#1995ad" 
+                           onPress={() => navigation.goBack()}>
+              </Icon.Button>
+            ),
+          }}/>
+
+          
+    </Stack.Navigator>
+  );
+}
+
+function BasicStack({navigation}) {
+
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor:'#1995ad',
+        
+      },
+      headerTintColor:'#f1f1f2',
+    }}>
+      <Stack.Screen name="Basic Yoga" component={BasicYoga} options={{
+            headerLeft: () => (
+              <Icon.Button name="arrow-back" 
+                           size={30} 
+                           backgroundColor="#1995ad" 
+                           onPress={() => navigation.goBack()}>
+              </Icon.Button>
+            ),
+          }}/>
+
+          
+    </Stack.Navigator>
+  );
+}
+
+function LoseStack({navigation}) {
+
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor:'#1995ad',
+        
+      },
+      headerTintColor:'#f1f1f2',
+    }}>
+      <Stack.Screen name="Lose Weight" component={Loseweight} options={{
+            headerLeft: () => (
+              <Icon.Button name="arrow-back" 
+                           size={30} 
+                           backgroundColor="#1995ad" 
+                           onPress={() => navigation.goBack()}>
+              </Icon.Button>
+            ),
+          }}/>
+
+          
+    </Stack.Navigator>
+  );
+}
+
+function GainStack({navigation}) {
+
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor:'#1995ad',
+        
+      },
+      headerTintColor:'#f1f1f2',
+    }}>
+      <Stack.Screen name="Gain Weight" component={Gainweight} options={{
+            headerLeft: () => (
+              <Icon.Button name="arrow-back" 
+                           size={30} 
+                           backgroundColor="#1995ad" 
+                           onPress={() => navigation.goBack()}>
+              </Icon.Button>
+            ),
+          }}/>
+
+          
+    </Stack.Navigator>
+  );
+}
+
+function AdvancedStack({navigation}) {
+
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor:'#1995ad',
+        
+      },
+      headerTintColor:'#f1f1f2',
+    }}>
+      <Stack.Screen name="Advanced Yoga" component={AdvancedYoga} options={{
             headerLeft: () => (
               <Icon.Button name="arrow-back" 
                            size={30} 

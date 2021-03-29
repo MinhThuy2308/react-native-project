@@ -108,7 +108,7 @@ export function DrawerTab(props) {
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon
-                  name="bar-chart-outline"
+                  name="walk-outline"
                   color={color}
                   size={size}
                 />
