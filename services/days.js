@@ -1,13 +1,11 @@
 import request from './request';
 
-export function fetchImage(data) {
+export function fetchDay(data) {
   return request({
-    url: '/homepages',
+    url: '/categories',
     method: 'get',
     data: data,
   });
 }
-
-
 
 

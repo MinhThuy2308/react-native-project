@@ -21,7 +21,7 @@ const Menu = (props) => {
         }
 
         getMenu();
-    }, [])
+    }, []);
 
     const renderItem = ({ item }) => (
         <MenuItem data={item} />

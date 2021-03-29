@@ -34,6 +34,7 @@ import BasicYoga from './Screens/Activity/BasicYoga';
 import Loseweight from './Screens/Activity/Loseweight';
 import Gainweight from './Screens/Activity/Gainweight';
 import AdvancedYoga from './Screens/Activity/AdvancedYoga';
+import ActivityDay from './Screens/Activity/Day';
 
 const Drawer = createDrawerNavigator();
 
@@ -168,6 +169,7 @@ const Drawer = createDrawerNavigator();
             <Drawer.Screen name="LoseWeight" component={LoseStack} />
             <Drawer.Screen name="GainWeight" component={GainStack} />
             <Drawer.Screen name="Advanced" component={AdvancedStack} />
+            <Drawer.Screen name="ActivityDay" component={ActivityDayStack} />
           </Drawer.Navigator> 
         )
       :
@@ -225,6 +227,28 @@ function MenuStack({navigation}) {
           }}/>
 
           
+    </Stack.Navigator>
+  );
+}
+
+function ActivityDayStack({navigation}) {
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor:'#1995ad',
+        
+      },
+      headerTintColor:'#f1f1f2',
+    }}>
+      <Stack.Screen name="Day 1" component={ActivityDay} options={{
+        headerLeft: () => (
+          <Icon.Button name="arrow-back" 
+                        size={30} 
+                        backgroundColor="#1995ad" 
+                        onPress={() => navigation.goBack()}>
+          </Icon.Button>
+        ),
+      }}/>
     </Stack.Navigator>
   );
 }

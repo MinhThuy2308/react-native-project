@@ -3,23 +3,26 @@ import {
     StyleSheet,
     View,
     Text,
-    FlatList
+    FlatList,
+    Image
 } from 'react-native';
 import Video from 'react-native-video';
 
 
 
-const VideoItem = ({ item }) => {
+const VideoItem = ({ data }) => {
     return (
         <>
-            <View >
-                <Text style={styles.title}>{item.url}</Text>
+            {/* <View >
+                <Text style={styles.title}>{data.title}</Text>
             </View>
-            {/* <View>
-                <Video source={{uri: "https://youtu.be/wqHX9YmqeyQ?list=RDMMwqHX9YmqeyQ"}} /> 
-            </View> */}
-            {/* <View>
-                <Text>{data.Description}</Text>
+            <View>
+                <Image 
+                style={{width:100, height:100}}
+                source={{uri: "http://10.0.2.2:1337/uploads/red_velvet_joy_outfit_cover_4752f3f67c.jpg"}} /> 
+            </View> 
+            <View>
+                <Text>{data.description}</Text>
             </View> */}
 
         </>

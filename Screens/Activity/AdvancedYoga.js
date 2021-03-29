@@ -1,86 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  Dimensions,
+  FlatList,
 } from 'react-native';
-import { useState } from 'react/cjs/react.development';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { TextInput } from 'react-native-gesture-handler';
-import Material from 'react-native-vector-icons/MaterialCommunityIcons';
-import background from './images/background.jpg';
+import { fetchDay } from '../../services/days';
+import DayItem from './Day/DateItem';
 
+const renderItem = ({ item }) => (
+  <DayItem data={item} />
+);
 
 const AdvancedYoga = ({navigation}) => {
+  const [day, SetDay] = useState([]);
+
+  useEffect(() => {
+    async function getDay() {
+        const res = await fetchDay();
+        SetDay(res);
+    }
+
+    getDay();
+  }, []);
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={background}
-        style={styles.bg}
-        imageStyle={{ borderRadius: 10 }}
-      >
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.text}>Day 1</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-
-      <ImageBackground
-        source={background}
-        style={styles.bg}
-        imageStyle={{ borderRadius: 10 }}
-      >
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.text}>Day 2</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-
-      <ImageBackground
-        source={background}
-        style={styles.bg}
-        imageStyle={{ borderRadius: 10 }}
-      >
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.text}>Day 3</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-
-      <ImageBackground
-        source={background}
-        style={styles.bg}
-        imageStyle={{ borderRadius: 10 }}
-      >
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.text}>Day 4</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-
-      <ImageBackground
-        source={background}
-        style={styles.bg}
-        imageStyle={{ borderRadius: 10 }}
-      >
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.text}>Day 5</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-
-      <ImageBackground
-        source={background}
-        style={styles.bg}
-        imageStyle={{ borderRadius: 10 }}
-      >
-        <TouchableOpacity style={styles.link}>
-          <Text style={styles.text}>Day 6</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-
-
-
+      <FlatList
+        data={day}
+        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+      />
     </View>
   )
 
@@ -92,28 +41,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-
   },
-
-  bg: {
-    width: 350,
-    height: 50,
-    resizeMode: "stretch",
-    marginTop: 30,
-  },
-
-  text: {
-    fontSize: 17, 
-    color: '#fff',
-    
-
-  },
-
-  link: {
-    flexDirection: 'row',
-    paddingTop: 14,
-    paddingBottom: 13,
-    justifyContent:'center'
-    
-  }
 })

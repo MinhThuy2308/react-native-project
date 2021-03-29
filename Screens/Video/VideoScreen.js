@@ -6,15 +6,18 @@ import {
     Image,
     Button,
     FlatList,
-    TouchableOpacity
+    TouchableOpacity,
+    Dimensions
 } from 'react-native';
-import { fetchVideo } from '../../services/video';
+import { fetchImage } from '../../services/homepage';
 import VideoItem from './VideoItem';
 // import Video from 'react-native-video';
 import { Video, AVPlaybackStatus } from 'expo-av';
+import { ScrollView } from 'react-native-gesture-handler';
 
 // import MediaControls, { PLAYER_STATES } from 'react-native-media-controls';
 
+const { width, height} = Dimensions.get('window');
 
 const VideoScreen = (props) => {
 
@@ -25,54 +28,130 @@ const VideoScreen = (props) => {
 
     //     useEffect(() => {
     //         async function getVideo() {
-    //             const res = await fetchVideo();
+    //             const res = await fetchImage();
     //             SetVideo(res);
     //         }
 
     //         getVideo();
     //     }, [])
 
-    // const listVideo = [
-    //     {id: '1', url:'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'},
-    //     {id: '2', url:'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'},
-    //     {id: '3', url:'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'},
-    //     {id: '4', url:'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'},
 
-    // ]
-
-    //     const renderItem = ({ item }) => (
-    //         <VideoItem item={item} />
-    //     );
+    // const renderItem = ({ item }) => (
+    //     <VideoItem data={item} />
+    // );
 
     return (
-        <View style={styles.container}>
-
+        <ScrollView>
+            <View style={styles.container}>
             {/* <FlatList
-                data={listVideo}
+                data={video}
                 renderItem={renderItem}
                 keyExtractor={item => item.id.toString()}
-
+                
             /> */}
-            <Video
-                ref={video}
-                style={styles.video}
-                source={{
-                    uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
-                }}
-                useNativeControls
-                resizeMode="contain"
-                isLooping
-                onPlaybackStatusUpdate={status => setStatus(() => status)}
-            />
-            <View style={styles.buttons}>
-                <TouchableOpacity
-                    title={status.isPlaying ? 'Pause' : 'Play'}
-                    onPress={() =>
-                        status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-                    }
-                />
-            </View>
-        </View>
+
+                    <View style={styles.item}>
+                        <Video
+                            ref={video}
+                            style={styles.video}
+                            source={{
+                                uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+                            }}
+                            useNativeControls
+                            resizeMode="cover"
+                            shouldPlay={false}
+                            rate={1.0}
+                            volume={1.0}
+                            isMuted={false}
+                            isLooping={false}
+                            onPlaybackStatusUpdate={status => setStatus(() => status)}
+                        />
+                        <View style={styles.desc}>
+                            <Text>Yoga at home: Lose weight with basic yoga poses every day</Text>
+                        </View>
+
+                        <Video
+                            ref={video}
+                            style={styles.video}
+                            source={{
+                                uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+                            }}
+                            useNativeControls
+                            resizeMode="cover"
+                            shouldPlay={false}
+                            rate={1.0}
+                            volume={1.0}
+                            isMuted={false}
+                            isLooping={false}
+                            onPlaybackStatusUpdate={status => setStatus(() => status)}
+                        />
+                        <View style={styles.desc}>
+                            <Text>Video</Text>
+                        </View>
+
+                        <Video
+                            ref={video}
+                            style={styles.video}
+                            source={{
+                                uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+                            }}
+                            useNativeControls
+                            resizeMode="cover"
+                            shouldPlay={false}
+                            rate={1.0}
+                            volume={1.0}
+                            isMuted={false}
+                            isLooping={false}
+                            onPlaybackStatusUpdate={status => setStatus(() => status)}
+                        />
+                        <View style={styles.desc}>
+                            <Text>Video</Text>
+                        </View>
+
+                        <Video
+                            ref={video}
+                            style={styles.video}
+                            source={{
+                                uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+                            }}
+                            useNativeControls
+                            resizeMode="cover"
+                            shouldPlay={false}
+                            rate={1.0}
+                            volume={1.0}
+                            isMuted={false}
+                            isLooping={false}
+                            onPlaybackStatusUpdate={status => setStatus(() => status)}
+                        />
+                        <View style={styles.desc}>
+                            <Text>Video</Text>
+                        </View>
+
+                        <Video
+                            ref={video}
+                            style={styles.video}
+                            source={{
+                                uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+                            }}
+                            useNativeControls
+                            resizeMode="cover"
+                            shouldPlay={false}
+                            rate={1.0}
+                            volume={1.0}
+                            isMuted={false}
+                            isLooping={false}
+                            onPlaybackStatusUpdate={status => setStatus(() => status)}
+                        />
+                        <View style={styles.desc}>
+                            <Text>Video</Text>
+                        </View>
+                    </View>
+
+                    
+
+                </View>
+            
+        </ScrollView>
 
     )
 }
@@ -82,17 +161,36 @@ export default VideoScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        
+
     },
 
+
     video: {
-        alignSelf: 'center',
-        width: 320,
-        height: 200,
-      },
-      buttons: {
-        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-      },
+        width: width,
+        height: height / 3,
+        marginTop:30,
+
+    },
+
+    desc: {
+        flex: 1,
+        paddingLeft: 10,
+        paddingTop: 10,
+        backgroundColor:'#fff'
+
+    },
+
+    // item: {
+    //     height: 130,
+    //     width: 150,
+    //     marginLeft: 20,
+    //     borderWidth: 0.5,
+    //     borderColor: '#333',
+      
+
+    // }
 
 })

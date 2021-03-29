@@ -14,9 +14,11 @@ import { Data } from './data/data'
 
 import Carouse from './Carouse'
 
+
 const Homepage = ({ navigation }) => {
   return (
     <Carouse data={Data} />
+
   )
 }
 
