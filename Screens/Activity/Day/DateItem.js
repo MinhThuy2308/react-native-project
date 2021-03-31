@@ -1,51 +1,72 @@
 import React from 'react';
 import {
-    StyleSheet,
-    Text,
-    ImageBackground,
-    TouchableOpacity,
-  } from 'react-native';
+  View,
+  StyleSheet,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+  ScrollView
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import checkImage from '../../../utils/checkImage';
 
-const DayItem = ({data }) => {
+const DayItem = ({ data }) => {
   const navigation = useNavigation();
-
+  
   return (
-    <ImageBackground
-      source={{ uri: `http://10.0.2.2:1337${data.image.formats.medium.url}`}}
-      style={styles.bg}
-      imageStyle={{ borderRadius: 10 }}
-    >
-      <TouchableOpacity style={styles.link} onPress={() => navigation.navigate('ActivityDay', {
-        activity: 1,
-        category: 1,
-      })}>
-        <Text style={styles.text}>{data.name}</Text>
-      </TouchableOpacity>
-    </ImageBackground>
+    <ScrollView>
+    <View style={styles.container}>
+      <View style={styles.list}>
+        <ImageBackground
+          source={{ uri: checkImage(data.image, "medium") }}
+          style={styles.bg}
+          imageStyle={{ borderRadius: 10 }}
+        >
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => navigation.navigate('ActivityDay', {
+              activity: 1,
+              category: data.id,
+            })}
+          >
+            <Text style={styles.text}>{data.name}</Text>
+          </TouchableOpacity>
+        </ImageBackground>
+      </View>
+    </View>
+    </ScrollView>
   )
 }
 
 export default DayItem;
 
 const styles = StyleSheet.create({
-    bg: {
-      width: 350,
-      height: 50,
-      resizeMode: "stretch",
-      marginTop: 30,
-    },
-  
-    text: {
-      fontSize: 17, 
-      color: '#fff',
-    },
-  
-    link: {
-      flexDirection: 'row',
-      paddingTop: 14,
-      paddingBottom: 13,
-      justifyContent:'center'
-      
-    }
-  })
+  container: {
+    flex: 1
+  },
+
+  list: {
+    marginTop: 25
+  },
+
+  bg: {
+    width: 385,
+    height: 100,
+    resizeMode: "stretch",
+  },
+
+  text: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight:'bold',
+  },
+
+  link: {
+    // backgroundColor:'#fff',
+    flexDirection: 'row',
+    paddingTop: 40,
+    paddingBottom: 35,
+    justifyContent: 'center'
+
+  }
+})

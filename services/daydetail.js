@@ -1,8 +1,8 @@
 import request from './request';
 
-export function fetchDay(data) {
+export function fetchDayDetail(data) {
   return request({
-    url: '/categories',
+    url: '/documents/1',
     method: 'get',
     data: data,
   });

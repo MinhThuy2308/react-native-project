@@ -17,8 +17,8 @@ import Carouse from './Carouse'
 
 const Homepage = ({ navigation }) => {
   return (
-    <Carouse data={Data} />
-
+    // <Carouse data={Data} />
+    <View><Text>Test</Text></View>
   )
 }
 

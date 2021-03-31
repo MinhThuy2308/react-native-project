@@ -1,15 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
-  Text
+  Text,
+  FlatList,
+  StyleSheet,
+  ImageBackground
 } from 'react-native';
+import { fetchActivityWithDay } from '../../../services/documents';
+import { useNavigation } from '@react-navigation/native';
+import DayDetail from './DayDetail';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import ListActivity from './ListActivity';
 
 const ActivityDay = () => {
+  const navigation = useNavigation();
+  const [day, SetDay] = useState([]);
+
+  useEffect(() => {
+    async function getDay() {
+      const res = await fetchActivityWithDay({
+        activityId: 1,
+        categoryId: 1,
+      });
+      SetDay(res);
+    }
+
+    getDay();
+  }, []);
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: 'List Yoga',
+    });
+  }, [navigation]);
+
+  const renderItem = ({ item }) => (
+    <ListActivity data={item} />
+  );
+
   return (
-    <View>
-      <Text>Activi</Text>
+    <View style={styles.container}>
+      <FlatList
+        data={day}
+        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+      />
     </View>
   )
 }
 
 export default ActivityDay;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+})

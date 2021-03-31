@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
     Dimensions
 } from 'react-native';
-import { fetchImage } from '../../services/homepage';
+import { fetchVideo } from '../../services/video';
 import VideoItem from './VideoItem';
 // import Video from 'react-native-video';
 import { Video, AVPlaybackStatus } from 'expo-av';
@@ -28,7 +28,7 @@ const VideoScreen = (props) => {
 
     //     useEffect(() => {
     //         async function getVideo() {
-    //             const res = await fetchImage();
+    //             const res = await fetchVideo();
     //             SetVideo(res);
     //         }
 

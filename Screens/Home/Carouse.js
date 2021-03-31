@@ -36,7 +36,7 @@ function infiniteScroll(dataList){
 
         this._flatList.scrollToOffset({ animated: true, offset: scrollValue})
         
-    }, 3000)
+    }, 300000000)
 }
 
 
