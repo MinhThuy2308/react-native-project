@@ -233,26 +233,21 @@ function MenuStack({ navigation }) {
   );
 }
 
-function ActivityDayStack({ navigation }) {
+function ActivityDayStack({ navigation, route }) {
+  console.log('ActivityDayStack', route)
   return (
-    <Stack.Navigator screenOptions={{
+    <Stack.Navigator screenOptions={
+      {
       headerStyle: {
         backgroundColor: '#1995ad',
 
       },
       headerTintColor: '#f1f1f2',
+      
     }}>
-      <Stack.Screen name="Day" component={ActivityDay} options={
-        ({ route }) => ({ title: route.params.productTitle }),
-        {
-          headerLeft: () => (
-            <Icon.Button name="arrow-back"
-              size={30}
-              backgroundColor="#1995ad"
-              onPress={() => navigation.goBack()}>
-            </Icon.Button>
-          ),
-        }} />
+      <Stack.Screen name="Day" component={ActivityDay} options={({ route }) => ({
+    title: route.params.category
+  })} />
     </Stack.Navigator>
   );
 }

@@ -16,8 +16,8 @@ const BasicYoga = ({navigation}) => {
 
   useEffect(() => {
     async function getDay() {
-        const res = await fetchDay();
-        SetDay(res);
+      const res = await fetchDay();
+      SetDay(res);
     }
 
     getDay();
@@ -32,7 +32,6 @@ const BasicYoga = ({navigation}) => {
       />
     </View>
   )
-
 }
 
 export default BasicYoga;

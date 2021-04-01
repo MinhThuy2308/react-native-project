@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     StyleSheet,
     View,
@@ -17,102 +17,87 @@ import { fetchImage } from '../../services/homepage'
 
 import CarouseItem from './CarouseItem'
 
-const { width, height } = Dimensions.get("window")
-let flatList
+const { width, heigth } = Dimensions.get('window');
 
-function infiniteScroll(dataList){
+function infiniteScroll(dataList, mySlide) {
     const numberOfData = dataList.length
     let scrollValue = 0, scrolled = 0
 
-    setInterval(function() {
-        scrolled ++
-        if(scrolled < numberOfData)
-        scrollValue = scrollValue + width
+    setInterval(function () {
+        scrolled++
+        if (scrolled < numberOfData)
+            scrollValue = scrollValue + width
 
-        else{
+        else {
             scrollValue = 0
             scrolled = 0
         }
+        if (mySlide) {
+            mySlide.current.scrollToOffset({
+                animated: true,
+                offset: scrollValue,
+            });
+        }
 
-        this._flatList.scrollToOffset({ animated: true, offset: scrollValue})
-        
-    }, 300000000)
+    }, 3000)
 }
 
+const Carouse = ({ data }) => {
+    const mySlide = useRef();
 
-const Carouse = ({data}) => {
-    const scrollX = new Animated.Value(0)
-    let position = Animated.divide(scrollX, width)
-    const [dataList, setDataList] = useState(data)
+    const scrollX = new Animated.Value(0);
+    let position = Animated.divide(scrollX, width);
+    const [dataList, setDataList] = useState(data);
 
     useEffect(() => {
-        setDataList(data)
-        infiniteScroll(dataList)
+        setDataList(data);
+        infiniteScroll(dataList, mySlide);
     })
-    // const [images, SetImage] = useState([]);
 
-    // useEffect(() => {
-    //     async function getImage() {
-    //         const res = await fetchImage();
-    //         SetImage(res);
-    //     }
 
-    //     getImage();
-    // }, [])
-
-    // const renderItem = ({ item }) => (
-    //     <CarouseItem data={item} />
-    // );
-    if(data && data.length) {
+    if (data && data.length) {
         return (
             <View>
-                <FlatList
-                    data={data}
-                    ref = {(_flatList) => {this._flatList = _flatList}}
+                <FlatList data={data}
+                    ref={mySlide}
                     keyExtractor={(item, index) => 'key' + index}
+                    horizontal
                     pagingEnabled
                     scrollEnabled
-                    horizontal
-                    snapToAlignment = 'center'
-                    scrollEventThrottle = {16}
-                    decelerationRate = {"fast"}
-                    showsHorizontalScrollIndicator = {false}
-                    renderItem={({item}) => {
+                    snapToAlignment="center"
+                    scrollEventThrottle={16}
+                    decelerationRate={"fast"}
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={({ item }) => {
                         return <CarouseItem item={item} />
                     }}
-                    onScroll = {Animated.event(
-                        [{nativeEvent: { contentOffset: {x: scrollX } } }]
-
+                    onScroll={Animated.event(
+                        [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                        { useNativeDriver: false }
                     )}
                 />
-                <View style={StyleSheet.Dot}>
+                <View style={styles.Dot}>
                     {data.map((_, i) => {
                         let opacity = position.interpolate({
-                            inputRange: [i-1, i, i+1],
+                            inputRange: [i - 1, i, i + 1],
                             outputRange: [0.3, 1, 0.3],
                             extrapolate: 'clamp'
                         })
                         return (
                             <Animated.View
-                            key={i}
-                            style={{opacity, height:10, width:10, background:'#595959', margin: 8, borderRadius: 5}}
+                                key={i}
+                                style={{ opacity, height: 10, width: 10, backgroundColor: '#595959', margin: 8, borderRadius: 5 }}
                             />
                         )
                     })}
 
                 </View>
-
             </View>
-
         )
     }
 
-    return (
-        <View>
-            <Text>Có gì đâu</Text>
-        </View>
-    )
-
+    console.log('Please provide Images');
+    return null;
 }
 
 export default Carouse;
