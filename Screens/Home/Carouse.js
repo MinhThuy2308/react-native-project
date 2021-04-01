@@ -95,8 +95,6 @@ const Carouse = ({ data }) => {
             </View>
         )
     }
-
-    console.log('Please provide Images');
     return null;
 }
 
