@@ -34,16 +34,16 @@ const Profile = (props) => {
       })();
    }, []);
 
-   useEffect(() => {
-      (async () => {
-         if (Platform.OS !== 'web') {
-            const { status } = await ImagePicker.requestCameraPermissionsAsync();
-            if (status !== 'granted') {
-               alert('Sorry, we need camera roll permissions to make this work!');
-            }
-         }
-      })();
-   }, []);
+   // useEffect(() => {
+   //    (async () => {
+   //       if (Platform.OS !== 'web') {
+   //          const { status } = await ImagePicker.requestCameraPermissionsAsync();
+   //          if (status !== 'granted') {
+   //             alert('Sorry, we need camera roll permissions to make this work!');
+   //          }
+   //       }
+   //    })();
+   // }, []);
 
    const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
@@ -99,13 +99,13 @@ const Profile = (props) => {
 
             <Text style={{ fontSize: 30, marginTop: 10, }}>{useName}</Text>
             <View style={styles.button}>
-               <TouchableOpacity style={styles.click}>
+               <TouchableOpacity style={styles.click} onPress={takeImage}>
                   <Icon
                      name="camera"
                      size={25}
                      color="#333"
                   />
-                  <Text style={{ color: '#1995ad', marginLeft: 5, fontSize: 16 }} onPress={() => takeImage(true)}>Take Photo</Text>
+                  <Text style={{ color: '#1995ad', marginLeft: 5, fontSize: 16 }}>Take Photo</Text>
                </TouchableOpacity>
                <TouchableOpacity style={styles.click} onPress={pickImage}>
                   <Icon

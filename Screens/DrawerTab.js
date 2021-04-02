@@ -117,7 +117,21 @@ export function DrawerTab(props) {
               onPress={() => { props.navigation.navigate('Activity') }}
             />
 
+            <DrawerItem
+              icon={({ color, size }) => (
+                <Icon
+                  name="walk-outline"
+                  color={color}
+                  size={size}
+                />
+              )}
+              label="Information"
+              onPress={() => { props.navigation.navigate('Information') }}
+            />
+
           </Drawer.Section>
+
+
         </View>
 
       </DrawerContentScrollView>

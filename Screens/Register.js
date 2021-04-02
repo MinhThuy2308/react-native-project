@@ -12,10 +12,9 @@ import Feather from 'react-native-vector-icons/Feather';
 import { TextInput } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
 import { AuthContext } from '../components/context';
-import { register } from '../services/auth'
+import { register } from '../services/auth';
 
-const Register = ({ navigation }) => {
-
+const Register = () => {
   const [data, setData] = React.useState({
     email: '',
     password: '',
@@ -103,14 +102,9 @@ const Register = ({ navigation }) => {
       email,
       password,
       username
-
     }).then(res => {
       reGister(res);
-      Alert.alert('Successfully', 'You can login now');
-      return;
     })
-
-    navigation.navigate('Information')
   }
 
   return (
@@ -227,9 +221,6 @@ const Register = ({ navigation }) => {
           <Text style={styles.textLog1}>Log in</Text>
         </TouchableOpacity>
       </View>
-
-
-
     </View>
   )
 }

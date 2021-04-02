@@ -20,7 +20,7 @@ const Info = ({ navigation }) => {
         check_textInputChange: false,
     });
 
-    const [userBMI, setUserBMI] = React.useState();
+    const [userBMI, setUserBMI] = React.useState('');
 
     useEffect(() => {
         async function getUserBMIData() {

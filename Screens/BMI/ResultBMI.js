@@ -16,7 +16,7 @@ import { BMIAnalysis } from './BMIAnalysisAlert';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const ResultBMI = ({ navigation }) => {
-  const [userBMI, setUserBMI] = React.useState();
+  const [userBMI, setUserBMI] = React.useState('');
 
   useEffect(() => {
     async function getUserBMIData() {
@@ -31,7 +31,7 @@ const ResultBMI = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {
-        userBMI && (
+        userBMI ? (
           <Animatable.View style={styles.result} animation="fadeInDownBig">
             <View style={styles.index}>
               <Text style={{ color: '#333', fontSize: 20, marginTop: 10 }}>Your BMI: {userBMI} </Text>
@@ -42,10 +42,9 @@ const ResultBMI = ({ navigation }) => {
             <View style={styles.desc}>
               <Text style={{ color: '#737473', fontSize: 17, marginLeft: 10, marginTop: 10 }}>{analysis.desc} </Text>
             </View>
-
           </Animatable.View>
-
-
+        ) : (
+          <Text>:(</Text>
         )
       }
 
@@ -54,7 +53,7 @@ const ResultBMI = ({ navigation }) => {
           <Text style={{ color: '#fff', fontSize: 17, marginTop: 10 }}>Click the button below to go to our workouts</Text>
         </Animatable.View>
         <Animatable.View animation="flipInY">
-          <TouchableOpacity animation="flipInY" style={styles.confirm}>
+          <TouchableOpacity animation="flipInY" style={styles.confirm} onPress={() => navigation.navigate('Activity')}>
             <Text style={{ color: '#1995ad', fontWeight: 'bold', paddingLeft: 10 }}>Next</Text>
             <Icon
               name="arrow-forward"

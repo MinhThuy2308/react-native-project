@@ -18,8 +18,6 @@ const RootStackScreen = ({navigation}) => (
         <RootStack.Screen name="Information" component={Info}/>
         <RootStack.Screen name="Result" component={ResultBMI}/>
     </RootStack.Navigator>
-
-
 );
 
 export default RootStackScreen;

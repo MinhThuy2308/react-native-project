@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -23,8 +23,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import BottomTab from './Screens/BottomTab';
 import RootStackScreen from './Screens/RootStackScreen';
+import Info from './Screens/Info';
+import ResultBMI from './Screens/BMI/ResultBMI';
 import Appointment from './Screens/Appointment/Appointment';
-import { useEffect } from 'react';
 import { AuthContext } from './components/context';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -82,7 +83,7 @@ const App = () => {
       case 'Register':
         return {
           ...prevState,
-          eMail: action.id,
+          userName: action.id,
           userToken: action.token,
           isLoading: false,
         };
@@ -95,9 +96,6 @@ const App = () => {
 
   const authContext = React.useMemo(() => ({
     logIn: async (foundUser) => {
-      // setUserToken('minhthuy');
-      // setIsLoading(false);
-      console.log('foundUser', foundUser);
       const userToken = String(foundUser.jwt);
       const userName = foundUser.user.username;
       try {
@@ -106,13 +104,20 @@ const App = () => {
       } catch (e) {
         console.log(e);
       }
-      // console.log('user token: ', userToken)
       dispatch({ type: 'Login', id: userName, token: userToken });
     },
-    reGister: async () => {
+    reGister: async (data) => {
+      const userToken = String(data.jwt);
+      const userName = data.user.username;
+      try {
+        await AsyncStorage.setItem('userToken', userToken);
+        await AsyncStorage.setItem('userName', userName);
+        await AsyncStorage.setItem('userBMI', 'USER_NEW_REGISTER');
+      } catch (e) {
+        console.log(e);
+      }
 
-      // setUserToken('minhthuy');
-      // setIsLoading(false);
+      dispatch({ type: 'Login', id: userName, token: userToken });
     },
     logOut: async () => {
       // setUserToken(null);
@@ -149,30 +154,26 @@ const App = () => {
     );
   }
 
-  //  if( registerState.isLoading ) {
-  //   return(
-  //     <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-  //       <ActivityIndicator size="large" />
-  //     </View>
-  //   );
-  // }
-
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
         {loginState.userToken !== null ? (
-          <Drawer.Navigator drawerContent={props => <DrawerTab {...props} />}>
-            <Drawer.Screen name="Homepage" component={BottomTab} />
-            <Drawer.Screen name="Appointment" component={AppointStack} />
-            <Drawer.Screen name="Menu" component={MenuStack} />
-            <Drawer.Screen name="Activity" component={ActivityStack} />
-            <Drawer.Screen name="Basic" component={BasicStack} />
-            <Drawer.Screen name="LoseWeight" component={LoseStack} />
-            <Drawer.Screen name="GainWeight" component={GainStack} />
-            <Drawer.Screen name="Advanced" component={AdvancedStack} />
-            <Drawer.Screen name="ActivityDay" component={ActivityDayStack} />
-            <Drawer.Screen name="Detail" component={DetailStack} />
-          </Drawer.Navigator>
+          <>
+            <Drawer.Navigator drawerContent={props => <DrawerTab {...props} />}>
+              <Drawer.Screen name="Homepage" component={BottomTab} />
+              <Drawer.Screen name="Appointment" component={AppointStack} />
+              <Drawer.Screen name="Menu" component={MenuStack} />
+              <Drawer.Screen name="Activity" component={ActivityStack} />
+              <Drawer.Screen name="Basic" component={BasicStack} />
+              <Drawer.Screen name="LoseWeight" component={LoseStack} />
+              <Drawer.Screen name="GainWeight" component={GainStack} />
+              <Drawer.Screen name="Advanced" component={AdvancedStack} />
+              <Drawer.Screen name="ActivityDay" component={ActivityDayStack} />
+              <Drawer.Screen name="Information" component={Info}/>
+              <Drawer.Screen name="Result" component={ResultBMI}/>
+              <Drawer.Screen name="Detail" component={DetailStack} />
+            </Drawer.Navigator>
+          </>
         )
           :
           <RootStackScreen />
