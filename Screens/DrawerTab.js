@@ -26,14 +26,11 @@ export function DrawerTab(props) {
 
   const { logOut } = React.useContext(AuthContext);
   const [useName, setUserName] = useState([]);
-  const [userBMI, setUserBMI] = useState('');
 
   useEffect(() => {
     async function retrieveData() {
       const useName = await AsyncStorage.getItem('userName');
-      const userBMI = await AsyncStorage.getItem('userBMI');
       setUserName(useName);
-      setUserBMI(userBMI);
     }
     retrieveData();
   }, []);
@@ -52,11 +49,22 @@ export function DrawerTab(props) {
               />
               <View style={{ marginLeft: 15 }}>
                 <Title style={styles.title}>{useName}</Title>
-                <Title style={styles.title__bmi}>Your BMI is: {userBMI}</Title>
               </View>
             </View>
           </View>
           <Drawer.Section style={styles.menuTab}>
+            <DrawerItem
+
+              icon={({ color, size }) => (
+                <Icon
+                  name="home-outline"
+                  color={color}
+                  size={size}
+                />
+              )}
+              label="Homepage"
+              onPress={() => { props.navigation.navigate('Homepage') }}
+            />
             <DrawerItem
 
               icon={({ color, size }) => (
@@ -68,18 +76,6 @@ export function DrawerTab(props) {
               )}
               label="Appointment"
               onPress={() => { props.navigation.navigate('Appointment') }}
-            />
-
-            <DrawerItem
-              icon={({ color, size }) => (
-                <Icon
-                  name="notifications-outline"
-                  color={color}
-                  size={size}
-                />
-              )}
-              label="Notification"
-              onPress={() => { }}
             />
 
             <DrawerItem
@@ -120,7 +116,7 @@ export function DrawerTab(props) {
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon
-                  name="walk-outline"
+                  name="calculator-outline"
                   color={color}
                   size={size}
                 />

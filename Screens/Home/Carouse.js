@@ -32,7 +32,7 @@ function infiniteScroll(dataList, mySlide) {
             scrollValue = 0
             scrolled = 0
         }
-        if (mySlide) {
+        if(mySlide.current) {
             mySlide.current.scrollToOffset({
                 animated: true,
                 offset: scrollValue,

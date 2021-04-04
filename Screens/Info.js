@@ -144,13 +144,12 @@ export default Info;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#1995ad',
     },
 
     form: {
         alignItems: 'center',
         justifyContent: 'center',
-        top: '15%',
+        top: '10%',
     },
 
     userBMI: {
@@ -163,7 +162,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         marginTop: 15,
-        backgroundColor: '#fff',
+        
+        borderWidth:2,
+        borderColor: '#1995ad',
         borderRadius: 10,
         paddingBottom: 5,
         paddingTop: 5,
@@ -175,13 +176,13 @@ const styles = StyleSheet.create({
 
     intro: {
         fontSize: 27,
-        color: '#fff',
+        color: '#333',
         textAlign: 'center',
     },
 
     confirm: {
         top: '10%',
-        backgroundColor: '#fff',
+        backgroundColor: '#1995ad',
         width: '40%',
         paddingBottom: 5,
         paddingTop: 5,
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
 
     textSign: {
         textAlign: 'center',
-        color: '#4cb5f5',
+        color: '#fff',
         fontSize: 18,
         fontWeight: 'bold',
     },

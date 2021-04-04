@@ -20,7 +20,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 const Profile = (props) => {
    const [useName, setUserName] = useState([]);
-
+   const [userBMI, setUserBMI] = useState('');
    const [image, setImage] = useState(null);
 
    useEffect(() => {
@@ -83,6 +83,16 @@ const Profile = (props) => {
       retrieveData();
    }, []);
 
+   
+
+   useEffect(() => {
+     async function retrieveData() {
+       const userBMI = await AsyncStorage.getItem('userBMI');
+       setUserBMI(userBMI);
+     }
+     retrieveData();
+   }, []);
+
    return (
       <View style={{ flex: 1 }}>
          <View style={{ alignItems: 'center' }}>
@@ -119,6 +129,30 @@ const Profile = (props) => {
 
          </View>
 
+         <View style={styles.bmi}>
+            <Text style={styles.title}>Your BMI: </Text>
+            <Text style={styles.result}>{userBMI}</Text>
+         </View>
+
+         <View style={styles.chart}>
+            <View style={styles.blue}>
+               <Text style={{top:45, right:5}}>15</Text>
+            </View>
+            <View style={styles.green}>
+               <Text style={{top:45, right:10}}>18.5</Text>
+            </View>
+            <View style={styles.yellow}>
+            <Text style={{top:45, right:10}}>25</Text>
+            </View>
+            <View style={styles.orange}>
+            <Text style={{top:45, right:10}}>30</Text>
+            </View>
+            <View style={styles.red}>
+            <Text style={{top:45, right:10}}>35+</Text>
+            </View>
+            
+         </View>
+
       </View>
    )
 
@@ -139,6 +173,77 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
 
    },
+
+   bmi: {
+      flexDirection:'row',
+      marginTop:30,
+      marginLeft:30
+   },
+   title: {
+      fontSize:23,
+      fontWeight:'bold',
+   },
+
+   result: {
+      fontSize:20,
+      color:'red',
+      fontWeight:'bold',
+      top:2,
+   },
+   chart: {
+      marginTop:30,
+      marginLeft:17,
+      flexDirection:'row',
+      justifyContent:'space-between',
+      flex:1,
+      width:'92%'
+   },
+
+   blue: {
+      flexBasis:'auto',
+      flexGrow:0,
+      flexShrink:1,
+      backgroundColor:'#40639A',
+      width:'20%',
+      height:'20%'
+   },
+
+   green: { 
+      flexBasis:80,
+      flexGrow:1,
+      flexShrink:1,
+      backgroundColor:'#2CD42E',
+      // width:'20%',
+      height:'20%'
+   },
+
+   yellow: { 
+      flexBasis:30,
+      flexGrow:2,
+      flexShrink:0,
+      backgroundColor:'#C8E630',
+      height:'20%'
+   },
+
+   orange: { 
+      flexBasis:30,
+      flexGrow:2,
+      flexShrink:0,
+      backgroundColor:'#FFA722',
+      height:'20%'
+   },
+
+   red: { 
+      flexBasis:30,
+      flexGrow:2,
+      flexShrink:0,
+      backgroundColor:'#FF0D00',
+      height:'20%'
+   },
+
+   
+
+
 
 
 })

@@ -169,8 +169,8 @@ const App = () => {
               <Drawer.Screen name="GainWeight" component={GainStack} />
               <Drawer.Screen name="Advanced" component={AdvancedStack} />
               <Drawer.Screen name="ActivityDay" component={ActivityDayStack} />
-              <Drawer.Screen name="Information" component={Info}/>
-              <Drawer.Screen name="Result" component={ResultBMI}/>
+              <Drawer.Screen name="Information" component={InfoStack} />
+              <Drawer.Screen name="Result" component={ResultBMI} />
               <Drawer.Screen name="Detail" component={DetailStack} />
             </Drawer.Navigator>
           </>
@@ -239,16 +239,16 @@ function ActivityDayStack({ navigation, route }) {
   return (
     <Stack.Navigator screenOptions={
       {
-      headerStyle: {
-        backgroundColor: '#1995ad',
+        headerStyle: {
+          backgroundColor: '#1995ad',
 
-      },
-      headerTintColor: '#f1f1f2',
-      
-    }}>
+        },
+        headerTintColor: '#f1f1f2',
+
+      }}>
       <Stack.Screen name="Day" component={ActivityDay} options={({ route }) => ({
-    title: route.params.category
-  })} />
+        title: route.params.category
+      })} />
     </Stack.Navigator>
   );
 }
@@ -292,13 +292,38 @@ function ActivityStack({ navigation }) {
         ({ route }) => ({ title: route.params.productTitle }),
         {
           headerLeft: () => (
-            <Icon.Button name="arrow-back"
+            <Icon.Button name="menu-outline"
               size={30}
               backgroundColor="#1995ad"
-              onPress={() => navigation.goBack()}>
+              onPress={() => navigation.openDrawer()}>
             </Icon.Button>
           ),
         }} />
+    </Stack.Navigator>
+  );
+}
+
+function InfoStack({ navigation }) {
+
+  return (
+    <Stack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor: '#1995ad',
+
+      },
+      headerTintColor: '#f1f1f2',
+    }}>
+      <Stack.Screen name="Information" component={Info} options={{
+        headerLeft: () => (
+          <Icon.Button name="arrow-back"
+            size={30}
+            backgroundColor="#1995ad"
+            onPress={() => navigation.goBack()}>
+          </Icon.Button>
+        ),
+      }} />
+
+
     </Stack.Navigator>
   );
 }

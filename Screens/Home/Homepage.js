@@ -34,11 +34,12 @@ const Homepage = ({ navigation }) => {
   }, [userBMI]);
 
   return (
-    // <Carouse data={Data} />
+    
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate('Information')}>
+      {/* <TouchableOpacity onPress={() => navigation.navigate('Information')}>
         <Text>Test</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <Carouse data={Data} />
 
     </View>
   )

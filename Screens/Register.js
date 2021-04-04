@@ -29,7 +29,7 @@ const Register = () => {
   const { reGister } = React.useContext(AuthContext);
 
   const textInputChange = (val) => {
-    if (val.trim().length >= 8) {
+    if (val.trim().length >= 6) {
       setData({
         ...data,
         username: val,
@@ -165,7 +165,7 @@ const Register = () => {
         </View>
         {data.isValidUser ? null :
           <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.error}>Username must be 8 characters long</Text>
+            <Text style={styles.error}>Username must be 6 characters long</Text>
           </Animatable.View>
         }
 
