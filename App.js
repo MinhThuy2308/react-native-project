@@ -245,8 +245,12 @@ function ActivityDayStack({ navigation, route }) {
         },
         headerTintColor: '#f1f1f2',
       }}>
-      <Stack.Screen name="Day" component={ActivityDay} initialParams={{ itemId: route.params.activityDayDetail }} options={
-        {
+      <Stack.Screen name="Day" component={ActivityDay}
+        initialParams={{ 
+          activity: route.params.activity,
+          category: route.params.category
+        }} 
+        options={{
           headerLeft: () => (
             <Icon.Button name="arrow-back"
               size={30}

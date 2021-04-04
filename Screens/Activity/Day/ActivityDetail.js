@@ -14,6 +14,8 @@ import { useNavigation } from '@react-navigation/native';
 const ActivityDetail = ({ data }) => {
   const navigation = useNavigation();
 
+  console.log('ActivityDetail ActivityDetail', data)
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -25,7 +27,6 @@ const ActivityDetail = ({ data }) => {
           style={styles.link}
           onPress={() => navigation.navigate('Basic', {
             activity: data.id,
-            category: 100,
           })}
         >
           <Text style={styles.text}>{data.title}</Text>

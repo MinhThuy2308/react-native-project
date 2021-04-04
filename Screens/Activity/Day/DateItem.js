@@ -10,9 +10,11 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import checkImage from '../../../utils/checkImage';
 
-const DayItem = ({ data }) => {
+const DayItem = ({ data, activity }) => {
   const navigation = useNavigation();
-    
+
+  console.log('activity', activity);
+
   return (
     <ScrollView>
     <View style={styles.container}>
@@ -25,7 +27,8 @@ const DayItem = ({ data }) => {
           <TouchableOpacity
             style={styles.link}
             onPress={() => navigation.navigate('ActivityDay', {
-              activityDayDetail: data.id,
+              activity: activity,
+              category: data.id,
             })}
           >
             <Text style={styles.text}>{data.name}</Text>

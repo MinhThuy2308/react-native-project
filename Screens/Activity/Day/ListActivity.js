@@ -22,7 +22,7 @@ const ListActivity = ({ data }) => {
           imageStyle={{ borderRadius: 10 }}
         >
           <TouchableOpacity style={styles.click} onPress={() => navigation.navigate('Detail', { documentId: 1 })}>
-            <Text>{data.title}</Text>
+            <Text style={styles.text}>{data.title}</Text>
           </TouchableOpacity>
         </ImageBackground>
       </View>
@@ -37,17 +37,19 @@ const styles = StyleSheet.create({
     width: 385,
     height: 100,
     resizeMode: "stretch",
+    
   },
 
   click: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingTop: 43,
+    paddingBottom: 36,
+    backgroundColor:'#1995ad'
+ 
   },
 
   text: {
-    color: '#fff',
-    fontSize: 18
+    // color: '#fff',
+    fontSize: 18,
+    textAlign:'center',
   }
 })

@@ -8,7 +8,7 @@ import { fetchDay } from '../../services/days';
 import DayItem from './Day/DateItem';
 
 const renderItem = ({ item }) => (
-  <DayItem data={item} />
+  <DayItem data={item} activity={2} />
 );
 
 const Loseweight = ({navigation}) => {
