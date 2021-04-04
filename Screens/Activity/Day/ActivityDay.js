@@ -8,17 +8,13 @@ import {
 } from 'react-native';
 import { fetchActivityWithDay } from '../../../services/documents';
 import { useNavigation } from '@react-navigation/native';
-import { useRoute } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ListActivity from './ListActivity';
 
-const ActivityDay = () => {
-  const navigation = useNavigation();
-  const route = useRoute();
-  
+const ActivityDay = ({ route }) => {  
   const [day, SetDay] = useState([]);
 
-  console.log('route', route);
+  console.log('ActivityDay here', route);
 
   useEffect(() => {
     async function getDay() {

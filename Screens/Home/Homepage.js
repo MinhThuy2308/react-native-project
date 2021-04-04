@@ -27,7 +27,6 @@ const Homepage = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    console.log('userBMI', userBMI);
     if(userBMI === 'USER_NEW_REGISTER') {
       navigation.navigate('Information')
     }

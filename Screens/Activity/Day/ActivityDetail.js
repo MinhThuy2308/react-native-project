@@ -8,13 +8,10 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import { useState } from 'react/cjs/react.development';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { TextInput } from 'react-native-gesture-handler';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-const ActivityDetail = ({ data }) => {
 
+const ActivityDetail = ({ data }) => {
   const navigation = useNavigation();
 
   return (
@@ -27,8 +24,8 @@ const ActivityDetail = ({ data }) => {
         <TouchableOpacity
           style={styles.link}
           onPress={() => navigation.navigate('Basic', {
-            activity: 1,
-              category: 1,
+            activity: data.id,
+            category: 100,
           })}
         >
           <Text style={styles.text}>{data.title}</Text>
@@ -39,9 +36,6 @@ const ActivityDetail = ({ data }) => {
           />
         </TouchableOpacity>
       </ImageBackground>
-
-
-
     </View>
   )
 

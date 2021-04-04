@@ -35,8 +35,8 @@ import BasicYoga from './Screens/Activity/BasicYoga';
 import Loseweight from './Screens/Activity/Loseweight';
 import Gainweight from './Screens/Activity/Gainweight';
 import AdvancedYoga from './Screens/Activity/AdvancedYoga';
-import ActivityDay from './Screens/Activity/Day';
-import DayDetail from './Screens/Activity/Day/DayDetail';
+import ActivityDay from './Screens/Activity/Day/ActivityDay';
+import ActivityDayDetail from './Screens/Activity/Day/DayDetail';
 
 const Drawer = createDrawerNavigator();
 
@@ -171,7 +171,7 @@ const App = () => {
               <Drawer.Screen name="ActivityDay" component={ActivityDayStack} />
               <Drawer.Screen name="Information" component={InfoStack} />
               <Drawer.Screen name="Result" component={ResultBMI} />
-              <Drawer.Screen name="Detail" component={DetailStack} />
+              <Drawer.Screen name="ActivityDayDetail" component={ActivityDayDetailStack} />
             </Drawer.Navigator>
           </>
         )
@@ -244,16 +244,22 @@ function ActivityDayStack({ navigation, route }) {
 
         },
         headerTintColor: '#f1f1f2',
-
       }}>
-      <Stack.Screen name="Day" component={ActivityDay} options={({ route }) => ({
-        title: route.params.category
-      })} />
+      <Stack.Screen name="Day" component={ActivityDay} initialParams={{ itemId: route.params.activityDayDetail }} options={
+        {
+          headerLeft: () => (
+            <Icon.Button name="arrow-back"
+              size={30}
+              backgroundColor="#1995ad"
+              onPress={() => navigation.goBack()}>
+            </Icon.Button>
+          ),
+        }} />
     </Stack.Navigator>
   );
 }
 
-function DetailStack({ navigation }) {
+function ActivityDayDetailStack({ navigation }) {
 
   return (
     <Stack.Navigator screenOptions={{
@@ -263,7 +269,7 @@ function DetailStack({ navigation }) {
       },
       headerTintColor: '#f1f1f2',
     }}>
-      <Stack.Screen name="Detail" component={DayDetail} options={
+      <Stack.Screen name="Detail" component={ActivityDayDetail} options={
         ({ route }) => ({ title: route.params.productTitle }),
         {
           headerLeft: () => (

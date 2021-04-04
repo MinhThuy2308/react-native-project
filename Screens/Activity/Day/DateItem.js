@@ -12,7 +12,7 @@ import checkImage from '../../../utils/checkImage';
 
 const DayItem = ({ data }) => {
   const navigation = useNavigation();
-  
+    
   return (
     <ScrollView>
     <View style={styles.container}>
@@ -25,8 +25,7 @@ const DayItem = ({ data }) => {
           <TouchableOpacity
             style={styles.link}
             onPress={() => navigation.navigate('ActivityDay', {
-              activity: 1,
-              category: data.id,
+              activityDayDetail: data.id,
             })}
           >
             <Text style={styles.text}>{data.name}</Text>
