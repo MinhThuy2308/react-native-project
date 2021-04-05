@@ -23,6 +23,8 @@ const BasicYoga = ({navigation}) => {
     getDay();
   }, []);
 
+  console.log('BasicYoga');
+
   return (
     <View style={styles.container}>
       <FlatList

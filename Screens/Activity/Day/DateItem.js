@@ -13,8 +13,6 @@ import checkImage from '../../../utils/checkImage';
 const DayItem = ({ data, activity }) => {
   const navigation = useNavigation();
 
-  console.log('activity', activity);
-
   return (
     <ScrollView>
     <View style={styles.container}>

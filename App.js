@@ -28,7 +28,6 @@ import ResultBMI from './Screens/BMI/ResultBMI';
 import Appointment from './Screens/Appointment/Appointment';
 import { AuthContext } from './components/context';
 import AsyncStorage from '@react-native-community/async-storage';
-import Icon from 'react-native-vector-icons/Ionicons';
 import Menu from './Screens/Menu/Menu';
 import Activity from './Screens/Activity/Activity';
 import BasicYoga from './Screens/Activity/BasicYoga';
@@ -37,6 +36,7 @@ import Gainweight from './Screens/Activity/Gainweight';
 import AdvancedYoga from './Screens/Activity/AdvancedYoga';
 import ActivityDay from './Screens/Activity/Day/ActivityDay';
 import ActivityDayDetail from './Screens/Activity/Day/DayDetail';
+import { NAVIGATOR_SCREEN_OPTIONS, NavigatorHeaderLeft, NavigatorHeaderLeftDrawer } from './utils/navigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -164,10 +164,10 @@ const App = () => {
               <Drawer.Screen name="Appointment" component={AppointStack} />
               <Drawer.Screen name="Menu" component={MenuStack} />
               <Drawer.Screen name="Activity" component={ActivityStack} />
-              <Drawer.Screen name="Basic" component={BasicStack} />
-              <Drawer.Screen name="LoseWeight" component={LoseStack} />
-              <Drawer.Screen name="GainWeight" component={GainStack} />
-              <Drawer.Screen name="Advanced" component={AdvancedStack} />
+              <Drawer.Screen name="ActivityBasicYoga" component={BasicStack} />
+              <Drawer.Screen name="ActivityLoseWeight" component={LoseStack} />
+              <Drawer.Screen name="ActivityGainWeight" component={GainStack} />
+              <Drawer.Screen name="ActivityAdvancedYoga" component={AdvancedStack} />
               <Drawer.Screen name="ActivityDay" component={ActivityDayStack} />
               <Drawer.Screen name="Information" component={InfoStack} />
               <Drawer.Screen name="Result" component={ResultBMI} />
@@ -187,24 +187,10 @@ const Stack = createStackNavigator();
 function AppointStack({ navigation }) {
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: {
-        backgroundColor: '#1995ad',
-
-      },
-      headerTintColor: '#f1f1f2',
-    }}>
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
       <Stack.Screen name="Appointment" component={Appointment} options={{
-        headerLeft: () => (
-          <Icon.Button name="arrow-back"
-            size={30}
-            backgroundColor="#1995ad"
-            onPress={() => navigation.goBack()}>
-          </Icon.Button>
-        ),
+        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
       }} />
-
-
     </Stack.Navigator>
   );
 }
@@ -212,24 +198,10 @@ function AppointStack({ navigation }) {
 function MenuStack({ navigation }) {
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: {
-        backgroundColor: '#1995ad',
-
-      },
-      headerTintColor: '#f1f1f2',
-    }}>
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
       <Stack.Screen name="Daily menu" component={Menu} options={{
-        headerLeft: () => (
-          <Icon.Button name="arrow-back"
-            size={30}
-            backgroundColor="#1995ad"
-            onPress={() => navigation.goBack()}>
-          </Icon.Button>
-        ),
+        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
       }} />
-
-
     </Stack.Navigator>
   );
 }
@@ -237,27 +209,14 @@ function MenuStack({ navigation }) {
 function ActivityDayStack({ navigation, route }) {
   console.log('ActivityDayStack', route)
   return (
-    <Stack.Navigator screenOptions={
-      {
-        headerStyle: {
-          backgroundColor: '#1995ad',
-
-        },
-        headerTintColor: '#f1f1f2',
-      }}>
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
       <Stack.Screen name="Day" component={ActivityDay}
         initialParams={{ 
           activity: route.params.activity,
           category: route.params.category
         }} 
         options={{
-          headerLeft: () => (
-            <Icon.Button name="arrow-back"
-              size={30}
-              backgroundColor="#1995ad"
-              onPress={() => navigation.goBack()}>
-            </Icon.Button>
-          ),
+          headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
         }} />
     </Stack.Navigator>
   );
@@ -266,23 +225,11 @@ function ActivityDayStack({ navigation, route }) {
 function ActivityDayDetailStack({ navigation }) {
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: {
-        backgroundColor: '#1995ad',
-
-      },
-      headerTintColor: '#f1f1f2',
-    }}>
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
       <Stack.Screen name="Detail" component={ActivityDayDetail} options={
         ({ route }) => ({ title: route.params.productTitle }),
         {
-          headerLeft: () => (
-            <Icon.Button name="arrow-back"
-              size={30}
-              backgroundColor="#1995ad"
-              onPress={() => navigation.goBack()}>
-            </Icon.Button>
-          ),
+          headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
         }} />
     </Stack.Navigator>
   );
@@ -291,23 +238,11 @@ function ActivityDayDetailStack({ navigation }) {
 function ActivityStack({ navigation }) {
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: {
-        backgroundColor: '#1995ad',
-
-      },
-      headerTintColor: '#f1f1f2',
-    }}>
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
       <Stack.Screen name="Activity" component={Activity} options={
         ({ route }) => ({ title: route.params.productTitle }),
         {
-          headerLeft: () => (
-            <Icon.Button name="menu-outline"
-              size={30}
-              backgroundColor="#1995ad"
-              onPress={() => navigation.openDrawer()}>
-            </Icon.Button>
-          ),
+          headerLeft: () => <NavigatorHeaderLeftDrawer navigation={navigation} />
         }} />
     </Stack.Navigator>
   );
@@ -316,24 +251,10 @@ function ActivityStack({ navigation }) {
 function InfoStack({ navigation }) {
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: {
-        backgroundColor: '#1995ad',
-
-      },
-      headerTintColor: '#f1f1f2',
-    }}>
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
       <Stack.Screen name="Information" component={Info} options={{
-        headerLeft: () => (
-          <Icon.Button name="arrow-back"
-            size={30}
-            backgroundColor="#1995ad"
-            onPress={() => navigation.goBack()}>
-          </Icon.Button>
-        ),
+        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
       }} />
-
-
     </Stack.Navigator>
   );
 }
@@ -341,23 +262,11 @@ function InfoStack({ navigation }) {
 function BasicStack({ navigation }) {
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: {
-        backgroundColor: '#1995ad',
-
-      },
-      headerTintColor: '#f1f1f2',
-    }}>
-      <Stack.Screen name="Yoga" component={BasicYoga} options={
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+      <Stack.Screen name="Basic" component={BasicYoga} options={
         ({ route }) => ({ title: route.params.productTitle }),
         {
-          headerLeft: () => (
-            <Icon.Button name="arrow-back"
-              size={30}
-              backgroundColor="#1995ad"
-              onPress={() => navigation.goBack()}>
-            </Icon.Button>
-          ),
+          headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
         }} />
     </Stack.Navigator>
   );
@@ -366,24 +275,10 @@ function BasicStack({ navigation }) {
 function LoseStack({ navigation }) {
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: {
-        backgroundColor: '#1995ad',
-
-      },
-      headerTintColor: '#f1f1f2',
-    }}>
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
       <Stack.Screen name="Lose Weight" component={Loseweight} options={{
-        headerLeft: () => (
-          <Icon.Button name="arrow-back"
-            size={30}
-            backgroundColor="#1995ad"
-            onPress={() => navigation.goBack()}>
-          </Icon.Button>
-        ),
+        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
       }} />
-
-
     </Stack.Navigator>
   );
 }
@@ -391,24 +286,10 @@ function LoseStack({ navigation }) {
 function GainStack({ navigation }) {
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: {
-        backgroundColor: '#1995ad',
-
-      },
-      headerTintColor: '#f1f1f2',
-    }}>
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
       <Stack.Screen name="Gain Weight" component={Gainweight} options={{
-        headerLeft: () => (
-          <Icon.Button name="arrow-back"
-            size={30}
-            backgroundColor="#1995ad"
-            onPress={() => navigation.goBack()}>
-          </Icon.Button>
-        ),
+        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
       }} />
-
-
     </Stack.Navigator>
   );
 }
@@ -416,31 +297,12 @@ function GainStack({ navigation }) {
 function AdvancedStack({ navigation }) {
 
   return (
-    <Stack.Navigator screenOptions={{
-      headerStyle: {
-        backgroundColor: '#1995ad',
-
-      },
-      headerTintColor: '#f1f1f2',
-    }}>
-      <Stack.Screen name="Advanced Yoga" component={AdvancedYoga} options={{
-        headerLeft: () => (
-          <Icon.Button name="arrow-back"
-            size={30}
-            backgroundColor="#1995ad"
-            onPress={() => navigation.goBack()}>
-          </Icon.Button>
-        ),
+    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+      <Stack.Screen name="Advanced" component={AdvancedYoga} options={{
+        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
       }} />
-
-
     </Stack.Navigator>
   );
 }
-
-
-
-
-
 
 export default App;

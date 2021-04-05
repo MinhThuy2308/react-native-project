@@ -14,7 +14,12 @@ import { useNavigation } from '@react-navigation/native';
 const ActivityDetail = ({ data }) => {
   const navigation = useNavigation();
 
-  console.log('ActivityDetail ActivityDetail', data)
+  const getActivityScreens = {
+    1: 'ActivityBasicYoga',
+    2: 'ActivityLoseWeight',
+    3: 'ActivityGainWeight',
+    4: 'ActivityAdvancedYoga',
+  }
 
   return (
     <View style={styles.container}>
@@ -25,7 +30,7 @@ const ActivityDetail = ({ data }) => {
       >
         <TouchableOpacity
           style={styles.link}
-          onPress={() => navigation.navigate('Basic', {
+          onPress={() => navigation.navigate(getActivityScreens[data.id], {
             activity: data.id,
           })}
         >
