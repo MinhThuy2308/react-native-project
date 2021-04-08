@@ -17,8 +17,9 @@ import Avatar from './Profile/images/logo1.jpg';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import * as ImagePicker from 'expo-image-picker';
+import { LinearGradient } from 'expo-linear-gradient';
 
-const Profile = (props) => {
+const Profile = ({ navigation }) => {
    const [useName, setUserName] = useState([]);
    const [userBMI, setUserBMI] = useState('');
    const [image, setImage] = useState(null);
@@ -83,74 +84,91 @@ const Profile = (props) => {
       retrieveData();
    }, []);
 
-   
+
 
    useEffect(() => {
-     async function retrieveData() {
-       const userBMI = await AsyncStorage.getItem('userBMI');
-       setUserBMI(userBMI);
-     }
-     retrieveData();
+      async function retrieveData() {
+         const userBMI = await AsyncStorage.getItem('userBMI');
+         setUserBMI(userBMI);
+      }
+      retrieveData();
    }, []);
 
    return (
       <View style={{ flex: 1 }}>
-         <View style={{ alignItems: 'center' }}>
-
-            <View style={{ alignItems: 'center', justifyContent: 'center', borderRadius: 100 }}>
-               <ImageBackground
-                  source={{ uri: image }}
-                  style={{ width: 140, height: 140, }}
-                  imageStyle={{ borderRadius: 100 }}
-               >
-               </ImageBackground>
-            </View>
-
-
-            <Text style={{ fontSize: 30, marginTop: 10, }}>{useName}</Text>
-            <View style={styles.button}>
-               <TouchableOpacity style={styles.click} onPress={takeImage}>
+         <View style={styles.header}>
+            <LinearGradient
+               colors={['#4364f7', '#fff', 'transparent']}
+               style={styles.background}
+            />
+            <View style={{ top: 40, left: 8 }}>
+               <TouchableOpacity >
                   <Icon
-                     name="camera"
-                     size={25}
-                     color="#333"
+                     name="menu-outline"
+                     size={30}
+                     color="#fff"
+                     backgroundColor="#61b1fc"
+                     onPress={() => navigation.openDrawer()}
                   />
-                  <Text style={{ color: '#1995ad', marginLeft: 5, fontSize: 16 }}>Take Photo</Text>
-               </TouchableOpacity>
-               <TouchableOpacity style={styles.click} onPress={pickImage}>
-                  <Icon
-                     name="image"
-                     size={25}
-                     color="#333"
-                  />
-                  <Text style={{ color: '#1995ad', marginLeft: 5, fontSize: 16 }}>Choose from library</Text>
                </TouchableOpacity>
             </View>
-
          </View>
+         <View style={styles.footer}>
+            <View style={{ alignItems: 'center', bottom:60 }}>
 
-         <View style={styles.bmi}>
-            <Text style={styles.title}>Your BMI: </Text>
-            <Text style={styles.result}>{userBMI}</Text>
-         </View>
+               <View style={{ alignItems: 'center', justifyContent: 'center', borderRadius: 100, bottom: 70 }}>
+                  <ImageBackground
+                     source={{ uri: image }}
+                     style={{ width: 140, height: 140, }}
+                     imageStyle={{ borderRadius: 100 }}
+                  >
+                  </ImageBackground>
+               </View>
 
-         <View style={styles.chart}>
-            <View style={styles.blue}>
-               <Text style={{top:45, right:5}}>15</Text>
+               <Text style={{ fontSize: 30, top: -60 }}>{useName}</Text>
+               <View style={styles.button}>
+                  <TouchableOpacity style={styles.click} onPress={takeImage}>
+                     <Icon
+                        name="camera"
+                        size={25}
+                        color="#333"
+                     />
+                     <Text style={{ color: '#1995ad', marginLeft: 5, fontSize: 16 }}>Take Photo</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.click} onPress={pickImage}>
+                     <Icon
+                        name="image"
+                        size={25}
+                        color="#333"
+                     />
+                     <Text style={{ color: '#1995ad', marginLeft: 5, fontSize: 16 }}>Choose from library</Text>
+                  </TouchableOpacity>
+               </View>
+
             </View>
-            <View style={styles.green}>
-               <Text style={{top:45, right:10}}>18.5</Text>
+            <View style={styles.bmi}>
+               <Text style={styles.title}>Your BMI: </Text>
+               <Text style={styles.result}>{userBMI}</Text>
             </View>
-            <View style={styles.yellow}>
-            <Text style={{top:45, right:10}}>25</Text>
+
+            <View style={styles.chart}>
+               <View style={styles.blue}>
+                  <Text style={{ top: 45, right: 5 }}>15</Text>
+               </View>
+               <View style={styles.green}>
+                  <Text style={{ top: 45, right: 10 }}>18.5</Text>
+               </View>
+               <View style={styles.yellow}>
+                  <Text style={{ top: 45, right: 10 }}>25</Text>
+               </View>
+               <View style={styles.orange}>
+                  <Text style={{ top: 45, right: 10 }}>30</Text>
+               </View>
+               <View style={styles.red}>
+                  <Text style={{ top: 45, right: 10 }}>35+</Text>
+               </View>
+
             </View>
-            <View style={styles.orange}>
-            <Text style={{top:45, right:10}}>30</Text>
-            </View>
-            <View style={styles.red}>
-            <Text style={{top:45, right:10}}>35+</Text>
-            </View>
-            
          </View>
 
       </View>
@@ -164,6 +182,7 @@ const styles = StyleSheet.create({
 
    button: {
       alignItems: 'center',
+      top: -50
    },
 
    click: {
@@ -174,74 +193,97 @@ const styles = StyleSheet.create({
 
    },
 
+   header: {
+      flex: 1,
+      backgroundColor: '#61b1fc',
+
+   },
+
+   background: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      height: 550,
+   },
+
+   footer: {
+      flex: 2,
+      backgroundColor: '#ffffff',
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+      paddingVertical:50
+
+   },
+
    bmi: {
-      flexDirection:'row',
-      marginTop:30,
-      marginLeft:30
+      flexDirection: 'row',
+      marginTop: -70,
+      marginLeft: 30
    },
    title: {
-      fontSize:23,
-      fontWeight:'bold',
+      fontSize: 23,
+      fontWeight: 'bold',
    },
 
    result: {
-      fontSize:20,
-      color:'red',
-      fontWeight:'bold',
-      top:2,
+      fontSize: 20,
+      color: 'red',
+      fontWeight: 'bold',
+      top: 2,
    },
    chart: {
-      marginTop:30,
-      marginLeft:17,
-      flexDirection:'row',
-      justifyContent:'space-between',
-      flex:1,
-      width:'92%'
+      marginTop: 20,
+      marginLeft: 17,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      flex: 1,
+      width: '92%'
    },
 
    blue: {
-      flexBasis:'auto',
-      flexGrow:0,
-      flexShrink:1,
-      backgroundColor:'#40639A',
-      width:'20%',
-      height:'20%'
+      flexBasis: 'auto',
+      flexGrow: 0,
+      flexShrink: 1,
+      backgroundColor: '#40639A',
+      width: '20%',
+      height: '25%'
    },
 
-   green: { 
-      flexBasis:80,
-      flexGrow:1,
-      flexShrink:1,
-      backgroundColor:'#2CD42E',
+   green: {
+      flexBasis: 80,
+      flexGrow: 1,
+      flexShrink: 1,
+      backgroundColor: '#2CD42E',
       // width:'20%',
-      height:'20%'
+      height: '25%'
    },
 
-   yellow: { 
-      flexBasis:30,
-      flexGrow:2,
-      flexShrink:0,
-      backgroundColor:'#C8E630',
-      height:'20%'
+   yellow: {
+      flexBasis: 30,
+      flexGrow: 2,
+      flexShrink: 0,
+      backgroundColor: '#C8E630',
+      height: '25%'
    },
 
-   orange: { 
-      flexBasis:30,
-      flexGrow:2,
-      flexShrink:0,
-      backgroundColor:'#FFA722',
-      height:'20%'
+   orange: {
+      flexBasis: 30,
+      flexGrow: 2,
+      flexShrink: 0,
+      backgroundColor: '#FFA722',
+      height: '25%'
    },
 
-   red: { 
-      flexBasis:30,
-      flexGrow:2,
-      flexShrink:0,
-      backgroundColor:'#FF0D00',
-      height:'20%'
+   red: {
+      flexBasis: 30,
+      flexGrow: 2,
+      flexShrink: 0,
+      backgroundColor: '#FF0D00',
+      height: '25%'
    },
 
-   
+
 
 
 

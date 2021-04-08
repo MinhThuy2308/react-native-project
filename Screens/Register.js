@@ -13,8 +13,9 @@ import { TextInput } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
 import { AuthContext } from '../components/context';
 import { register } from '../services/auth';
+import { LinearGradient } from 'expo-linear-gradient';
 
-const Register = () => {
+const Register = ({ navigation }) => {
   const [data, setData] = React.useState({
     email: '',
     password: '',
@@ -109,15 +110,20 @@ const Register = () => {
 
   return (
     <View style={styles.container}>
+      <LinearGradient
+        colors={['#61b1fc', '#4364f7', 'transparent']}
+        style={styles.background}
+      />
       <View style={styles.header}>
-        <Image
+        <Text style={styles.textIntro}>Register</Text>
+        {/* <Image
           source={mainLogo}
           style={styles.logo}
           resizeMode="contain"
-        />
+        /> */}
       </View>
       <View style={styles.footer}>
-        <Text style={styles.textIntro}>Register</Text>
+
         <View style={styles.action}>
           <Feather
             name="mail"
@@ -159,7 +165,7 @@ const Register = () => {
             style={styles.textInput}
             autoCapitalize="none"
             onChangeText={(val) => textInputChange(val)}
-            
+
           >
           </TextInput>
         </View>
@@ -206,20 +212,22 @@ const Register = () => {
           >
           </TextInput>
         </View> */}
-
-        <TouchableOpacity style={styles.signUp} onPress={() => { registerHandle(data.email, data.password, data.username) }}>
-          <Text style={styles.textSign}>Register</Text>
-        </TouchableOpacity>
-
+        <View style={styles.button}>
+          <LinearGradient
+            colors={['#4364f7', '#6fb1fc']}
+            style={{ borderRadius: 10 }}
+          >
+            <TouchableOpacity style={styles.signUp} onPress={() => { registerHandle(data.email, data.password, data.username) }}>
+              <Text style={styles.textSign}>Register</Text>
+            </TouchableOpacity>
+          </LinearGradient>
+        </View>
         <View style={styles.btnLog}>
-          <Text style={{ color: '#F7F08D' }}>Already have a account?</Text>
+          <Text style={{ color: '#61b1fc' }}>Already have a account?</Text>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Text style={styles.textLog1}>Log in</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('Information')}>
-          <Text style={styles.textLog1}>Log in</Text>
-        </TouchableOpacity>
       </View>
     </View>
   )
@@ -230,39 +238,50 @@ export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1995ad',
+    
 
+  },
+
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 550,
   },
 
   header: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
 
   },
 
   footer: {
     flex: 2,
-    paddingVertical: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    borderTopLeftRadius: 50,
 
   },
 
-  logo: {
-    width: '70%',
-    top: 30,
+  textIntro: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginLeft: 20,
+    marginTop: 50
+
   },
 
   action: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 15,
-    backgroundColor: '#fff',
+    marginTop: 30,
+    // backgroundColor: '#ff5f6d',
     borderRadius: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: '#4364f7',
     paddingBottom: 5,
     paddingTop: 5,
-    width: '80%',
     paddingLeft: 10,
   },
 
@@ -272,7 +291,7 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    color: '#4cb5f5',
+    color: '#4364f7',
 
   },
 
@@ -282,47 +301,44 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
 
-  textIntro: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: '#fff',
-    textAlign: 'center',
-
-  },
-
   textSign: {
     fontSize: 18,
+    borderRadius: 10,
+    color: '#fff',
     fontWeight: 'bold',
-    color: '#4cb5f5'
+    paddingTop: 10,
+    paddingBottom: 10,
+    // paddingLeft: 30,
+    // paddingRight: 30,
+    textAlign: 'center',
   },
 
   error: {
-    color: '#EBFF33',
+    color: 'red',
     fontSize: 14,
-    right: 30,
     marginTop: 10,
   },
 
+  button: {
+    marginTop: 20,
+    width: '95%',
+    marginLeft: 10
+  },
+
   signUp: {
-    width: '40%',
-    paddingBottom: 5,
-    paddingTop: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 25,
-    borderRadius: 20,
-    backgroundColor: '#fff'
+    borderRadius: 10,
   },
 
   btnLog: {
     flexDirection: 'row',
     marginTop: 20,
+    justifyContent: 'center'
   },
 
   textLog1: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#61b1fc',
     marginLeft: 10,
   }
 

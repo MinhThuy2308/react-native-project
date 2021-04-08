@@ -36,7 +36,8 @@ import Gainweight from './Screens/Activity/Gainweight';
 import AdvancedYoga from './Screens/Activity/AdvancedYoga';
 import ActivityDay from './Screens/Activity/Day/ActivityDay';
 import ActivityDayDetail from './Screens/Activity/Day/DayDetail';
-import { NAVIGATOR_SCREEN_OPTIONS, NavigatorHeaderLeft, NavigatorHeaderLeftDrawer } from './utils/navigator';
+import {NAVIGATOR_SCREEN_OPTIONS, NavigatorHeaderLeft, NavigatorHeaderLeftDrawer } from './utils/navigator';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -162,14 +163,14 @@ const App = () => {
             <Drawer.Navigator drawerContent={props => <DrawerTab {...props} />}>
               <Drawer.Screen name="Homepage" component={BottomTab} />
               <Drawer.Screen name="Appointment" component={AppointStack} />
-              <Drawer.Screen name="Menu" component={MenuStack} />
-              <Drawer.Screen name="Activity" component={ActivityStack} />
-              <Drawer.Screen name="ActivityBasicYoga" component={BasicStack} />
-              <Drawer.Screen name="ActivityLoseWeight" component={LoseStack} />
-              <Drawer.Screen name="ActivityGainWeight" component={GainStack} />
-              <Drawer.Screen name="ActivityAdvancedYoga" component={AdvancedStack} />
-              <Drawer.Screen name="ActivityDay" component={ActivityDayStack} />
-              <Drawer.Screen name="Information" component={InfoStack} />
+              <Drawer.Screen name="Menu" component={Menu} />
+              <Drawer.Screen name="Activity" component={Activity} />
+              <Drawer.Screen name="ActivityBasicYoga" component={BasicYoga} />
+              <Drawer.Screen name="ActivityLoseWeight" component={Loseweight} />
+              <Drawer.Screen name="ActivityGainWeight" component={Gainweight} />
+              <Drawer.Screen name="ActivityAdvancedYoga" component={AdvancedYoga} />
+              <Drawer.Screen name="ActivityDay" component={ActivityDay} />
+              <Drawer.Screen name="Information" component={Info} />
               <Drawer.Screen name="Result" component={ResultBMI} />
               <Drawer.Screen name="ActivityDayDetail" component={ActivityDayDetailStack} />
             </Drawer.Navigator>
@@ -195,32 +196,33 @@ function AppointStack({ navigation }) {
   );
 }
 
-function MenuStack({ navigation }) {
+// function MenuStack({ navigation }) {
 
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Daily menu" component={Menu} options={{
-        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
-      }} />
-    </Stack.Navigator>
-  );
-}
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+//       <Stack.Screen name="Daily menu" component={Menu} options={{
+//         headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
+//       }} />
+//     </Stack.Navigator>
+//   );
+// }
 
-function ActivityDayStack({ navigation, route }) {
-  console.log('ActivityDayStack', route)
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Day" component={ActivityDay}
-        initialParams={{ 
-          activity: route.params.activity,
-          category: route.params.category
-        }} 
-        options={{
-          headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
-        }} />
-    </Stack.Navigator>
-  );
-}
+// function ActivityDayStack({ navigation, route }) {
+//   console.log('2. ActivityDayStack', route)
+
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+//       <Stack.Screen name="Day" component={ActivityDay}
+//         initialParams={{ 
+//           activity: route.params.activity,
+//           category: route.params.category
+//         }}
+//         options={{
+//           headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
+//         }} />
+//     </Stack.Navigator>
+//   );
+// }
 
 function ActivityDayDetailStack({ navigation }) {
 
@@ -235,74 +237,86 @@ function ActivityDayDetailStack({ navigation }) {
   );
 }
 
-function ActivityStack({ navigation }) {
+// function ActivityStack({ navigation }) {
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS} >
+//       <Stack.Screen name="Activity" component={Activity} options={
+//         ({ route }) => ({ title: route.params.productTitle }),
+//         {
+//           headerLeft: () => <NavigatorHeaderLeftDrawer navigation={navigation} />
+//         }} />
+//     </Stack.Navigator>
+//   );
+// }
 
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Activity" component={Activity} options={
-        ({ route }) => ({ title: route.params.productTitle }),
-        {
-          headerLeft: () => <NavigatorHeaderLeftDrawer navigation={navigation} />
-        }} />
-    </Stack.Navigator>
-  );
-}
+// function InfoStack({ navigation }) {
 
-function InfoStack({ navigation }) {
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+//       <Stack.Screen name="Information" component={Info} options={{
+//         headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
+//       }} />
+//     </Stack.Navigator>
+//   );
+// }
 
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Information" component={Info} options={{
-        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
-      }} />
-    </Stack.Navigator>
-  );
-}
+// function BasicStack({ navigation, route }) {
+//   console.log('1. ActivityBasicStack', route)
 
-function BasicStack({ navigation }) {
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+//       <Stack.Screen name="Basic" component={BasicYoga}
+//         initialParams={{ 
+//           activity: 1,
+//         }}
+//         options={
+//           ({ route }) => ({ title: route.params.productTitle }),
+//           {
+//             headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
+//           }} />
+//     </Stack.Navigator>
+//   );
+// }
 
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Basic" component={BasicYoga} options={
-        ({ route }) => ({ title: route.params.productTitle }),
-        {
-          headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
-        }} />
-    </Stack.Navigator>
-  );
-}
+// function LoseStack({ navigation, route }) {
+//   console.log('ActivityLoseStack', route)
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+//       <Stack.Screen name="Lose Weight" component={Loseweight}
+//         initialParams={{ 
+//           activity: 2,
+//         }}
+//         options={{
+//           headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
+//         }} />
+//     </Stack.Navigator>
+//   );
+// }
 
-function LoseStack({ navigation }) {
+// function GainStack({ navigation }) {
 
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Lose Weight" component={Loseweight} options={{
-        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
-      }} />
-    </Stack.Navigator>
-  );
-}
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+//       <Stack.Screen name="Gain Weight" component={Gainweight} 
+//         initialParams={{ 
+//           activity: 3,
+//         }}
+//         options={{
+//           headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
+//         }} />
+//     </Stack.Navigator>
+//   );
+// }
 
-function GainStack({ navigation }) {
+// function AdvancedStack({ navigation }) {
 
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Gain Weight" component={Gainweight} options={{
-        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
-      }} />
-    </Stack.Navigator>
-  );
-}
-
-function AdvancedStack({ navigation }) {
-
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Advanced" component={AdvancedYoga} options={{
-        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
-      }} />
-    </Stack.Navigator>
-  );
-}
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+//       <Stack.Screen name="Advanced" component={AdvancedYoga} options={{
+//         headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
+//       }} />
+//     </Stack.Navigator>
+//   );
+// }
 
 export default App;

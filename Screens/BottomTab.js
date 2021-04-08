@@ -11,7 +11,7 @@ import Profile from './Profile';
 import VideoScreen from './Video/VideoScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 const Tab = createMaterialBottomTabNavigator();
@@ -24,9 +24,10 @@ const BottomTab = (props) => {
     return (
       <Tab.Navigator
       initialRouteName="Home"
-      activeColor="#f1f1f2"
-      barStyle={{ backgroundColor: '#1995ad' }}
+      activeColor="#fff"
+      barStyle={{ backgroundColor: '#4364f7' }}
     >
+     
       <Tab.Screen
         name="Home"
         component={HomeStackScreen}
@@ -65,21 +66,9 @@ export default BottomTab;
 
 const HomeStackScreen = ({navigation}) => {
     return (
-      <HomeStack.Navigator screenOptions={{
-        headerStyle: {
-          backgroundColor:'#1995ad',
-          
-        },
-        headerTintColor:'#f1f1f2',
-      }}>
+      <HomeStack.Navigator >
         <HomeStack.Screen name="Homepage" component={Homepage} options={{
-            headerLeft: () => (
-              <Icon.Button name="menu-outline" 
-                           size={30} 
-                           backgroundColor="#1995ad" 
-                           onPress={() => navigation.openDrawer()}>
-              </Icon.Button>
-            )
+            headerShown:false
           }}/>
           
       </HomeStack.Navigator>
@@ -89,21 +78,9 @@ const HomeStackScreen = ({navigation}) => {
   
   const ProStackScreen = ({navigation}) => {
     return(
-      <ProStack.Navigator screenOptions={{
-        headerStyle: {
-          backgroundColor:'#1995ad',
-          
-        },
-        headerTintColor:'#f1f1f2',
-      }}>
+      <ProStack.Navigator >
         <ProStack.Screen name="Profile" component={Profile} options={{
-            headerLeft: () => (
-              <Icon.Button name="menu-outline" 
-                           size={30} 
-                           backgroundColor="#1995ad" 
-                           onPress={() => navigation.openDrawer()}>
-              </Icon.Button>
-            )
+            headerShown:false
           }}
          />
       </ProStack.Navigator>
@@ -113,26 +90,31 @@ const HomeStackScreen = ({navigation}) => {
 
   const VideoStackScreen = ({navigation}) => {
     return(
-      <VideoStack.Navigator screenOptions={{
-        headerStyle: {
-          backgroundColor:'#1995ad',
-          
-        },
-        headerTintColor:'#f1f1f2',
-      }}>
+      <VideoStack.Navigator >
         <VideoStack.Screen name="Video" component={VideoScreen} options={{
-            headerLeft: () => (
-              <Icon.Button name="menu-outline" 
-                           size={30} 
-                           backgroundColor="#1995ad" 
-                           onPress={() => navigation.openDrawer()}>
-              </Icon.Button>
-            )
+            headerShown:false
           }}
          />
       </VideoStack.Navigator>
     )
      
   };
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      
+  
+    },
+  
+    background: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      height: 550,
+    },
+  
+  })
 
  

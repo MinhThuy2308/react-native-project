@@ -4,29 +4,65 @@ import {
   Text,
   FlatList,
   StyleSheet,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity
 } from 'react-native';
 import { fetchActivityWithDay } from '../../../services/documents';
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import ListActivity from './ListActivity';
+import { useFocusEffect } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const ActivityDay = ({ route }) => {  
+
+const ActivityDay = ({ navigation, route }) => {
   const [day, SetDay] = useState([]);
 
-  console.log('ActivityDay here', route);
+  console.log('3. ActivityDay', route);
 
-  useEffect(() => {
-    async function getDay() {
-      const res = await fetchActivityWithDay({
-        activityId: 1,
-        categoryId: 1,
-      });
-      SetDay(res);
-    }
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      // Screen was focused
+      // Do something
+      async function getDay() {
+        const res = await fetchActivityWithDay({
+          activityId: route.params.activity,
+          categoryId: route.params.category,
+        });
+        SetDay(res);
+      }
 
-    getDay();
-  }, []);
+      getDay();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     async function unsubscribe() {
+  //       const res = await fetchActivityWithDay({
+  //         activityId: route.params.activity,
+  //         categoryId: route.params.category,
+  //       });
+  //       SetDay(res);
+  //     }
+
+  //     return () => unsubscribe();
+  //   }, [day])
+  // );
+
+  // useEffect(() => {
+  //   async function getDay() {
+  //     const res = await fetchActivityWithDay({
+  //       activityId: route.params.activity,
+  //       categoryId: route.params.category,
+  //     });
+  //     SetDay(res);
+  //   }
+
+  //   getDay();
+  // }, []);
 
   // useEffect(() => {
   //   navigation.setOptions({
@@ -40,11 +76,31 @@ const ActivityDay = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={day}
-        renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
-      />
+      <View style={styles.header}>
+        <LinearGradient
+          colors={['#4364f7', '#617EFF', 'transparent']}
+          style={styles.background}
+        />
+        <View style={{ top: 40, left: 8 }}>
+          <TouchableOpacity >
+            <Icon
+              name="chevron-back-outline"
+              size={30}
+              color="#fff"
+              backgroundColor="#61b1fc"
+              onPress={() => navigation.goBack()}
+            />
+          </TouchableOpacity>
+        </View>
+
+      </View>
+      <View style={styles.footer}>
+        <FlatList
+          data={day}
+          renderItem={renderItem}
+          keyExtractor={item => item.id.toString()}
+        />
+      </View>
     </View>
   )
 }
@@ -54,8 +110,44 @@ export default ActivityDay;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+
   },
+
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 700,
+  },
+
+  // header: {
+  //   flex:1
+  //   // position: 'absolute',
+  //   // left: 0,
+  //   // right: 0,
+  //   // top: 0,
+  //   // height: 700,
+  // },
+
+  title: {
+    color: '#fff',
+    fontSize: 28,
+    fontWeight: 'bold',
+    top: 50,
+    paddingLeft: 20
+  },
+
+  footer: {
+    flex: 2,
+    // backgroundColor: '#4364f7',
+    alignItems: 'center',
+    marginTop: 20,
+    borderTopLeftRadius: 40,
+    paddingVertical: 40,
+    // paddingHorizontal: 30,
+
+  },
+
 
 })

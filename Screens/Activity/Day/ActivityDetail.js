@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const ActivityDetail = ({ data }) => {
   const navigation = useNavigation();
@@ -23,25 +25,23 @@ const ActivityDetail = ({ data }) => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={{ uri: `http://10.0.2.2:1337${data.image.formats.medium.url}` }}
-        style={styles.bg}
-        imageStyle={{ borderRadius: 10 }}
+     
+      <TouchableOpacity
+        style={styles.link}
+        onPress={() => navigation.navigate(getActivityScreens[data.id], {
+          activity: data.id,
+        })}
       >
-        <TouchableOpacity
-          style={styles.link}
-          onPress={() => navigation.navigate(getActivityScreens[data.id], {
-            activity: data.id,
-          })}
-        >
-          <Text style={styles.text}>{data.title}</Text>
-          <Material
-            name="yoga"
-            size={25}
-            color="#fff"
+        <View style={styles.item}>
+          <ImageBackground
+            source={{ uri: `http://10.0.2.2:1337${data.image.url}` }}
+            style={styles.bg}
+            imageStyle={{ borderRadius: 10 }}
           />
-        </TouchableOpacity>
-      </ImageBackground>
+          <Text style={styles.text}>{data.title}</Text>
+        </View>
+      </TouchableOpacity>
+      
     </View>
   )
 
@@ -53,28 +53,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-
   },
 
   bg: {
-    width: 385,
-    height: 100,
+    width: 150,
+    height: 150,
     resizeMode: "stretch",
-    marginTop: 40,
+    
+  },
+
+  item: {
+    borderRadius: 10,
+    marginBottom: 25,
+    backgroundColor: '#fff',
+    elevation: 10
   },
 
   text: {
     fontSize: 17,
-    color: '#fff',
-
-
+    color: '#000',
+    textAlign: 'center',
+    padding: 8,
   },
 
   link: {
     flexDirection: 'row',
-    paddingTop: 40,
-    paddingBottom: 35,
-    justifyContent: 'center'
-
+    paddingTop: 10,
   }
 })

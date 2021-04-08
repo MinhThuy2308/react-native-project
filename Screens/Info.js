@@ -12,6 +12,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-community/async-storage';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 const Info = ({ navigation }) => {
     const [data, setData] = React.useState({
@@ -93,38 +95,62 @@ const Info = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.form}>
-                <Text style={styles.intro}>Let's calculate your BMI: </Text>
-                <View style={styles.action}>
-
-                    <TextInput
-                        placeholder="Weight"
-                        style={styles.textInput}
-                        autoCapitalize="none"
-                        onChangeText={(val) => inputWeightChange(val)}
-                        keyboardType={"number-pad"}
-                    >
-                    </TextInput>
+            <View style={styles.header}>
+                <LinearGradient
+                    colors={['#4364f7', '#fff', 'transparent']}
+                    style={styles.background}
+                />
+                <View style={{ top: 40, left: 8 }}>
+                    <TouchableOpacity >
+                        <Icon
+                            name="chevron-back-outline"
+                            size={30}
+                            color="#fff"
+                            backgroundColor="#61b1fc"
+                            onPress={() => navigation.goBack()}
+                        />
+                    </TouchableOpacity>
                 </View>
-
-                <View style={styles.action}>
-                    <TextInput
-                        placeholder="Height"
-                        style={styles.textInput}
-                        autoCapitalize="none"
-                        onChangeText={(val) => inputHeightChange(val)}
-                        keyboardType={"number-pad"}
-                    >
-                    </TextInput>
-                </View>
-
-
-                <TouchableOpacity style={styles.confirm} onPress={() => calcCalo(data.weight, data.height)} >
-                    <Text style={styles.textSign}>Calculate</Text>
-                </TouchableOpacity>
 
             </View>
+            <View style={styles.footer}>
+                <View style={styles.form}>
+                    <Text style={styles.intro}>Let's calculate your BMI: </Text>
+                    <View style={styles.action}>
 
+                        <TextInput
+                            placeholder="Weight"
+                            style={styles.textInput}
+                            autoCapitalize="none"
+                            onChangeText={(val) => inputWeightChange(val)}
+                            keyboardType={"number-pad"}
+                        >
+                        </TextInput>
+                    </View>
+
+                    <View style={styles.action}>
+                        <TextInput
+                            placeholder="Height"
+                            style={styles.textInput}
+                            autoCapitalize="none"
+                            onChangeText={(val) => inputHeightChange(val)}
+                            keyboardType={"number-pad"}
+                        >
+                        </TextInput>
+                    </View>
+                    <View style={styles.button}>
+                        <LinearGradient
+                            colors={['#4364f7', '#6fb1fc']}
+                            style={{ borderRadius: 10 }}
+                        >
+                            <TouchableOpacity style={styles.confirm} onPress={() => calcCalo(data.weight, data.height)} >
+                                <Text style={styles.textSign}>Calculate</Text>
+                            </TouchableOpacity>
+                        </LinearGradient>
+                    </View>
+
+                </View>
+            </View>
             {/* {
                 userBMI && (
                     <View style={styles.userBMI}>
@@ -146,65 +172,88 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 
-    form: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        top: '10%',
-    },
-
-    userBMI: {
-        top: '35%',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
 
     action: {
         display: 'flex',
         flexDirection: 'row',
-        marginTop: 15,
-        
-        borderWidth:2,
-        borderColor: '#1995ad',
-        borderRadius: 10,
+        marginTop: 30,
+        // backgroundColor: '#ff5f6d',
+        borderRadius: 20,
+        borderBottomWidth: 2,
+        borderBottomColor: '#4364f7',
         paddingBottom: 5,
         paddingTop: 5,
-        width: '80%',
         paddingLeft: 10,
-        marginTop: 20
-
     },
 
     intro: {
         fontSize: 27,
-        color: '#333',
+        color: '#fff',
         textAlign: 'center',
     },
 
     confirm: {
-        top: '10%',
-        backgroundColor: '#1995ad',
-        width: '40%',
-        paddingBottom: 5,
-        paddingTop: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 15,
-        borderRadius: 20,
+        borderRadius: 10,
 
     },
 
+    button: {
+        marginTop: 30,
+        width:'95%',
+        marginLeft:10
+      },
+
     textSign: {
-        textAlign: 'center',
-        color: '#fff',
         fontSize: 18,
+        borderRadius: 10,
+        color: '#fff',
         fontWeight: 'bold',
+        paddingTop: 10,
+        paddingBottom: 10,
+        // paddingLeft: 30,
+        // paddingRight: 30,
+        textAlign: 'center',
     },
 
     textInput: {
-        paddingTop: 5,
-        paddingBottom: 5,
-        width: '80%',
-        marginLeft: 5,
-    }
+        paddingLeft: 5,
+        width: '77%'
+    },
+
+    background: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        height: 700,
+    },
+
+    // header: {
+    //     flex: 1,
+       
+    //     // position: 'absolute',
+    //     // left: 0,
+    //     // right: 0,
+    //     // top: 0,
+    //     // height: 700,
+    // },
+
+    title: {
+        color: '#fff',
+        fontSize: 28,
+        fontWeight: 'bold',
+        top: 50,
+        paddingLeft: 20
+    },
+
+    footer: {
+        flex: 2,
+        // backgroundColor: '#fff',
+        top:100,
+        borderTopLeftRadius: 40,
+        
+
+    },
+
 
 })

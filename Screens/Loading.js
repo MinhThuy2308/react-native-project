@@ -9,36 +9,51 @@ import {
 import mainLogo from '../assets/images/logo1.jpg';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Loading = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Animatable.Image
-          animation="bounceIn"
-          source={mainLogo}
-          style={styles.logo}
-          resizeMode="contain"
-        />
+   
+      <View style={styles.container}>
+        <LinearGradient
+        colors={['#61b1fc','#4364f7', 'transparent']}
+        style={styles.background}
+      />
+        
+        <View style={styles.header}>
+          <Animatable.Image
+            animation="bounceIn"
+            source={mainLogo}
+            style={styles.logo}
+            resizeMode="contain"
+          />
+        </View>
+        
+        <Animatable.View style={styles.footer} animation="fadeInUpBig">
+          <Text style={styles.title}>Yoga is harmony.</Text>
+          
+          <View style={styles.button}>
+          <LinearGradient 
+          colors={['#4364f7','#6fb1fc']}
+          style={{ borderRadius:10}}
+          >
+            <TouchableOpacity style={styles.confirm} onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.textlog}>Come With Us</Text>
+              <Icon
+                name="arrow-forward"
+                size={20}
+                color="#fff"
+                style={{ top: 15, right: 15 }}
+              />
+            </TouchableOpacity>
+            </LinearGradient>
+          </View>
+         
+         
+        </Animatable.View>
+
       </View>
 
-      <Animatable.View style={styles.footer} animation="fadeInUpBig">
-        <Text style={styles.title}>Yoga is harmony.</Text>
-        <View style={styles.button}>
-          <TouchableOpacity style={styles.confirm} onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.textlog}>Come With Us</Text>
-            <Icon
-              name="arrow-forward"
-              size={20}
-              color="#fff"
-              style={{top:15, right:20}}
-            />
-          </TouchableOpacity>
-        </View>
-      </Animatable.View>
-
-    </View>
   )
 }
 
@@ -47,7 +62,15 @@ export default Loading;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1995ad',
+    backgroundColor: '#61b1fc',
+  },
+
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 550,
   },
 
   header: {
@@ -74,26 +97,25 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#1995ad',
+    color: '#4364f7',
 
   },
 
   button: {
     alignItems: 'flex-end',
     marginTop: 30,
-
+    
   },
 
   confirm: {
     flexDirection: 'row',
-    backgroundColor: '#1995ad',
+    // backgroundColor: '#ffc9c9',
     borderRadius: 20,
-    width: '40%',
+    width: '38%',
    
   },
 
   textlog: {
-    backgroundColor: '#1995ad',
     borderRadius: 50,
     color: '#fff',
     fontWeight: 'bold',

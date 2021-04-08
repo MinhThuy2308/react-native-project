@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
   Image,
+  ImageBackground,
 } from 'react-native';
 
 import {
@@ -21,6 +22,8 @@ import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { AuthContext } from '../components/context';
 import AsyncStorage from '@react-native-community/async-storage';
+import { LinearGradient } from 'expo-linear-gradient';
+import backImage from '../assets/images/background.jpg';
 
 export function DrawerTab(props) {
 
@@ -37,19 +40,19 @@ export function DrawerTab(props) {
 
   return (
     <View style={{ flex: 1, }}>
+      <LinearGradient
+        colors={['#61b1fc', '#4364f7', 'transparent']}
+        style={styles.background}
+      />
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfo}>
-            <View style={{ flexDirection: 'row', marginTop: 15, }}>
-              <Avatar.Image
-                source={{
-                  uri: 'https://www.google.com.vn/url?sa=i&url=https%3A%2F%2Fkbizoom.com%2Fred-velvet-revealed-their-comeback-teaser-images-of-joy-staying-elegant-with-a-crown&psig=AOvVaw338Ud7N_AP0izWahc5PnCv&ust=1616173295820000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKD1ifWouu8CFQAAAAAdAAAAABAR'
-                }}
-                size={50}
-              />
-              <View style={{ marginLeft: 15 }}>
-                <Title style={styles.title}>{useName}</Title>
-              </View>
+            <View style={{ marginTop: 15, }}>
+              <ImageBackground
+                source={backImage}
+                style={{width:300, height:200}}
+                resizeMode="cover"
+                />
             </View>
           </View>
           <Drawer.Section style={styles.menuTab}>
@@ -153,9 +156,10 @@ export function DrawerTab(props) {
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
+    
   },
   userInfo: {
-    paddingLeft: 20,
+    bottom:40
   },
   title: {
     fontSize: 16,
@@ -165,8 +169,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   menuTab: {
-    marginTop: 15,
+    
   },
+  // background: {
+  //   position: 'absolute',
+  //   left: 0,
+  //   right: 0,
+  //   top: 0,
+  //   height: 900,
+  // },
   bottomDrawer: {
     marginBottom: 15,
     borderTopColor: '#f4f4f4',
