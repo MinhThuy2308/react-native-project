@@ -39,10 +39,20 @@ function infiniteScroll(dataList, mySlide) {
             });
         }
 
-    }, 3000)
+    }, 9000)
 }
 
 const Carouse = ({ data }) => {
+
+    const [image, setImage] = useState([]);
+
+  useEffect(() => {
+    async function getImage() {
+      const res = await fetchImage();
+      setImage(res);
+    }
+    getImage();
+  }, []);
     const mySlide = useRef();
 
     const scrollX = new Animated.Value(0);

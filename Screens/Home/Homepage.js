@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   StyleSheet,
   View,
@@ -10,6 +10,7 @@ import {
   Button,
   FlatList,
   TouchableOpacity,
+  Animated
 
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -19,9 +20,11 @@ import Carouse from './Carouse';
 import { LinearGradient } from 'expo-linear-gradient';
 import minCover from '../../assets/images/logo3.jpg';
 import CarouseItem from './CarouseItem/index';
-import { fetchImage } from '../../services/homepage'
+import { fetchImage } from '../../services/homepage';
+import { useNavigation } from '@react-navigation/native';
 
-const Homepage = ({ navigation }) => {
+const Homepage = ({ data }) => {
+  const navigation = useNavigation();
   const [userBMI, setUserBMI] = useState('');
   const [image, setImage] = useState([]);
 
@@ -30,7 +33,6 @@ const Homepage = ({ navigation }) => {
       const res = await fetchImage();
       setImage(res);
     }
-    console.log('image', image)
     getImage();
   }, []);
 
@@ -58,10 +60,10 @@ const Homepage = ({ navigation }) => {
     retrieveData();
   }, []);
 
+
   const renderItem = ({ item }) => (
     <CarouseItem data={item} />
   );
-
   return (
 
     <View style={styles.container} >
@@ -81,25 +83,27 @@ const Homepage = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
-        <View style={{ bottom: 10, left:20 }}>
+        <View style={{ bottom: 10, left: 20 }}>
           <Text style={styles.title}>Hello, {useName}</Text>
           <Text style={styles.subtitle}>Choose the one that matches your needs</Text>
         </View>
 
       </View>
-
+   {/* <Carouse data = {image} /> */}
       <View style={styles.footer}>
-        {/* <LinearGradient
-          colors={['#61b1fc', '#4364f7', 'transparent']}
-          style={styles.background}
-        /> */}
         <FlatList
-          horizontal={true}
-          pagingEnabled={true}
+          horizontal
+          pagingEnabled
+          scrollEnabled
+          snapToAlignment="center"
+          scrollEventThrottle={16}
+          decelerationRate={"fast"}
+          showsHorizontalScrollIndicator={false}
           data={image}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
         />
+      
       </View>
     </View>
   )
@@ -192,5 +196,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginLeft: 10,
   },
+
+  Dot: {
+    flexDirection:'row',
+    justifyContent:'center',
+
+},
 
 })

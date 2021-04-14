@@ -3,9 +3,9 @@
  * @param {Object} image 
  */
 
-const checkImage = (image, size="medium") => {
+const checkImage = (image, size) => {
   const BASE_API = 'http://10.0.2.2:1337';
-  let imagePath = '';
+  let imagePath = '/uploads/traicay_c08ff14b3b.gif';
 
   if (size === "thumbnail" && image.formats.thumbnail) {
     imagePath = image.formats.thumbnail.url;
@@ -21,6 +21,10 @@ const checkImage = (image, size="medium") => {
 
   if (size === "small" && image.formats.small) {
     imagePath = image.formats.small.url;
+  }
+
+  if (image.url) {
+    imagePath = image.url;
   }
 
   return `${BASE_API}${imagePath}`;

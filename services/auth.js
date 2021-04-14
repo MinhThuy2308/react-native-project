@@ -9,7 +9,6 @@ export function login(data) {
 }
 
 export function register(data) {
-  console.log('data', data);
   return request({
     url: '/auth/local/register',
     method: 'post',

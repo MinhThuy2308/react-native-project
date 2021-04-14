@@ -97,6 +97,17 @@ const Register = ({ navigation }) => {
     }
   }
 
+  //  const [emailError, setEmailError] = useState('')
+  // const validateEmail = (e) => {
+  //   var email = e.target.value
+  
+  //   if (validator.isEmail(email)) {
+  //     setEmailError('Valid Email :)')
+  //   } else {
+  //     setEmailError('Enter valid Email!')
+  //   }
+  // }
+
 
   const registerHandle = async (email, password, username) => {
     await register({

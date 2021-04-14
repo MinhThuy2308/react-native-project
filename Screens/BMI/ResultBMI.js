@@ -14,6 +14,7 @@ import {
 import * as Animatable from 'react-native-animatable';
 import { BMIAnalysis } from './BMIAnalysisAlert';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const ResultBMI = ({ navigation }) => {
   const [userBMI, setUserBMI] = React.useState('');
@@ -26,21 +27,44 @@ const ResultBMI = ({ navigation }) => {
     getUserBMIData();
   }, []);
 
+  const changetextColor = () => {
+    if (userBMI < 18.5) {
+      return '#40639A';
+    } else if (userBMI < 25) {
+      return '#2CD42E';
+    } else if (userBMI < 30) {
+      return '#DEDE00';
+    } else if (userBMI < 35) {
+      return '#FFA722';
+    } else {
+      return '#FF0D00';
+    }
+  }
+
+
   const analysis = BMIAnalysis(userBMI);
 
   return (
     <View style={styles.container}>
+      <LinearGradient
+        colors={['#4364f7', '#fff', 'transparent']}
+        style={styles.background}
+      />
       {
         userBMI ? (
           <Animatable.View style={styles.result} animation="fadeInDownBig">
-            <View style={styles.index}>
-              <Text style={{ color: '#333', fontSize: 20, marginTop: 10 }}>Your BMI: {userBMI} </Text>
+            <View style={{flexDirection:'row'}}>
+              <Text style={{ color: '#333', fontSize: 20, marginTop: 10 }}>Your BMI: </Text>
+              <Text style={{ color: changetextColor(userBMI), fontSize: 20, marginTop: 10 }}>{userBMI} </Text>
             </View>
             <View style={styles.title}>
-              <Text style={{ color: 'red', fontSize: 25, marginTop: 8, fontWeight: 'bold' }}>{analysis.title}</Text>
+              <Text style={{ fontSize: 25, marginTop: 5, fontWeight: 'bold' }}>{analysis.title}</Text>
             </View>
-            <View style={styles.desc}>
-              <Text style={{ color: '#737473', fontSize: 17, marginLeft: 10, marginTop: 10 }}>{analysis.desc} </Text>
+            <View style={{padding:5}}>
+              <Text style={{ color: '#737473', fontSize: 17, marginLeft: 10 }}>{analysis.desc} </Text>
+            </View>
+            <View style={{padding:5}}>
+              <Text style={{ color: 'red', fontSize: 17, marginLeft: 10}}>Tips: {analysis.tips} </Text>
             </View>
           </Animatable.View>
         ) : (
@@ -50,17 +74,26 @@ const ResultBMI = ({ navigation }) => {
 
       <View style={styles.inform} >
         <Animatable.View animation="fadeInDownBig">
-          <Text style={{ color: '#fff', fontSize: 17, marginTop: 10 }}>Click the button below to go to our workouts</Text>
+          <Text style={{ color: '#737473', fontSize: 17, marginTop: 10 }}>Click the button below to go to our workouts</Text>
         </Animatable.View>
         <Animatable.View animation="flipInY">
-          <TouchableOpacity animation="flipInY" style={styles.confirm} onPress={() => navigation.navigate('Activity')}>
-            <Text style={{ color: '#1995ad', fontWeight: 'bold', paddingLeft: 10 }}>Next</Text>
-            <Icon
-              name="arrow-forward"
-              size={20}
-              color="#1995ad"
-            />
-          </TouchableOpacity>
+          <View style={styles.button}>
+            {/* <LinearGradient
+        colors={['#4364f7', '#fff', 'transparent']}
+        style={styles.background}
+      > */}
+            <TouchableOpacity animation="flipInY" style={styles.confirm} onPress={() => navigation.navigate('Activity')}>
+
+              <Text style={{ color: '#4364f7', fontWeight: 'bold', paddingLeft: 10 }}>Next</Text>
+              <Icon
+                name="arrow-forward"
+                size={20}
+                color="#4364f7"
+              />
+            </TouchableOpacity>
+            {/* </LinearGradient> */}
+          </View>
+
         </Animatable.View>
       </View>
     </View>
@@ -72,7 +105,7 @@ export default ResultBMI;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1995ad',
+    backgroundColor: '#4364f7',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -80,10 +113,11 @@ const styles = StyleSheet.create({
   result: {
     backgroundColor: '#fff',
     alignItems: 'center',
-    width: '90%',
-    height: '30%',
+    paddingTop:'2%',
+    paddingBottom:'5%',
     borderRadius: 10,
-    borderWidth: 2
+    borderWidth: 2,
+    width: '90%',
 
   },
 
@@ -99,6 +133,14 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 10,
 
-  }
+  },
+
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 700,
+  },
 
 })

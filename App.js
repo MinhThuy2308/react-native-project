@@ -25,7 +25,7 @@ import BottomTab from './Screens/BottomTab';
 import RootStackScreen from './Screens/RootStackScreen';
 import Info from './Screens/Info';
 import ResultBMI from './Screens/BMI/ResultBMI';
-import Appointment from './Screens/Appointment/Appointment';
+import Note from './Screens/Appointment/Note';
 import { AuthContext } from './components/context';
 import AsyncStorage from '@react-native-community/async-storage';
 import Menu from './Screens/Menu/Menu';
@@ -35,8 +35,14 @@ import Loseweight from './Screens/Activity/Loseweight';
 import Gainweight from './Screens/Activity/Gainweight';
 import AdvancedYoga from './Screens/Activity/AdvancedYoga';
 import ActivityDay from './Screens/Activity/Day/ActivityDay';
-import ActivityDayDetail from './Screens/Activity/Day/DayDetail';
-import {NAVIGATOR_SCREEN_OPTIONS, NavigatorHeaderLeft, NavigatorHeaderLeftDrawer } from './utils/navigator';
+import ActivityDayDetail from './Screens/Activity/Day/ActivityDayDetail';
+import Lunch from './Screens/Food/Lunch';
+import Breakfast from './Screens/Food/Breakfast';
+import Brunch from './Screens/Food/Brunch';
+import Dinner from './Screens/Food/Dinner';
+import BeforePractice from './Screens/Food/BeforePractice';
+import AfterPractice from './Screens/Food/AfterPractice';
+import FoodMenu from './Screens/Food/FoodMenu';
 
 
 const Drawer = createDrawerNavigator();
@@ -99,9 +105,16 @@ const App = () => {
     logIn: async (foundUser) => {
       const userToken = String(foundUser.jwt);
       const userName = foundUser.user.username;
+      const userId = foundUser.user.id;
+      const userBMI = foundUser.user.bmi ? foundUser.user.bmi : 0;
+
+      console.log('Login uid', userId.toString());
+
       try {
         await AsyncStorage.setItem('userToken', userToken);
         await AsyncStorage.setItem('userName', userName);
+        await AsyncStorage.setItem('userId', userId.toString());
+        await AsyncStorage.setItem('userBMI', userBMI.toString());
       } catch (e) {
         console.log(e);
       }
@@ -162,17 +175,25 @@ const App = () => {
           <>
             <Drawer.Navigator drawerContent={props => <DrawerTab {...props} />}>
               <Drawer.Screen name="Homepage" component={BottomTab} />
-              <Drawer.Screen name="Appointment" component={AppointStack} />
+              <Drawer.Screen name="Note" component={Note} />
               <Drawer.Screen name="Menu" component={Menu} />
+              {/* <Drawer.Screen name="FoodDetail" component={Food} /> */}
+              <Drawer.Screen name="FoodMenu" component={FoodMenu} />
+              <Drawer.Screen name="Lunch" component={Lunch} />
+              <Drawer.Screen name="Breakfast" component={Breakfast} />
+              <Drawer.Screen name="Brunch" component={Brunch} />
+              <Drawer.Screen name="Dinner" component={Dinner} />
+              <Drawer.Screen name="BeforePractice" component={BeforePractice} />
+              <Drawer.Screen name="AfterPractice" component={AfterPractice} />
               <Drawer.Screen name="Activity" component={Activity} />
               <Drawer.Screen name="ActivityBasicYoga" component={BasicYoga} />
               <Drawer.Screen name="ActivityLoseWeight" component={Loseweight} />
               <Drawer.Screen name="ActivityGainWeight" component={Gainweight} />
               <Drawer.Screen name="ActivityAdvancedYoga" component={AdvancedYoga} />
               <Drawer.Screen name="ActivityDay" component={ActivityDay} />
+              <Drawer.Screen name="ActivityDayDetail" component={ActivityDayDetail} />
               <Drawer.Screen name="Information" component={Info} />
               <Drawer.Screen name="Result" component={ResultBMI} />
-              <Drawer.Screen name="ActivityDayDetail" component={ActivityDayDetailStack} />
             </Drawer.Navigator>
           </>
         )
@@ -185,16 +206,16 @@ const App = () => {
   );
 }
 const Stack = createStackNavigator();
-function AppointStack({ navigation }) {
+// function AppointStack({ navigation }) {
 
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Appointment" component={Appointment} options={{
-        headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
-      }} />
-    </Stack.Navigator>
-  );
-}
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+//       <Stack.Screen name="Appointment" component={Appointment} options={{
+//         headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
+//       }} />
+//     </Stack.Navigator>
+//   );
+// }
 
 // function MenuStack({ navigation }) {
 
@@ -224,18 +245,18 @@ function AppointStack({ navigation }) {
 //   );
 // }
 
-function ActivityDayDetailStack({ navigation }) {
+// function ActivityDayDetailStack({ navigation }) {
 
-  return (
-    <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
-      <Stack.Screen name="Detail" component={ActivityDayDetail} options={
-        ({ route }) => ({ title: route.params.productTitle }),
-        {
-          headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
-        }} />
-    </Stack.Navigator>
-  );
-}
+//   return (
+//     <Stack.Navigator screenOptions={NAVIGATOR_SCREEN_OPTIONS}>
+//       <Stack.Screen name="Detail" component={ActivityDayDetail} options={
+//         ({ route }) => ({ title: route.params.productTitle }),
+//         {
+//           headerLeft: () => <NavigatorHeaderLeft navigation={navigation} />
+//         }} />
+//     </Stack.Navigator>
+//   );
+// }
 
 // function ActivityStack({ navigation }) {
 //   return (

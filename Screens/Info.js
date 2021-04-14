@@ -13,7 +13,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-community/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import { updateUserById } from '../services/users';
 
 const Info = ({ navigation }) => {
     const [data, setData] = React.useState({
@@ -22,12 +22,12 @@ const Info = ({ navigation }) => {
         check_textInputChange: false,
     });
 
-    const [userBMI, setUserBMI] = React.useState('');
+    const [userId, setUserId] = React.useState('');
 
     useEffect(() => {
         async function getUserBMIData() {
-            const value = await AsyncStorage.getItem('userBMI');
-            setUserBMI(value);
+            const userId = await AsyncStorage.getItem('userId');
+            setUserId(userId);
         }
         getUserBMIData();
     }, []);
@@ -85,8 +85,12 @@ const Info = ({ navigation }) => {
         BMI = weight / (height * height);
         const calcBMI = (BMI * 10000).toFixed(2);
 
+        await updateUserById({
+            userId: userId,
+            bmi: calcBMI,
+        });
+
         await AsyncStorage.setItem('userBMI', calcBMI.toString());
-        setUserBMI(calcBMI);
 
         Keyboard.dismiss();
 
@@ -103,11 +107,11 @@ const Info = ({ navigation }) => {
                 <View style={{ top: 40, left: 8 }}>
                     <TouchableOpacity >
                         <Icon
-                            name="chevron-back-outline"
-                            size={30}
+                            name="menu-outline"
+                            size={35}
                             color="#fff"
                             backgroundColor="#61b1fc"
-                            onPress={() => navigation.goBack()}
+                            onPress={() => navigation.openDrawer()}
                         />
                     </TouchableOpacity>
                 </View>

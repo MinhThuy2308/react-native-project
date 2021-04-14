@@ -2,13 +2,14 @@ import request from './request';
 
 export function fetchActivityWithDay(data) {
   return request({
-    url: `/documents`,
+    url: `/documents?activity=${data.activityId}&category=${data.categoryId}`,
     method: 'get',
-    params: {
-      activity: data.activityId,
-      category: data.categoryId
-    }
   });
 }
 
-
+export function fetchDocumentDetail(data) {
+  return request({
+    url: `/documents/${data.documentId}`,
+    method: 'get',
+  });
+}

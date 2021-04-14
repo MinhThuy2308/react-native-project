@@ -24,6 +24,7 @@ import { AuthContext } from '../components/context';
 import AsyncStorage from '@react-native-community/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import backImage from '../assets/images/background.jpg';
+import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export function DrawerTab(props) {
 
@@ -71,14 +72,14 @@ export function DrawerTab(props) {
             <DrawerItem
 
               icon={({ color, size }) => (
-                <Icon
-                  name="create-outline"
+                <Material
+                  name="note-text-outline"
                   color={color}
                   size={size}
                 />
               )}
-              label="Appointment"
-              onPress={() => { props.navigation.navigate('Appointment') }}
+              label="Note"
+              onPress={() => { props.navigation.navigate('Note') }}
             />
 
             <DrawerItem

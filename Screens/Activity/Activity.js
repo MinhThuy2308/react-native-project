@@ -17,7 +17,7 @@ import ActivityDetail from './Day/ActivityDetail';
 import { fetchActivity } from '../../services/activity';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
-import background from './images/background6.jpg'
+import background from './images/background7.jpg'
 
 const renderItem = ({ item }) => (
   <ActivityDetail data={item} />
@@ -68,10 +68,10 @@ const Activity = ({ data }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={{ top: 40, left: 8 }}>
-          <TouchableOpacity >
+          <TouchableOpacity style={{ width: 40 }} >
             <Icon
               name="menu-outline"
-              size={30}
+              size={35}
               color="#fff"
               backgroundColor="#61b1fc"
               onPress={() => navigation.openDrawer()}

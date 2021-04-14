@@ -22,6 +22,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 const Profile = ({ navigation }) => {
    const [useName, setUserName] = useState([]);
    const [userBMI, setUserBMI] = useState('');
+   const [userId, setUserId] = useState();
    const [image, setImage] = useState(null);
 
    useEffect(() => {
@@ -84,8 +85,6 @@ const Profile = ({ navigation }) => {
       retrieveData();
    }, []);
 
-
-
    useEffect(() => {
       async function retrieveData() {
          const userBMI = await AsyncStorage.getItem('userBMI');
@@ -93,6 +92,20 @@ const Profile = ({ navigation }) => {
       }
       retrieveData();
    }, []);
+
+   const changetextColor = () => {
+      if (userBMI < 18.5) {
+        return '#40639A';
+      } else if (userBMI < 25) {
+        return '#2CD42E';
+      } else if (userBMI < 30) {
+        return '#DEDE00';
+      } else if (userBMI < 35) {
+        return '#FFA722';
+      } else {
+        return '#FF0D00';
+      }
+    }
 
    return (
       <View style={{ flex: 1 }}>
@@ -148,7 +161,7 @@ const Profile = ({ navigation }) => {
             </View>
             <View style={styles.bmi}>
                <Text style={styles.title}>Your BMI: </Text>
-               <Text style={styles.result}>{userBMI}</Text>
+               <Text style={{color: changetextColor(userBMI),fontSize: 20,fontWeight: 'bold',top: 2,}}>{userBMI}</Text>
             </View>
 
             <View style={styles.chart}>
@@ -226,12 +239,6 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
    },
 
-   result: {
-      fontSize: 20,
-      color: 'red',
-      fontWeight: 'bold',
-      top: 2,
-   },
    chart: {
       marginTop: 20,
       marginLeft: 17,
@@ -263,7 +270,7 @@ const styles = StyleSheet.create({
       flexBasis: 30,
       flexGrow: 2,
       flexShrink: 0,
-      backgroundColor: '#C8E630',
+      backgroundColor: '#DEDE00',
       height: '25%'
    },
 

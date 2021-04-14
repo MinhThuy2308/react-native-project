@@ -1,40 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet,
   View,
-  FlatList,
+  Text,
+  ImageBackground,
+  StyleSheet,
   TouchableOpacity,
-  Text
+  FlatList
 } from 'react-native';
-import { fetchDay } from '../../services/days';
-import DayItem from './Day/DateItem';
+import { fetchFoodByMenu } from '../../services/menus';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
+import checkImage from '../../utils/checkImage';
+import FoodDetail from './FoodDetail';
 
-const renderItem = ({ item }) => (
-  <DayItem data={item} activity={4} />
-);
-
-const AdvancedYoga = ({navigation}) => {
-  const [day, SetDay] = useState([]);
+function FoodMenu({ navigation, route }) {
+  const [data, SetData] = useState([]);
 
   useEffect(() => {
-    async function getDay() {
-        const res = await fetchDay();
-        SetDay(res);
+    async function getFoodMenu() {
+      const res = await fetchFoodByMenu({
+        menuId: route.params.menuId,
+      });
+      SetData(res);
     }
 
-    getDay();
-  }, []);
+    getFoodMenu();
+  }, [route]);
 
-  console.log('AdvancedYoga');
+  const renderItem = ({ item }) => {
+    return (
+      <FoodDetail data={item} />
+    )
+  }
 
   return (
-    <View style={styles.container}>
-
+    <>
+     <View style={styles.container}>
       <View style={styles.header}>
         <LinearGradient
-          colors={['#4364f7', '#fff', 'transparent']}
+          colors={['#4364f7', '#617EFF', 'transparent']}
           style={styles.background}
         />
         <View style={{ top: 40, left: 8 }}>
@@ -49,28 +53,46 @@ const AdvancedYoga = ({navigation}) => {
         </View>
 
       </View>
-
-      <View>
-        <Text style={styles.title}>Advanced Yoga</Text>
-      </View>
-      <View style={{borderWidth:2, width:150, borderColor:'#fff', left:20, top:60}}></View>
       <View style={styles.footer}>
+        <Text>{data.title}</Text>
         <FlatList
-          data={day}
+          data={data}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
         />
       </View>
     </View>
+    </>
   )
 }
 
-export default AdvancedYoga;
+export default FoodMenu;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
 
+  bg: {
+    width: 120,
+    height: 120,
+    resizeMode: "stretch",
+
+  },
+
+  card: {
+    marginTop: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    
+  
+  },
+
+  item: {
+    flex: 2,
+    flexDirection: 'row',
+    width:'90%',
+    
   },
 
   background: {
@@ -91,10 +113,18 @@ const styles = StyleSheet.create({
   // },
 
   title: {
-    color: '#fff',
+    color: '#000',
     fontSize: 28,
     fontWeight: 'bold',
-    top: 50,
+    top: 10,
+    paddingLeft: 20
+  },
+
+  desc: {
+    color: '#000',
+    fontSize: 16,
+    fontWeight: 'bold',
+    top: 10,
     paddingLeft: 20
   },
 
@@ -108,5 +138,4 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 30,
 
   },
-
 })

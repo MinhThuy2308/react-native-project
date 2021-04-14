@@ -36,12 +36,11 @@ const Loseweight = ({navigation}) => {
         style={styles.background}
       />
       <View style={{ top: 40, left: 8 }}>
-        <TouchableOpacity >
+        <TouchableOpacity style={{ width: 40 }} >
           <Icon
             name="chevron-back-outline"
-            size={30}
+            size={35}
             color="#fff"
-            backgroundColor="#61b1fc"
             onPress={() => navigation.goBack()}
           />
         </TouchableOpacity>
@@ -50,7 +49,7 @@ const Loseweight = ({navigation}) => {
     </View>
 
     <View>
-      <Text style={styles.title}>Workout</Text>
+      <Text style={styles.title}>Lose Weight</Text>
     </View>
     <View style={{borderWidth:2, width:150, borderColor:'#fff', left:20, top:60}}></View>
     <View style={styles.footer}>

@@ -1,75 +1,115 @@
-import React from 'react';
+import React, { useState} from 'react';
 import {
     StyleSheet,
     View,
     Text,
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
-import { TextInput } from 'react-native-gesture-handler';
+import { fetchDeleteNote } from '../../../services/appointment';
+import { useNavigation } from '@react-navigation/native';
 
-const AppItem = ({ data }) => {
+const NoteItem = ({ data }) => {
+    const navigation = useNavigation();
+    
+    const handleDelete = async () => { 
+        const res = await fetchDeleteNote({
+            noteId: data.id,
+        }).then(res => {
+            Alert.alert('Delete Successfully');
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Note' }],
+            });
+        })
+    } 
+
+    
     return (
         <>
             <View style={styles.item}>
-                <Icon
-                    name="alarm"
-                    color="#333"
-                    size={35}
-                    style={{top:35}}
-                />
-                <View style={styles.link}>
-                    <TextInput style={styles.title}>{data.workout}</TextInput>
-                </View>
-                <View style={styles.alarm}>
+                <View style={styles.box}>
+                    <View>
+                        <Text style={styles.title}>{data.title}</Text>
+                        <Text style={styles.note}>{data.content}</Text>
+                    </View>
 
-                    <Text style={styles.date}>{data.datetime}</Text>
                 </View>
-                <View style={styles.desrow}>
-                    <TextInput style={styles.text}>{data.description}</TextInput>
+                <View style={{ flexDirection: 'row', left: 310 }}>
+                    <View style={{left:20}}>
+                        <TouchableOpacity>
+                            <Feather
+                                name="edit"
+                                size={25}
+                                color="#fff"
+                                style={{ backgroundColor: 'green', width: 25, }}
+                            />
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={{left:30}}>
+                        <TouchableOpacity onPress={(handleDelete)} >
+                            <Icon
+                                name="close"
+                                size={25}
+                                color="#fff"
+                                style={{ backgroundColor: 'red', width: 25, }}
+                            />
+
+                            
+                        </TouchableOpacity>
+                    </View>
+
                 </View>
+
+
             </View>
         </>
     )
+    
 }
 
-export default AppItem;
+export default NoteItem;
 
 const styles = StyleSheet.create({
-    item: {
-        flex: 1,
-        borderBottomWidth: 1,
-        width: '90%',
-        marginLeft: 20,
 
-    },
-    link: {
-        marginLeft:30,
-        
-    },
     title: {
-        fontSize: 20,
+        fontSize: 25,
         marginLeft: 10,
-    },
-    
-    alarm: {
-        marginLeft:30,
+        color: 'red'
     },
 
-    desrow: {
-        marginLeft:30,
-    },
-    text: {
-        color: '#00293c',
-        lineHeight: 30,
-        fontSize: 15,
+    note: {
+        fontSize: 18,
         marginLeft: 10,
+        marginTop: 20
     },
 
-    date: {
-        color: '#00293c',
-        lineHeight: 30,
-        fontSize: 15,
-        marginLeft: 10,
+
+    box: {
+        padding: 5,
+        flexDirection: 'row'
+    },
+
+    icon: {
+        backgroundColor: 'red',
+        width: 25,
+        borderRadius: 5,
+        left: '95%',
+
+    },
+
+    item: {
+        marginBottom: 40,
+        backgroundColor: '#fff',
+        borderRadius: 15,
+        borderColor: '#4364f7',
+        borderWidth: 2,
+        padding: 10,
+        flex: 2,
     }
+
 })

@@ -14,18 +14,18 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
-const Menu = (props) => {
+const Menu = ({route}) => {
     const navigation = useNavigation();
     const [menu, SetMenu] = useState([]);
 
     useEffect(() => {
         async function getMenu() {
-            const res = await fetchMenu();
-            SetMenu(res);
+          const res = await fetchMenu();
+          SetMenu(res);
         }
-
+    
         getMenu();
-    }, []);
+      }, [route]);
 
     const renderItem = ({ item }) => (
         <MenuItem data={item} />
@@ -41,7 +41,7 @@ const Menu = (props) => {
                     style={styles.background}
                 />
                 <View style={{ top: 40, left: 8 }}>
-                    <TouchableOpacity >
+                    <TouchableOpacity style={{ width: 40 }} >
                         <Icon
                             name="menu-outline"
                             size={30}
@@ -53,6 +53,11 @@ const Menu = (props) => {
                 </View>
 
             </View>
+
+            <View style={{ top:20}}>
+          <Text style={styles.title}>Foods</Text>
+          
+        </View>
             <View style={styles.footer}>
                 <FlatList
                     numColumns={numColumns}

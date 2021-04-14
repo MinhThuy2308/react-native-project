@@ -21,12 +21,13 @@ const DayItem = ({ data, activity }) => {
           source={{ uri: checkImage(data.image, "medium") }}
           style={styles.bg}
           imageStyle={{ borderRadius: 10 }}
+          resizeMode="cover"
         >
           <TouchableOpacity
             style={styles.link}
             onPress={() => navigation.navigate('ActivityDay', {
-              activity: activity,
-              category: data.id,
+              activityId: activity,
+              categoryId: data.id,
             })}
           >
             <Text style={styles.text}>{data.name}</Text>
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 18,
-    color: '#fff',
+    color: '#000',
     fontWeight:'bold',
   },
 

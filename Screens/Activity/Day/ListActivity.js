@@ -8,8 +8,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import checkImage from '../../../utils/checkImage';
 import Feather from 'react-native-vector-icons/Feather';
+import checkImage from '../../../utils/checkImage';
 
 const ListActivity = ({ data }) => {
   const navigation = useNavigation();
@@ -18,14 +18,17 @@ const ListActivity = ({ data }) => {
     <View>
       <View style={styles.card}>
         <View style={styles.item}>
-          <ImageBackground
-            source={{ uri: `http://10.0.2.2:1337${data.image.url}` }}
+        {
+            data.image ?<ImageBackground
+            source={{ uri: checkImage(data.image) }}
             style={styles.bg}
             imageStyle={{ borderRadius: 10 }}
+           
           >
            
-          </ImageBackground>
-          <TouchableOpacity style={styles.click} onPress={() => navigation.navigate('Detail', { documentId: 1 })}>
+          </ImageBackground>: <View></View>
+          }
+          <TouchableOpacity style={styles.click} onPress={() => navigation.navigate('ActivityDayDetail', { documentId: data.id })}>
             <Text style={styles.text}>{data.title}</Text>
             {/* <Feather
             name="chevron-right"
@@ -50,7 +53,6 @@ const styles = StyleSheet.create({
   bg: {
     width: 130,
     height: 120,
-    resizeMode: "stretch",
    
   },
 

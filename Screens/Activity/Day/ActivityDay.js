@@ -18,25 +18,37 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const ActivityDay = ({ navigation, route }) => {
   const [day, SetDay] = useState([]);
 
-  console.log('3. ActivityDay', route);
+  // console.log('3. ActivityDay', route);
 
-  React.useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      // Screen was focused
-      // Do something
-      async function getDay() {
-        const res = await fetchActivityWithDay({
-          activityId: route.params.activity,
-          categoryId: route.params.category,
-        });
-        SetDay(res);
-      }
+  // React.useEffect(() => {
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     // Screen was focused
+  //     // Do something
+  //     async function getDay() {
+  //       const res = await fetchActivityWithDay({
+  //         activityId: route.params.activity,
+  //         categoryId: route.params.categoryId,
+  //       });
+  //       SetDay(res);
+  //     }
 
-      getDay();
-    });
+  //     getDay();
+  // }, [route]);
 
-    return unsubscribe;
-  }, [navigation]);
+  //   return unsubscribe;
+  // }, [navigation]);
+
+  useEffect(() => {
+    async function getDay() {
+      const res = await fetchActivityWithDay({
+        activityId: route.params.activityId,
+        categoryId: route.params.categoryId,
+      });
+      SetDay(res);
+    }
+
+    getDay();
+  }, [route]);
 
   // useFocusEffect(
   //   React.useCallback(() => {
@@ -82,12 +94,11 @@ const ActivityDay = ({ navigation, route }) => {
           style={styles.background}
         />
         <View style={{ top: 40, left: 8 }}>
-          <TouchableOpacity >
+          <TouchableOpacity style={{ width: 40 }}>
             <Icon
               name="chevron-back-outline"
-              size={30}
+              size={35}
               color="#fff"
-              backgroundColor="#61b1fc"
               onPress={() => navigation.goBack()}
             />
           </TouchableOpacity>

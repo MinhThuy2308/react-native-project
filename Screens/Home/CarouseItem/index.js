@@ -11,10 +11,17 @@ import {
     ImageBackground
 } from 'react-native';
 import checkImage from '../../../utils/checkImage';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get("window")
 
 const CarouseItem = ({ data }) => {
+    const navigation = useNavigation();
+    const getActivityScreens = {
+        1: 'ActivityBasicYoga',
+        2: 'ActivityAdvancedYoga',
+        3: 'Menu',
+      }
 
     return (
         <>
@@ -84,13 +91,16 @@ const styles = StyleSheet.create({
         left: 3,
     },
 
-    // image: {
-    //     width: width - 20,
-    //     height: height / 3,
-    //     borderRadius: 10,
-    //     backgroundColor: '#fff'
+    image: {
+        // width: width - 20,
+        // height: height / 3,
 
-    // },
+        width: '100%',
+        height: '100%',
+        borderRadius: 10,
+        backgroundColor: '#fff'
+
+    },
 
     text: {
         color: '#000',
