@@ -12,7 +12,7 @@ import * as Animatable from 'react-native-animatable';
 // import { fetchDeleteNote } from '../../../services/appointment';
 import { useNavigation } from '@react-navigation/native';
 
-const ListItem = ({ props }) => {
+const ListItem = ({ data }) => {
     const navigation = useNavigation();
 
     // const handleDelete = async () => { 
@@ -27,13 +27,12 @@ const ListItem = ({ props }) => {
     //     })
     // } 
 
-
     return (
         <>
             <View style={styles.item}>
                 <View style={styles.box}>
                     <View>
-                        <Text style={styles.title}>{props.foodId}</Text>
+                        <Text style={styles.title}>{data.food.title}</Text>
                     </View>
                 </View>
                 <View style={{ left: 330 }}>

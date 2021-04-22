@@ -31,7 +31,6 @@ const List = ({ data }) => {
 
         async function getFavFood() {
             const value = await fetchFavFoodByUser({
-                foodId: route.params.foodId,
                 userId: parseInt(userId),
             });
             setFavFood(value);
@@ -44,8 +43,6 @@ const List = ({ data }) => {
     const renderItem = ({ item }) => (
         <ListItem data={item} />
     );
-
-
 
     return (
         <View style={styles.container}>

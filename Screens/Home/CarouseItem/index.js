@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get("window")
 
-const CarouseItem = ({ item, data }) => {
+const CarouseItem = ({ item }) => {
     const navigation = useNavigation();
     const getActivityScreens = {
         1: 'ActivityBasicYoga',
@@ -29,8 +29,8 @@ const CarouseItem = ({ item, data }) => {
 
                 <TouchableOpacity
                     style={styles.link}
-                    onPress={() => navigation.navigate(getActivityScreens[data.id], {
-                        activity: data.id,
+                    onPress={() => navigation.navigate(getActivityScreens[item.id], {
+                        activity: item.id,
                     })}
                 >
                     {/* <View style={styles.item}>

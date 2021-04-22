@@ -19,7 +19,7 @@ const { width, height } = Dimensions.get("window")
 
 function FoodDetail({ data, userId }) {
 
-  console.log('FoodDetail De', data.id);
+  // console.log('FoodDetail De', data.id);
 
   const handleAdd = async (foodId, userId) => {
     await addFavFoodByUser({
@@ -27,7 +27,7 @@ function FoodDetail({ data, userId }) {
       user: userId,
     }).then(res => {
       Alert.alert('Successful');
-      console.log('data', res)
+      // console.log('data', res)
     })
   }
 
