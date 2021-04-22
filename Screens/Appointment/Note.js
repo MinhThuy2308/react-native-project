@@ -14,27 +14,40 @@ import AddModal from './AddModal';
 import NoteItem from './AppItem/index';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { fetchNote } from '../../services/appointment';
-import { useNavigation } from '@react-navigation/native';
+import { fetchNoteByUser } from '../../services/appointment';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 const Note = ({ data }) => {
    const navigation = useNavigation();
+   const route = useRoute();
 
+   const [userId, setUserId] = useState('');
    const [note, setNote] = useState([]);
-   useEffect(() => {
-      async function getNote() {
-         const res = await fetchNote();
-         setNote(res);
-      }
-      getNote();
-   }, []);
-
-   console.log('data', note)
-
-
    const [showModal, setShowModal] = useState(false);
    const [chooseData, setChooseData] = useState(false);
+
+   useEffect(() => {
+      async function getUserId() {
+         const value = await AsyncStorage.getItem('userId');
+         setUserId(value);
+      }
+
+      async function getNote() {
+         const value = await fetchNoteByUser({
+            userId: parseInt(userId),
+         });
+         setNote(value);
+      }
+
+      getUserId();
+      getNote();
+   }, [userId, route]);
+
+   // useEffect(() => {
+      
+   // }, [route]);
 
    const changeModal = (bool) => {
       setShowModal(bool)
@@ -83,7 +96,7 @@ const Note = ({ data }) => {
                   visible={showModal}
                   nRequestClose={() => changeModal(false)}
                >
-                  <AddModal changeModal={changeModal} setData={setData} />
+                  <AddModal changeModal={changeModal} userId={userId} setData={setData} />
                </Modal>
             </View>
          </View>
@@ -96,7 +109,7 @@ const Note = ({ data }) => {
                      renderItem={renderItem}
                      keyExtractor={item => item.id.toString()}
                   /> : <View style={styles.item}>
-                     <Text>No Data Show</Text>
+                     <Text style={{fontSize:30, color:'#333'}}>No Data Show</Text>
                   </View>
                }
             </View>
@@ -121,7 +134,7 @@ const styles = StyleSheet.create({
    item: {
       marginBottom: 40,
       padding: 10,
-      flex: 2,
+      
       justifyContent: "center",
       alignItems: "center",
   },
@@ -132,7 +145,7 @@ const styles = StyleSheet.create({
    // },
 
    content: {
-      flex: 2,
+      
 
    },
 

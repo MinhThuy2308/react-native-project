@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
     View,
@@ -9,70 +9,52 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
-import { fetchDeleteNote } from '../../../services/appointment';
+// import { fetchDeleteNote } from '../../../services/appointment';
 import { useNavigation } from '@react-navigation/native';
 
-const NoteItem = ({ data }) => {
+const ListItem = ({ props }) => {
     const navigation = useNavigation();
-    
-    const handleDelete = async () => { 
-        const res = await fetchDeleteNote({
-            noteId: data.id,
-        }).then(res => {
-            Alert.alert('Delete Successfully');
-            navigation.reset({
-                index: 0,
-                routes: [{ name: 'Note' }],
-            });
-        })
-    } 
 
-    
+    // const handleDelete = async () => { 
+    //     const res = await fetchDeleteNote({
+    //         noteId: data.id,
+    //     }).then(res => {
+    //         Alert.alert('Delete Successfully');
+    //         navigation.reset({
+    //             index: 0,
+    //             routes: [{ name: 'Note' }],
+    //         });
+    //     })
+    // } 
+
+
     return (
         <>
             <View style={styles.item}>
                 <View style={styles.box}>
                     <View>
-                        <Text style={styles.title}>{data.title}</Text>
-                        <Text style={styles.note}>{data.content}</Text>
+                        <Text style={styles.title}>{props.foodId}</Text>
                     </View>
-
                 </View>
-                <View style={{ flexDirection: 'row', left: 310 }}>
-                    <View style={{left:20}}>
-                        <TouchableOpacity>
-                            <Feather
-                                name="edit"
-                                size={25}
-                                color="#fff"
-                                style={{ backgroundColor: 'green', width: 25, }}
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={{left:30}}>
-                        <TouchableOpacity onPress={(handleDelete)} >
+                <View style={{ left: 330 }}>
+                    <View style={{ left: 30 }}>
+                        <TouchableOpacity >
                             <Icon
                                 name="close"
                                 size={25}
                                 color="#fff"
                                 style={{ backgroundColor: 'red', width: 25, }}
                             />
-
-                            
                         </TouchableOpacity>
                     </View>
-
                 </View>
-
-
             </View>
         </>
     )
-    
+
 }
 
-export default NoteItem;
+export default ListItem;
 
 const styles = StyleSheet.create({
 
@@ -103,8 +85,12 @@ const styles = StyleSheet.create({
     },
 
     item: {
+
         marginBottom: 40,
         backgroundColor: '#fff',
+        borderRadius: 15,
+        borderColor: '#4364f7',
+        borderWidth: 2,
         padding: 10,
         flex: 2,
     }

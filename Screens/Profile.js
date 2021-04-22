@@ -24,6 +24,7 @@ const Profile = ({ navigation }) => {
    const [userBMI, setUserBMI] = useState('');
    const [userId, setUserId] = useState();
    const [image, setImage] = useState(null);
+   const [avatar, setAvatar] = useState('');
 
    useEffect(() => {
       (async () => {
@@ -47,12 +48,14 @@ const Profile = ({ navigation }) => {
    //    })();
    // }, []);
 
+
    const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
          mediaTypes: ImagePicker.MediaTypeOptions.All,
          allowsEditing: true,
          aspect: [4, 3],
          quality: 1,
+         
       });
 
       console.log(result);
@@ -60,7 +63,7 @@ const Profile = ({ navigation }) => {
       if (!result.cancelled) {
          setImage(result.uri);
       }
-   };
+   }
 
    const takeImage = async () => {
       let result = await ImagePicker.launchCameraAsync({
@@ -76,6 +79,14 @@ const Profile = ({ navigation }) => {
          setImage(result.uri);
       }
    };
+
+   useEffect(() => {
+      async function retrieveData() {
+         const value = await AsyncStorage.getItem('avatar');
+         setAvatar(value);
+      }
+      retrieveData();
+   }, []);
 
    useEffect(() => {
       async function retrieveData() {

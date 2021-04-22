@@ -8,10 +8,9 @@ import {
   TouchableOpacity,
   Dimensions,
   FlatList,
-  ViewPagerAndroid
+  ScrollView
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { TextInput } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import ActivityDetail from './Day/ActivityDetail';
 import { fetchActivity } from '../../services/activity';
@@ -60,12 +59,9 @@ const Activity = ({ data }) => {
   const numColumns = 2
 
   return (
-    <ImageBackground
-    source={background}
-    resizeMode="cover"
-    style={{height:300, flex:1, borderBottomRightRadius:10}}
-    >
+
     <View style={styles.container}>
+
       <View style={styles.header}>
         <View style={{ top: 40, left: 8 }}>
           <TouchableOpacity style={{ width: 40 }} >
@@ -77,27 +73,25 @@ const Activity = ({ data }) => {
               onPress={() => navigation.openDrawer()}
             />
           </TouchableOpacity>
+          <View style={{ bottom: 30 }}>
+            <Text style={styles.title}>Yoga Workout</Text>
+          </View>
         </View>
-       
+
       </View>
-      <View style={{ bottom: 10 }}>
-          <Text style={styles.title}>Yoga Workout</Text>
-          
-        </View>
+
       <View style={styles.footer}>
-      <LinearGradient
-          colors={['#61b1fc', '#4364f7', 'transparent']}
-          style={styles.background}
+        <FlatList
+          numColumns={numColumns}
+          data={activity}
+          renderItem={renderItem}
+          keyExtractor={item => item.id.toString()}
         />
-          <FlatList
-            numColumns={numColumns}
-            data={activity}
-            renderItem={renderItem}
-            keyExtractor={item => item.id.toString()}
-          />
-        </View>
+      </View>
+
     </View>
-    </ImageBackground>
+
+    
   )
 
 }
@@ -107,7 +101,7 @@ export default Activity;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#61b1fc'
+    backgroundColor: '#fff'
 
   },
 
@@ -127,19 +121,18 @@ const styles = StyleSheet.create({
   // },
 
   header: {
-    flex:1
-    // position: 'absolute',
-    // left: 0,
-    // right: 0,
-    // top: 0,
-    // height: 700,
+    backgroundColor: '#4364f7',
+    flex: 1,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    
   },
 
   title: {
     color: '#fff',
     fontSize: 28,
     fontWeight: 'bold',
-    top:40,
+    top: 40,
     paddingLeft: 20
   },
 
@@ -147,9 +140,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     // backgroundColor: '#4364f7',
 
-    marginTop: 60,
-    borderTopLeftRadius: 40,
-    paddingVertical: 40,
+    bottom: 80,
     // paddingHorizontal: 30,
 
   },

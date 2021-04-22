@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -80,6 +80,9 @@ const LoginScreen = ({ navigation }) => {
     }
   }
 
+  // const [error, setError] = useState();
+  
+
   const loginHandle = async (userName, password) => {
 
     if (data.username.length == 0 || data.password.length == 0) {
@@ -112,11 +115,6 @@ const LoginScreen = ({ navigation }) => {
         style={styles.background}
       />
       <View style={styles.header}>
-        {/* <Image
-              source={mainLogo}
-              style={styles.logo}
-              resizeMode="contain"
-            /> */}
         <Text style={styles.textIntro}>Beauty of Yoga</Text>
       </View>
 

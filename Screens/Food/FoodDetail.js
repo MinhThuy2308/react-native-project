@@ -5,43 +5,60 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  CheckBox
+  Alert,
+  Dimensions
 } from 'react-native';
-import { fetchFoodDetail } from '../../services/menus';
-import { LinearGradient } from 'expo-linear-gradient';
+import { addFavFoodByUser } from '../../services/menus';
 import Icon from 'react-native-vector-icons/Ionicons';
 import checkImage from '../../utils/checkImage';
+import { ScrollView } from 'react-native-gesture-handler';
 
-function FoodDetail({ data }) {
-  const [isSelected, setSelection] = useState(false);
 
-  console.log('FoodDetail', data);
+
+const { width, height } = Dimensions.get("window")
+
+function FoodDetail({ data, userId }) {
+
+  console.log('FoodDetail De', data.id);
+
+  const handleAdd = async (foodId, userId) => {
+    await addFavFoodByUser({
+      food: foodId,
+      user: userId,
+    }).then(res => {
+      Alert.alert('Successful');
+      console.log('data', res)
+    })
+  }
+
+
   return (
     <>
-      <View >
-        <View style={styles.card}>
-          <View style={styles.item}>
-            {
-              data.image ? <ImageBackground
-                source={{ uri: checkImage(data.image) }}
-                style={styles.bg}
-                imageStyle={{ borderRadius: 10 }}
-              /> : <View></View>
-            }
-            <View style={{ padding: 5 }}>
+      <View style={styles.card}>
+        <View style={styles.item}>
+          {
+            data.image ? <ImageBackground
+              source={{ uri: checkImage(data.image) }}
+              style={styles.bg}
+              imageStyle={{ borderRadius: 15 }}
+              resizeMode="cover"
+            /> : <View></View>
+          }
+          <ScrollView>
+            <View style={{ padding: 10 }}>
               <Text style={styles.title}>{data.title}</Text>
               <Text style={styles.desc}>{data.desc}</Text>
             </View>
-            <View>
-            <CheckBox
-              value={isSelected}
-              onValueChange={setSelection}
-              style={styles.checkbox}
+          </ScrollView>
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => { handleAdd(data.id, userId) }}>
+            <Icon
+              name="heart"
+              size={30}
+              color='red'
             />
-            <Text style={{fontSize:20, paddingLeft:3}}>{isSelected ? "😍" : "😊"}</Text>
-            </View>
-          </View>
-          
+          </TouchableOpacity>
         </View>
       </View>
     </>
@@ -51,49 +68,31 @@ function FoodDetail({ data }) {
 export default FoodDetail;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
 
   bg: {
-    width: 130,
-    height: 150,
-    resizeMode: "stretch",
+    width: width - 40,
+    height: 340,
 
   },
 
   card: {
-    marginTop: 20,
+    flex: 1,
+    width: width - 40,
+    height: height / 1.3,
     backgroundColor: '#fff',
-    borderRadius: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
+    marginTop: 10,
+    marginRight: 20,
+    marginLeft: 10,
+    borderRadius: 15,
+    elevation: 10,
+
 
   },
 
   item: {
-    flex: 2,
-    flexDirection: 'row',
-    width: '60%'
+
 
   },
-
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 700,
-  },
-
-  // header: {
-  //   flex:1
-  //   // position: 'absolute',
-  //   // left: 0,
-  //   // right: 0,
-  //   // top: 0,
-  //   // height: 700,
-  // },
 
   title: {
     color: '#000',
@@ -108,17 +107,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     paddingTop: 5,
-    paddingLeft: 20
+    paddingLeft: 20,
+    lineHeight:23
   },
 
-  footer: {
-    flex: 2,
-    // backgroundColor: '#4364f7',
-    alignItems: 'center',
-    marginTop: 20,
-    borderTopLeftRadius: 40,
-    paddingVertical: 40,
-    // paddingHorizontal: 30,
 
-  },
 })

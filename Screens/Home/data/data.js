@@ -1,22 +1,22 @@
 export const Data =
   [
     {
-      title: 'Yoga 1', url: 'https://media.self.com/photos/5fe0f0a73cbc2d9cb9e72a20/2:1/w_1280,c_limit/yoga_woman_stretching.jpeg',
-      description: "Good for health",
+      title: 'Yoga For Beginner', url: 'https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-yoga-club-cartoon-childish-green-banner-image_174063.jpg',
+      description: "Want to do yoga but don't know where to start? Come to the first basic yoga exercise. ",
       id: 1
 
     },
 
     {
-      title: 'Yoga 2', url: 'https://i.guim.co.uk/img/media/6e63c0440a7f819036e9b4d69176a04a60aa7291/278_0_4600_2760/master/4600.jpg?width=465&quality=45&auto=format&fit=max&dpr=2&s=41248a70138d029cc16447890d848b8c',
-      description: "Good for health",
+      title: 'Advance Yoga', url: 'https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-fresh-yoga-fitness-background-image_231766.jpg',
+      description: "Want to try yourself with more difficult yoga movements? Come with us. ",
       id: 2
 
     },
 
     {
-      title: 'Yoga 3', url: 'https://meta.vn/Data/image/2020/12/11/yoga-tang-can-3.jpg',
-      description: "Good for health",
+      title: 'Healthy Food', url: 'https://thumbs.dreamstime.com/b/choice-healthy-unhealthy-food-fat-woman-choosing-fast-vs-balanced-menu-comparison-concepts-diet-eating-female-cartoon-166592290.jpg',
+      description: "Don't know what to eat when you start practicing yoga? Come to our menu. ",
       id: 3
 
     },

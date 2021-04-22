@@ -39,7 +39,7 @@ function infiniteScroll(dataList, mySlide) {
             });
         }
 
-    }, 9000)
+    }, 7000)
 }
 
 const Carouse = ({ data }) => {

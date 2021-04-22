@@ -15,13 +15,13 @@ import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get("window")
 
-const CarouseItem = ({ data }) => {
+const CarouseItem = ({ item, data }) => {
     const navigation = useNavigation();
     const getActivityScreens = {
         1: 'ActivityBasicYoga',
         2: 'ActivityAdvancedYoga',
         3: 'Menu',
-      }
+    }
 
     return (
         <>
@@ -33,7 +33,7 @@ const CarouseItem = ({ data }) => {
                         activity: data.id,
                     })}
                 >
-                    <View style={styles.item}>
+                    {/* <View style={styles.item}>
                         <ImageBackground
                             source={{ uri: checkImage(data.image, "large")}}
                             style={styles.bg}
@@ -46,18 +46,24 @@ const CarouseItem = ({ data }) => {
                             <Text style={styles.desc}>{data.description}</Text>
                         </View>
 
+                    </View> */}
+
+                    <View style={styles.item}>
+                        <ImageBackground 
+                         style={styles.bg} 
+                         source={{ uri: item.url }} 
+                         imageStyle={{ borderRadius: 10 }}
+                         resizeMode="cover" />
+                        <View style={styles.textView}>
+                            <Text style={styles.text}> {item.title}</Text>
+                            <Text style={styles.desc}>{item.description}</Text>
+
+                        </View>
                     </View>
                 </TouchableOpacity>
 
             </View>
-            {/* <View style={styles.container}>
-                <Image style={styles.image} source={{ uri: item.url }} />
-                <View style={styles.textView}>
-                    <Text style={styles.title}> {item.title}</Text>
-                    <Text style={styles.des}>{item.description}</Text>
 
-                </View>
-            </View> */}
         </>
 
     )
@@ -72,9 +78,9 @@ const styles = StyleSheet.create({
         height: height / 1.5,
         backgroundColor: 'white',
         marginTop: 10,
-        marginRight:20,
-        marginLeft:10,
-        borderRadius: 10,
+        marginRight: 20,
+        marginLeft: 20,
+        borderRadius: 15,
         shadowColor: '#000',
         shadowOffset: { width: 0.5, height: 0.5 },
         shadowOpacity: 0.5,
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 10,
         marginTop: 10,
-        marginLeft:10,
+        marginLeft: 10,
         left: 3,
     },
 

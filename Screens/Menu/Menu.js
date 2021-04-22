@@ -14,18 +14,18 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
-const Menu = ({route}) => {
+const Menu = ({ route }) => {
     const navigation = useNavigation();
     const [menu, SetMenu] = useState([]);
 
     useEffect(() => {
         async function getMenu() {
-          const res = await fetchMenu();
-          SetMenu(res);
+            const res = await fetchMenu();
+            SetMenu(res);
         }
-    
+
         getMenu();
-      }, [route]);
+    }, [route]);
 
     const renderItem = ({ item }) => (
         <MenuItem data={item} />
@@ -36,10 +36,7 @@ const Menu = ({route}) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <LinearGradient
-                    colors={['#61b1fc', '#4364f7', 'transparent']}
-                    style={styles.background}
-                />
+
                 <View style={{ top: 40, left: 8 }}>
                     <TouchableOpacity style={{ width: 40 }} >
                         <Icon
@@ -52,12 +49,14 @@ const Menu = ({route}) => {
                     </TouchableOpacity>
                 </View>
 
+                <View style={{ top: 30 }}>
+                    <Text style={styles.title}>Menu</Text>
+
+                </View>
+
             </View>
 
-            <View style={{ top:20}}>
-          <Text style={styles.title}>Foods</Text>
-          
-        </View>
+
             <View style={styles.footer}>
                 <FlatList
                     numColumns={numColumns}
@@ -78,7 +77,6 @@ export default Menu;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: '#61b1fc'
 
     },
 
@@ -90,14 +88,13 @@ const styles = StyleSheet.create({
         height: 700,
     },
 
-    // header: {
-    //     flex: 1
-    //     // position: 'absolute',
-    //     // left: 0,
-    //     // right: 0,
-    //     // top: 0,
-    //     // height: 700,
-    // },
+    header: {
+        height: 230,
+        backgroundColor: '#4364f7',
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20
+    },
+
 
     title: {
         color: '#fff',
@@ -108,13 +105,8 @@ const styles = StyleSheet.create({
     },
 
     footer: {
-        // flex: 1,
-        // backgroundColor: '#4364f7',
-
-        marginTop: 60,
-        borderTopLeftRadius: 40,
-        paddingVertical: 40,
-        // paddingHorizontal: 30,
+        flex: 1,
+        bottom:60,
 
     },
 

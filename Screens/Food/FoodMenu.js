@@ -5,16 +5,28 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  Alert
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { fetchFoodByMenu } from '../../services/menus';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import checkImage from '../../utils/checkImage';
 import FoodDetail from './FoodDetail';
+import Awesome from 'react-native-vector-icons/FontAwesome'
 
 function FoodMenu({ navigation, route }) {
   const [data, SetData] = useState([]);
+  const [userId, setUserId] = React.useState('');
+
+  useEffect(() => {
+    async function getUserBMIData() {
+      const userId = await AsyncStorage.getItem('userId');
+      setUserId(userId);
+    }
+    getUserBMIData();
+  }, []);
 
   useEffect(() => {
     async function getFoodMenu() {
@@ -27,41 +39,58 @@ function FoodMenu({ navigation, route }) {
     getFoodMenu();
   }, [route]);
 
+
+
   const renderItem = ({ item }) => {
     return (
-      <FoodDetail data={item} />
+      <FoodDetail data={item} userId={userId} />
     )
   }
 
   return (
     <>
-     <View style={styles.container}>
-      <View style={styles.header}>
-        <LinearGradient
-          colors={['#4364f7', '#617EFF', 'transparent']}
-          style={styles.background}
-        />
-        <View style={{ top: 40, left: 8 }}>
-          <TouchableOpacity style={{ width: 40 }}>
-            <Icon
-              name="chevron-back-outline"
-              size={35}
-              color="#fff"
-              onPress={() => navigation.goBack()}
-            />
-          </TouchableOpacity>
-        </View>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={{ top: 40, left: 8 }}>
+            <TouchableOpacity style={{ width: 40 }}>
+              <Icon
+                name="chevron-back-outline"
+                size={35}
+                color="#fff"
+                onPress={() => navigation.goBack()}
+              />
+            </TouchableOpacity>
+          </View>
 
+          <View style={styles.list}>
+
+            <TouchableOpacity style={styles.roundButton1} onPress={() => navigation.navigate('List')}>
+              <Awesome
+                name="list-alt"
+                size={30}
+                color='#fff'
+              />
+            </TouchableOpacity>
+
+          </View>
+
+        </View>
+        <View style={styles.footer}>
+          <Text>{data.title}</Text>
+          <FlatList
+            pagingEnabled
+            scrollEnabled
+            snapToAlignment="center"
+            scrollEventThrottle={16}
+            decelerationRate={"fast"}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.id.toString()}
+          />
+        </View>
       </View>
-      <View style={styles.footer}>
-        <Text>{data.title}</Text>
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
-        />
-      </View>
-    </View>
     </>
   )
 }
@@ -74,8 +103,8 @@ const styles = StyleSheet.create({
   },
 
   bg: {
-    width: 120,
-    height: 120,
+    width: '80%',
+    height: '80%',
     resizeMode: "stretch",
 
   },
@@ -84,15 +113,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: '#fff',
     borderRadius: 10,
-    
-  
+
+
   },
 
   item: {
     flex: 2,
     flexDirection: 'row',
-    width:'90%',
-    
+    width: '90%',
+
   },
 
   background: {
@@ -103,14 +132,13 @@ const styles = StyleSheet.create({
     height: 700,
   },
 
-  // header: {
-  //   flex:1
-  //   // position: 'absolute',
-  //   // left: 0,
-  //   // right: 0,
-  //   // top: 0,
-  //   // height: 700,
-  // },
+  header: {
+    backgroundColor: '#4364f7',
+    height: 230,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+
+  },
 
   title: {
     color: '#000',
@@ -129,13 +157,30 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    flex: 2,
+    // flex: 2,
     // backgroundColor: '#4364f7',
     alignItems: 'center',
-    marginTop: 20,
+    marginLeft: 10,
+    bottom: 140,
     borderTopLeftRadius: 40,
-    paddingVertical: 40,
-    // paddingHorizontal: 30,
+
+  },
+
+  roundButton1: {
+    width: 70,
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+
+  },
+
+  list: {
+    // flex: 1,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    bottom: 10,
+
 
   },
 })

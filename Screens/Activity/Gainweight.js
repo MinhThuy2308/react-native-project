@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
+  Text,
   View,
   FlatList,
-  TouchableOpacity,
-  Text
+  Alert,
+  TouchableOpacity
 } from 'react-native';
 import { fetchDay } from '../../services/days';
 import DayItem from './Day/DateItem';
@@ -15,13 +16,13 @@ const renderItem = ({ item }) => (
   <DayItem data={item} activity={3} />
 );
 
-const Gainweight = ({navigation}) => {
+const Gainweight = ({ navigation }) => {
   const [day, SetDay] = useState([]);
 
   useEffect(() => {
     async function getDay() {
-        const res = await fetchDay();
-        SetDay(res);
+      const res = await fetchDay();
+      SetDay(res);
     }
 
     getDay();
@@ -31,34 +32,36 @@ const Gainweight = ({navigation}) => {
     <View style={styles.container}>
 
       <View style={styles.header}>
-        <LinearGradient
-          colors={['#4364f7', '#fff', 'transparent']}
-          style={styles.background}
-        />
         <View style={{ top: 40, left: 8 }}>
-          <TouchableOpacity style={{ width: 40 }}>
+          <TouchableOpacity style={{ width: 40 }} >
             <Icon
               name="chevron-back-outline"
               size={35}
               color="#fff"
+              backgroundColor="#61b1fc"
               onPress={() => navigation.goBack()}
+
             />
           </TouchableOpacity>
+
+          <View style={{bottom:30}}>
+            <Text style={styles.title}>Gain Weight</Text>
+          </View>
+          <View style={{ borderWidth: 2, width: 150, borderColor: '#fff', left: 20, top: 30 }}></View>
         </View>
 
       </View>
 
-      <View>
-        <Text style={styles.title}>Gain Weight</Text>
-      </View>
-      <View style={{borderWidth:2, width:150, borderColor:'#fff', left:20, top:60}}></View>
+
+
       <View style={styles.footer}>
         <FlatList
           data={day}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
         />
-      </View>
+        </View>
+      
     </View>
   )
 }
@@ -79,14 +82,17 @@ const styles = StyleSheet.create({
     height: 700,
   },
 
-  // header: {
-  //   flex:1
-  //   // position: 'absolute',
-  //   // left: 0,
-  //   // right: 0,
-  //   // top: 0,
-  //   // height: 700,
-  // },
+  header: {
+    flex:1,
+    backgroundColor: '#4364f7',
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    // position: 'absolute',
+    // left: 0,
+    // right: 0,
+    // top: 0,
+    // height: 700,
+  },
 
   title: {
     color: '#fff',
@@ -97,12 +103,9 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    flex: 2,
-    // backgroundColor: '#4364f7',
+    flex:2,
     alignItems: 'center',
-    marginTop: 20,
-    borderTopLeftRadius: 40,
-    paddingVertical: 40,
+    bottom:80,
     // paddingHorizontal: 30,
 
   },

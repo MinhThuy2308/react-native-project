@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   View,
   Text,
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Animated,
+  Dimensions
 } from 'react-native';
 import { fetchDocumentDetail } from '../../../services/documents';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import checkImage from '../../../utils/checkImage';
 
+const { width, height } = Dimensions.get("window")
 function ActivityDayDetail({ navigation, route }) {
   const [data, SetData] = useState([]);
 
@@ -33,18 +36,20 @@ function ActivityDayDetail({ navigation, route }) {
     });
   }, [navigation]);
 
+
+
   return (
     <>
-    
-    
+
+
       <View style={styles.container}>
-     
+      <LinearGradient
+          colors={['#4364f7', '#fff', 'transparent']}
+          style={styles.background}
+
+        />
         <View style={styles.header}>
-        <LinearGradient
-            colors={['#4364f7', '#617EFF', 'transparent']}
-            style={styles.background}
-          />
-          
+
           <View style={{ top: 40, left: 8 }}>
             <TouchableOpacity style={{ width: 40 }} >
               <Icon
@@ -64,15 +69,16 @@ function ActivityDayDetail({ navigation, route }) {
               imageStyle={{ borderRadius: 10 }}
             /> : <View></View>
           }
-          <ScrollView style={{top:20}}>
-          <Text style={styles.title}>{data.title}</Text>
-          
-          <Text style={styles.body}>{data.body}</Text>
+
+          <ScrollView style={{ top: 20 }}>
+            <Text style={styles.title}>{data.title}</Text>
+
+            <Text style={styles.body}>{data.body}</Text>
           </ScrollView>
         </View>
 
       </View>
-      
+
     </>
   )
 }
@@ -82,7 +88,7 @@ export default ActivityDayDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor:'#617EFF'
+    backgroundColor:'#617EFF'
   },
 
   bg: {
@@ -100,17 +106,19 @@ const styles = StyleSheet.create({
     height: 700,
   },
 
+  content: {
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
+
   // header: {
+    
   //   flex:1
-  //   // position: 'absolute',
-  //   // left: 0,
-  //   // right: 0,
-  //   // top: 0,
-  //   // height: 700,
   // },
 
   title: {
-    color: '#fff',
+    color: '#333',
     fontSize: 28,
     fontWeight: 'bold',
     top: 15,
@@ -118,20 +126,24 @@ const styles = StyleSheet.create({
   },
 
   body: {
-    color: '#fff',
+    color: '#333',
     fontSize: 17,
     fontWeight: 'bold',
     top: 20,
-    paddingLeft: 20
+    padding:20,
   },
 
   footer: {
-    flex: 2,
-    // backgroundColor: '#4364f7',
+    
+    backgroundColor: '#fff',
     alignItems: 'center',
-    top:40,
-    borderTopLeftRadius: 40,
+    width: width - 30,
+    height: height / 1.3,
+    marginLeft: 16,
+    borderRadius: 40,
     paddingVertical: 40,
+    padding: 10,
+    top:70
     // paddingHorizontal: 30,
 
   },

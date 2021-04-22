@@ -25,6 +25,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import backImage from '../assets/images/background.jpg';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
+import Awesome from 'react-native-vector-icons/FontAwesome'
 
 export function DrawerTab(props) {
 
@@ -51,9 +52,9 @@ export function DrawerTab(props) {
             <View style={{ marginTop: 15, }}>
               <ImageBackground
                 source={backImage}
-                style={{width:300, height:200}}
+                style={{ width: 300, height: 200 }}
                 resizeMode="cover"
-                />
+              />
             </View>
           </View>
           <Drawer.Section style={styles.menuTab}>
@@ -84,14 +85,14 @@ export function DrawerTab(props) {
 
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon
-                  name="settings-outline"
-                  color={color}
+                <Awesome
+                  name="list-alt"
                   size={size}
+                  color= {color}
                 />
               )}
-              label="Settings"
-              onPress={() => { }}
+              label="Favorite Food"
+              onPress={() => { props.navigation.navigate('List') }}
             />
 
             <DrawerItem
@@ -157,10 +158,10 @@ export function DrawerTab(props) {
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
-    
+
   },
   userInfo: {
-    bottom:40
+    bottom: 40
   },
   title: {
     fontSize: 16,
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   menuTab: {
-    
+
   },
   // background: {
   //   position: 'absolute',

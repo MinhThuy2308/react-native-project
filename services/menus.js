@@ -22,4 +22,27 @@ export function fetchFoodDetail(data) {
   });
 }
 
+export function addFavFoodByUser(data) {
+  return request({
+    url: '/fav-foods',
+    method: 'post',
+    data: data,
+    params: {
+      user: parseInt(data.userId),
+    }
+  });
+}
+
+export function fetchFavFoodByUser(data) {
+  console.log('fetchFavFoodByUser', data);
+  return request({
+    url: '/fav-foods',
+    method: 'get',
+    params: {
+      user: parseInt(data.userId),
+    }
+  });
+}
+
+
 

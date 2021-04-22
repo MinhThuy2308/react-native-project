@@ -13,7 +13,7 @@ import { useState } from 'react/cjs/react.development';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TextInput } from 'react-native-gesture-handler';
 import Feather from 'react-native-vector-icons/Feather';
-import { fetchUpdateNote } from '../../services/appointment';
+import { addNoteByUser } from '../../services/appointment';
 import { useNavigation } from '@react-navigation/native';
 
 const Width = Dimensions.get('window').width;
@@ -50,10 +50,11 @@ const AddModal = (props) => {
     props.setData(data);
   }
 
-  const handleSubmit = async (title, content) => {
-    await fetchUpdateNote({
+  const handleSubmit = async (title, content, userId) => {
+    await addNoteByUser({
       title,
-      content
+      content,
+      user: userId,
     }).then(res => {
       Alert.alert('Successful');
       closeModal(false, 'Cancel');
@@ -116,7 +117,7 @@ const AddModal = (props) => {
           <TouchableOpacity style={styles.click} onPress={() => closeModal(false, 'Cancel')}>
             <Text style={[styles.text, { color: '#4862D5' }]}>Cancel</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.click} onPress={() => { handleSubmit(data.title, data.content) }}>
+          <TouchableOpacity style={styles.click} onPress={() => { handleSubmit(data.title, data.content, props.userId) }}>
             <Text style={[styles.text, { color: '#4862D5' }]}>Add</Text>
           </TouchableOpacity>
         </View>

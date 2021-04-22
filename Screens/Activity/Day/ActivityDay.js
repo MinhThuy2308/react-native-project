@@ -88,11 +88,8 @@ const ActivityDay = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
+       
       <View style={styles.header}>
-        <LinearGradient
-          colors={['#4364f7', '#617EFF', 'transparent']}
-          style={styles.background}
-        />
         <View style={{ top: 40, left: 8 }}>
           <TouchableOpacity style={{ width: 40 }}>
             <Icon
@@ -107,6 +104,14 @@ const ActivityDay = ({ navigation, route }) => {
       </View>
       <View style={styles.footer}>
         <FlatList
+          pagingEnabled
+          horizontal
+          scrollEnabled
+          snapToAlignment="center"
+          scrollEventThrottle={16}
+          decelerationRate={"fast"}
+          showsHorizontalScrollIndicator={false}
+          style={{bottom:150}}
           data={day}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
@@ -121,7 +126,8 @@ export default ActivityDay;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+    
+    
   },
 
   background: {
@@ -132,14 +138,12 @@ const styles = StyleSheet.create({
     height: 700,
   },
 
-  // header: {
-  //   flex:1
-  //   // position: 'absolute',
-  //   // left: 0,
-  //   // right: 0,
-  //   // top: 0,
-  //   // height: 700,
-  // },
+  header: {
+    height:230,
+    backgroundColor:'#4364f7',
+    borderBottomLeftRadius:20,
+    borderBottomRightRadius:20
+  },
 
   title: {
     color: '#fff',
@@ -150,13 +154,12 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    flex: 2,
+    // flex:2,
     // backgroundColor: '#4364f7',
     alignItems: 'center',
-    marginTop: 20,
-    borderTopLeftRadius: 40,
-    paddingVertical: 40,
-    // paddingHorizontal: 30,
+    marginLeft:10,
+    top:10,
+    
 
   },
 

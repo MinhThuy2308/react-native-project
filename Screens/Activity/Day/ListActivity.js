@@ -5,45 +5,49 @@ import {
   FlatList,
   StyleSheet,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions,
+  ScrollView
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Feather from 'react-native-vector-icons/Feather';
 import checkImage from '../../../utils/checkImage';
+import { LinearGradient } from 'expo-linear-gradient';
+
+const { width, height } = Dimensions.get("window")
 
 const ListActivity = ({ data }) => {
   const navigation = useNavigation();
 
+
   return (
-    <View>
+    <>
+    
       <View style={styles.card}>
-        <View style={styles.item}>
-        {
-            data.image ?<ImageBackground
-            source={{ uri: checkImage(data.image) }}
-            style={styles.bg}
-            imageStyle={{ borderRadius: 10 }}
-           
-          >
-           
-          </ImageBackground>: <View></View>
-          }
-          <TouchableOpacity style={styles.click} onPress={() => navigation.navigate('ActivityDayDetail', { documentId: data.id })}>
-            <Text style={styles.text}>{data.title}</Text>
-            {/* <Feather
-            name="chevron-right"
-            size={25}
-            color="#000"
-            style={{ top: 2 }}
-          /> */}
-          </TouchableOpacity>
-        </View>
-        <View style={{ flex: 1 }}>
-         
-          
-        </View>
+        
+
+        <TouchableOpacity style={styles.click} onPress={() => navigation.navigate('ActivityDayDetail', { documentId: data.id })}>
+          <View style={styles.item}>
+            {
+              data.image ? <ImageBackground
+                source={{ uri: checkImage(data.image) }}
+                style={styles.bg}
+                imageStyle={{ borderRadius: 10 }}
+                resizeMode="cover"
+
+              >
+              </ImageBackground> : <View></View>
+            }
+            <View style={styles.textView}>
+              <Text style={styles.text}>{data.title}</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+
+       
       </View>
-    </View>
+      
+    </>
   )
 }
 
@@ -51,21 +55,31 @@ export default ListActivity;
 
 const styles = StyleSheet.create({
   bg: {
-    width: 130,
-    height: 120,
-   
+    width: 400,
+    height: 330,
+
   },
+
+  textView: {
+    alignItems: 'center'
+
+  },
+
+  
 
   card: {
-    marginTop: 20,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-  
-  },
+    flex: 1,
+    width: width - 40,
+    height: height / 1.4,
+    backgroundColor:'#fff',
+    marginTop: 50,
+    marginRight: 20,
+    marginLeft: 10,
+    borderRadius: 20,
+    shadowColor:'#000',
+    elevation: 5,
+    bottom:30
 
-  item: { 
-    flex:2, 
-    flexDirection:'row',
   },
 
   // click: {
@@ -79,11 +93,21 @@ const styles = StyleSheet.create({
 
   // },
 
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 490,
+    borderRadius:20
+
+  },
+
   text: {
-    top:20,
+    top: 20,
     color: '#000',
     fontSize: 18,
-    fontWeight:'bold'
+    fontWeight: 'bold'
 
   }
 })

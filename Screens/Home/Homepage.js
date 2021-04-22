@@ -10,7 +10,8 @@ import {
   Button,
   FlatList,
   TouchableOpacity,
-  Animated
+  Animated,
+  ImageBackground
 
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -18,11 +19,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Data } from './data/data'
 import Carouse from './Carouse';
 import { LinearGradient } from 'expo-linear-gradient';
-import minCover from '../../assets/images/logo3.jpg';
+import background from '../Activity/images/background14.jpg';
 import CarouseItem from './CarouseItem/index';
 import { fetchImage } from '../../services/homepage';
 import { useNavigation } from '@react-navigation/native';
 
+const { width, height } = Dimensions.get("window")
 const Homepage = ({ data }) => {
   const navigation = useNavigation();
   const [userBMI, setUserBMI] = useState('');
@@ -67,44 +69,47 @@ const Homepage = ({ data }) => {
   return (
 
     <View style={styles.container} >
-      <View style={styles.header}>
         <LinearGradient
           colors={['#4364f7', '#fff', 'transparent']}
           style={styles.background}
-        />
-        <View style={{ top: 40, left: 8 }}>
-          <TouchableOpacity >
-            <Icon
-              name="menu-outline"
-              size={30}
-              color="#fff"
-              backgroundColor="#61b1fc"
-              onPress={() => navigation.openDrawer()}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={{ bottom: 10, left: 20 }}>
-          <Text style={styles.title}>Hello, {useName}</Text>
-          <Text style={styles.subtitle}>Choose the one that matches your needs</Text>
-        </View>
 
-      </View>
-   {/* <Carouse data = {image} /> */}
-      <View style={styles.footer}>
-        <FlatList
-          horizontal
-          pagingEnabled
-          scrollEnabled
-          snapToAlignment="center"
-          scrollEventThrottle={16}
-          decelerationRate={"fast"}
-          showsHorizontalScrollIndicator={false}
-          data={image}
-          renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
         />
-      
-      </View>
+        <View style={styles.header}>
+
+          <View style={{ top: 40, left: 8 }}>
+            <TouchableOpacity >
+              <Icon
+                name="menu-outline"
+                size={30}
+                color="#fff"
+                backgroundColor="#61b1fc"
+                onPress={() => navigation.openDrawer()}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{ bottom: 10, left: 20 }}>
+            <Text style={styles.title}>Hello, {useName}</Text>
+            <Text style={styles.subtitle}>Choose the one that matches your needs</Text>
+          </View>
+
+        </View>
+        <Carouse data = {Data} />
+        {/* <View style={styles.footer}>
+          <FlatList
+            horizontal
+            pagingEnabled
+            scrollEnabled
+            snapToAlignment="center"
+            scrollEventThrottle={16}
+            decelerationRate={"fast"}
+            showsHorizontalScrollIndicator={false}
+            data={image}
+            renderItem={renderItem}
+            keyExtractor={item => item.id.toString()}
+          />
+
+        </View> */}
+
     </View>
   )
 }
@@ -114,8 +119,7 @@ export default Homepage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor:'#fff',
-    // backgroundColor: '#61b1fc',
+    backgroundColor: '#fff',
 
   },
 
@@ -198,9 +202,9 @@ const styles = StyleSheet.create({
   },
 
   Dot: {
-    flexDirection:'row',
-    justifyContent:'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
 
-},
+  },
 
 })
