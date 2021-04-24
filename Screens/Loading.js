@@ -16,7 +16,7 @@ const Loading = ({ navigation }) => {
    
       <View style={styles.container}>
         <LinearGradient
-        colors={['#61b1fc','#4364f7', 'transparent']}
+        colors={['#4364f7','#fff', 'transparent']}
         style={styles.background}
       />
         
@@ -62,7 +62,7 @@ export default Loading;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#61b1fc',
+    backgroundColor: '#4364f7',
   },
 
   background: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    height: 550,
+    height: 450,
   },
 
   header: {

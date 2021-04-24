@@ -9,23 +9,23 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
-// import { fetchDeleteNote } from '../../../services/appointment';
+import { fetchDeleteFavFood } from '../../services/menus';
 import { useNavigation } from '@react-navigation/native';
 
 const ListItem = ({ data }) => {
     const navigation = useNavigation();
 
-    // const handleDelete = async () => { 
-    //     const res = await fetchDeleteNote({
-    //         noteId: data.id,
-    //     }).then(res => {
-    //         Alert.alert('Delete Successfully');
-    //         navigation.reset({
-    //             index: 0,
-    //             routes: [{ name: 'Note' }],
-    //         });
-    //     })
-    // } 
+    const handleDelete = async () => { 
+        const res = await fetchDeleteFavFood({
+            food: data.id,
+        }).then(res => {
+            Alert.alert('Delete Successfully');
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'List' }],
+            });
+        })
+    } 
 
     return (
         <>
@@ -33,11 +33,12 @@ const ListItem = ({ data }) => {
                 <View style={styles.box}>
                     <View>
                         <Text style={styles.title}>{data.food.title}</Text>
+                        <Text style={styles.desc}>{data.food.desc}</Text>
                     </View>
                 </View>
                 <View style={{ left: 330 }}>
                     <View style={{ left: 30 }}>
-                        <TouchableOpacity >
+                        <TouchableOpacity onPress={(handleDelete)} >
                             <Icon
                                 name="close"
                                 size={25}
@@ -63,10 +64,10 @@ const styles = StyleSheet.create({
         color: 'red'
     },
 
-    note: {
+    desc: {
         fontSize: 18,
         marginLeft: 10,
-        marginTop: 20
+        marginTop: 10
     },
 
 
@@ -84,12 +85,8 @@ const styles = StyleSheet.create({
     },
 
     item: {
-
         marginBottom: 40,
         backgroundColor: '#fff',
-        borderRadius: 15,
-        borderColor: '#4364f7',
-        borderWidth: 2,
         padding: 10,
         flex: 2,
     }

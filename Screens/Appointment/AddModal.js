@@ -68,7 +68,7 @@ const AddModal = (props) => {
   return (
     <View style={styles.container}>
       <View style={[styles.modal, { width: Width - 20, height: Height / 1.2 }]}>
-        <Text style={{ fontSize: 30, fontWeight: 'bold', textAlign: 'center' }}>Note</Text>
+        <Text style={{ fontSize: 30, fontWeight: 'bold', textAlign: 'center', marginTop:20 }}>Note</Text>
 
         <View style={styles.item}>
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Title</Text>

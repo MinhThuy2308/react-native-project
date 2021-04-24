@@ -86,7 +86,7 @@ const LoginScreen = ({ navigation }) => {
   const loginHandle = async (userName, password) => {
 
     if (data.username.length == 0 || data.password.length == 0) {
-      Alert.alert('Wrong input', 'Email or password field cannot be empty', [
+      Alert.alert('Wrong input', 'Username or password field cannot be empty', [
         { text: 'OK' }
       ]);
       return;
@@ -98,20 +98,18 @@ const LoginScreen = ({ navigation }) => {
       }).then(res => {
         logIn(res);
         return;
+      }).catch(err => {
+        Alert.alert('Oops', 'Username or password is not correct.', [
+          { text: 'OK' }
+        ]);
       })
     }
-    // if( foundUser.length == 0) {
-    //   Alert.alert('Invalid user','Username or password is incorrect', [
-    //     {text:'OK'}
-    //   ]);
-    //   return;
-    // }
   }
 
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#61b1fc', '#4364f7', 'transparent']}
+        colors={['#4364f7', '#fff', 'transparent']}
         style={styles.background}
       />
       <View style={styles.header}>
@@ -188,7 +186,7 @@ const LoginScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.btnRes}>
-          <Text style={{ color: '#61b1fc' }}>Don't have account?</Text>
+          <Text style={{ color: '#61b1fc', marginTop:2 }}>Don't have account?</Text>
           <TouchableOpacity onPress={() => navigation.navigate('Register')}>
             <Text style={styles.textSign1}>Create new account</Text>
           </TouchableOpacity>
@@ -204,7 +202,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#61b1fc',
+    backgroundColor: '#4364f7',
 
   },
 
@@ -213,7 +211,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    height: 550,
+    height: 650,
   },
 
   header: {
@@ -328,7 +326,7 @@ const styles = StyleSheet.create({
   textSign1: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#61b1fc',
+    color: '#4364f7',
     marginLeft: 10,
   }
 

@@ -44,5 +44,12 @@ export function fetchFavFoodByUser(data) {
   });
 }
 
+export function fetchDeleteFavFood(data) {
+  return request({
+    url: `/favfood/${data.foodId}`,
+    method: 'delete',
+  });
+}
+
 
 

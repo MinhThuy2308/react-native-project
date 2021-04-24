@@ -41,15 +41,6 @@ const Activity = ({ data }) => {
     return unsubscribe;
   }, [navigation]);
 
-  // useEffect(() => {
-  //   async function getActivity() {
-  //     const res = await fetchActivity();
-  //     SetActivity(res);
-  //   }
-
-  //   getActivity();
-  // }, []);
-
   useEffect(() => {
     navigation.setOptions({
       title: activity.title,

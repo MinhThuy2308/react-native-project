@@ -38,17 +38,8 @@ const NoteItem = ({ data }) => {
                     </View>
 
                 </View>
-                <View style={{ flexDirection: 'row', left: 310 }}>
-                    <View style={{left:20}}>
-                        <TouchableOpacity>
-                            <Feather
-                                name="edit"
-                                size={25}
-                                color="#fff"
-                                style={{ backgroundColor: 'green', width: 25, }}
-                            />
-                        </TouchableOpacity>
-                    </View>
+                <View style={{ flexDirection: 'row', left: 330 }}>
+              
 
                     <View style={{left:30}}>
                         <TouchableOpacity onPress={(handleDelete)} >

@@ -11,9 +11,8 @@ import {
   StyleSheet,
   View,
   Text,
-  Image,
   ActivityIndicator,
-  Button
+  
 } from 'react-native';
 
 

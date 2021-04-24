@@ -65,7 +65,7 @@ const Info = ({ navigation }) => {
         }
     }
 
-    const calcCalo = async (weight, height) => {
+    const calcIndexBMI = async (weight, height) => {
 
         if (weight < 20 || weight > 300) {
             Alert.alert('Wrong input', `Weight is invalid ${weight} kg`, [
@@ -147,7 +147,7 @@ const Info = ({ navigation }) => {
                             colors={['#4364f7', '#6fb1fc']}
                             style={{ borderRadius: 10 }}
                         >
-                            <TouchableOpacity style={styles.confirm} onPress={() => calcCalo(data.weight, data.height)} >
+                            <TouchableOpacity style={styles.confirm} onPress={() => calcIndexBMI(data.weight, data.height)} >
                                 <Text style={styles.textSign}>Calculate</Text>
                             </TouchableOpacity>
                         </LinearGradient>
@@ -181,7 +181,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         marginTop: 30,
-        // backgroundColor: '#ff5f6d',
         borderRadius: 20,
         borderBottomWidth: 2,
         borderBottomColor: '#4364f7',
@@ -214,8 +213,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         paddingTop: 10,
         paddingBottom: 10,
-        // paddingLeft: 30,
-        // paddingRight: 30,
         textAlign: 'center',
     },
 
@@ -232,16 +229,6 @@ const styles = StyleSheet.create({
         height: 700,
     },
 
-    // header: {
-    //     flex: 1,
-       
-    //     // position: 'absolute',
-    //     // left: 0,
-    //     // right: 0,
-    //     // top: 0,
-    //     // height: 700,
-    // },
-
     title: {
         color: '#fff',
         fontSize: 28,
@@ -252,10 +239,8 @@ const styles = StyleSheet.create({
 
     footer: {
         flex: 2,
-        // backgroundColor: '#fff',
         top:100,
-        borderTopLeftRadius: 40,
-        
+        borderTopLeftRadius: 40, 
 
     },
 

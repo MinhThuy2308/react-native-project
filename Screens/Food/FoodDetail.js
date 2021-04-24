@@ -6,12 +6,13 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from 'react-native';
 import { addFavFoodByUser } from '../../services/menus';
 import Icon from 'react-native-vector-icons/Ionicons';
 import checkImage from '../../utils/checkImage';
-import { ScrollView } from 'react-native-gesture-handler';
+
 
 
 
@@ -34,33 +35,31 @@ function FoodDetail({ data, userId }) {
 
   return (
     <>
-      <View style={styles.card}>
         <View style={styles.item}>
           {
             data.image ? <ImageBackground
               source={{ uri: checkImage(data.image) }}
               style={styles.bg}
-              imageStyle={{ borderRadius: 15 }}
+              imageStyle={{ borderRadius: 40 }}
               resizeMode="cover"
             /> : <View></View>
           }
-          <ScrollView>
-            <View style={{ padding: 10 }}>
-              <Text style={styles.title}>{data.title}</Text>
-              <Text style={styles.desc}>{data.desc}</Text>
-            </View>
+          <ScrollView style={{ top: 10 }}>
+            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.desc}>{data.desc}</Text>
           </ScrollView>
-        </View>
-        <View>
-          <TouchableOpacity onPress={() => { handleAdd(data.id, userId) }}>
+
+          <TouchableOpacity style={{ left: 150, top: 30 }} onPress={() => { handleAdd(data.id, userId) }}>
             <Icon
               name="heart"
               size={30}
               color='red'
             />
           </TouchableOpacity>
+
         </View>
-      </View>
+
+
     </>
   )
 }
@@ -75,22 +74,17 @@ const styles = StyleSheet.create({
 
   },
 
-  card: {
+  item: {
     flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
     width: width - 40,
     height: height / 1.3,
-    backgroundColor: '#fff',
-    marginTop: 10,
     marginRight: 20,
     marginLeft: 10,
-    borderRadius: 15,
-    elevation: 10,
-
-
-  },
-
-  item: {
-
+    borderRadius: 40,
+    paddingVertical: 40,
+    elevation: 10
 
   },
 
@@ -98,17 +92,18 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 25,
     fontWeight: 'bold',
-    top: 5,
-    paddingLeft: 20
+    top: 10,
+    paddingLeft: 20,
   },
 
   desc: {
-    color: '#A4A4A4',
+    color: '#333',
     fontSize: 15,
-    fontWeight: 'bold',
+    top: 10,
     paddingTop: 5,
     paddingLeft: 20,
-    lineHeight:23
+    paddingRight: 20,
+    lineHeight: 23
   },
 
 

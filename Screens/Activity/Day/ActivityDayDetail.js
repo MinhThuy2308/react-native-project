@@ -43,11 +43,6 @@ function ActivityDayDetail({ navigation, route }) {
 
 
       <View style={styles.container}>
-      <LinearGradient
-          colors={['#4364f7', '#fff', 'transparent']}
-          style={styles.background}
-
-        />
         <View style={styles.header}>
 
           <View style={{ top: 40, left: 8 }}>
@@ -88,7 +83,6 @@ export default ActivityDayDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#617EFF'
   },
 
   bg: {
@@ -112,29 +106,32 @@ const styles = StyleSheet.create({
 
   },
 
-  // header: {
+  header: {
+    backgroundColor: '#4364f7',
+    height:230,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
     
-  //   flex:1
-  // },
+  },
 
   title: {
     color: '#333',
-    fontSize: 28,
+    fontSize: 25,
     fontWeight: 'bold',
     top: 15,
-    paddingLeft: 50
+    paddingLeft: 35,
+    
   },
 
   body: {
     color: '#333',
     fontSize: 17,
-    fontWeight: 'bold',
-    top: 20,
+    top: 10,
     padding:20,
+    lineHeight:25,
   },
 
   footer: {
-    
     backgroundColor: '#fff',
     alignItems: 'center',
     width: width - 30,
@@ -143,7 +140,8 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     paddingVertical: 40,
     padding: 10,
-    top:70
+    bottom:100,
+    elevation:10
     // paddingHorizontal: 30,
 
   },

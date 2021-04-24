@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -20,6 +20,7 @@ const Register = ({ navigation }) => {
     email: '',
     password: '',
     username: '',
+    emailError:'',
     check_textInputChange: false,
     secureTextEntry: true,
     isValidUser: true,
@@ -83,30 +84,16 @@ const Register = ({ navigation }) => {
     }
   }
 
-  const handleValidEmail = (val) => {
-    if (val.trim().length >= 6) {
-      setData({
-        ...data,
-        isValidUser: true,
-      });
+  const [emailError, setEmailError] = useState('')
+  const validateEmail = (email) => {
+    var email = e.target.value;
+
+    if (validator.isEmail(email)) {
+      setEmailError('Valid Email :)')
     } else {
-      setData({
-        ...data,
-        isValidUser: false,
-      })
+      setEmailError('Enter valid Email!')
     }
   }
-
-  //  const [emailError, setEmailError] = useState('')
-  // const validateEmail = (e) => {
-  //   var email = e.target.value
-  
-  //   if (validator.isEmail(email)) {
-  //     setEmailError('Valid Email :)')
-  //   } else {
-  //     setEmailError('Enter valid Email!')
-  //   }
-  // }
 
 
   const registerHandle = async (email, password, username) => {
@@ -145,8 +132,9 @@ const Register = ({ navigation }) => {
             placeholder="Email"
             style={styles.textInput}
             autoCapitalize="none"
+            onBlur={() => validateEmail(e.target.value) }
             onChangeText={(val) => handleMailChange(val)}
-            onEndEditing={(e) => handleValidEmail(e.nativeEvent.text)}
+            // onEndEditing={(e) => validateEmail(e.target.value)}
           >
           </TextInput>
           {data.check_textInputChange ?
@@ -159,9 +147,9 @@ const Register = ({ navigation }) => {
             </Animatable.View>
             : null}
         </View>
-        {data.isValidMail ? null :
+        {data.validateEmail ? null :
           <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.error}>Email must be 6 characters long</Text>
+            <Text style={styles.error}>Email is require</Text>
           </Animatable.View>
         }
 
@@ -249,7 +237,7 @@ export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    
+
 
   },
 
@@ -328,6 +316,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 14,
     marginTop: 10,
+    marginLeft:18
   },
 
   button: {
