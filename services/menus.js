@@ -34,7 +34,6 @@ export function addFavFoodByUser(data) {
 }
 
 export function fetchFavFoodByUser(data) {
-  console.log('fetchFavFoodByUser', data);
   return request({
     url: '/fav-foods',
     method: 'get',
@@ -46,7 +45,7 @@ export function fetchFavFoodByUser(data) {
 
 export function fetchDeleteFavFood(data) {
   return request({
-    url: `/favfood/${data.foodId}`,
+    url: `/fav-foods/${data.food}`,
     method: 'delete',
   });
 }

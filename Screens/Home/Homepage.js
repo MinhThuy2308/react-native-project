@@ -123,12 +123,6 @@ const styles = StyleSheet.create({
 
   },
 
-  // header: {
-  //   flex: 1,
-  //   backgroundColor: '#4364f7',
-
-  // },
-
   intro: {
     top: 30
   },

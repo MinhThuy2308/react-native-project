@@ -15,8 +15,8 @@ import { useNavigation } from '@react-navigation/native';
 const ListItem = ({ data }) => {
     const navigation = useNavigation();
 
-    const handleDelete = async () => { 
-        const res = await fetchDeleteFavFood({
+    const handleDelete = async () => {
+        return await fetchDeleteFavFood({
             food: data.id,
         }).then(res => {
             Alert.alert('Delete Successfully');

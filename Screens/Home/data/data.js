@@ -8,16 +8,23 @@ export const Data =
     },
 
     {
-      title: 'Advance Yoga', url: 'https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-fresh-yoga-fitness-background-image_231766.jpg',
+      title: 'Advance Yoga', url: 'https://i.pinimg.com/564x/8a/99/12/8a9912da754d9849c28071be32044382.jpg',
       description: "Want to try yourself with more difficult yoga movements? Come with us. ",
       id: 2
 
     },
 
     {
+      title: 'Want to lose weight?', url: 'https://i.pinimg.com/564x/d6/e0/de/d6e0ded21be6fd619d73a532e51529d2.jpg',
+      description: "Try our workouts.",
+      id: 3
+
+    },
+
+    {
       title: 'Healthy Food', url: 'https://thumbs.dreamstime.com/b/choice-healthy-unhealthy-food-fat-woman-choosing-fast-vs-balanced-menu-comparison-concepts-diet-eating-female-cartoon-166592290.jpg',
       description: "Don't know what to eat when you start practicing yoga? Come to our menu. ",
-      id: 3
+      id: 4
 
     },
   ]

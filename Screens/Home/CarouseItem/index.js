@@ -20,7 +20,8 @@ const CarouseItem = ({ item }) => {
     const getActivityScreens = {
         1: 'ActivityBasicYoga',
         2: 'ActivityAdvancedYoga',
-        3: 'Menu',
+        3: 'ActivityLoseWeight',
+        4: 'Menu',
     }
 
     return (

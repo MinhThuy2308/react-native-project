@@ -86,7 +86,7 @@ const Carouse = ({ data }) => {
                         { useNativeDriver: false }
                     )}
                 />
-                <View style={styles.Dot}>
+                {/* <View style={styles.Dot}>
                     {data.map((_, i) => {
                         let opacity = position.interpolate({
                             inputRange: [i - 1, i, i + 1],
@@ -101,7 +101,7 @@ const Carouse = ({ data }) => {
                         )
                     })}
 
-                </View>
+                </View> */}
             </View>
         )
     }

@@ -52,7 +52,6 @@ const Activity = ({ data }) => {
   return (
 
     <View style={styles.container}>
-
       <View style={styles.header}>
         <View style={{ top: 40, left: 8 }}>
           <TouchableOpacity style={{ width: 40 }} >
@@ -68,9 +67,7 @@ const Activity = ({ data }) => {
             <Text style={styles.title}>Yoga Workout</Text>
           </View>
         </View>
-
       </View>
-
       <View style={styles.footer}>
         <FlatList
           numColumns={numColumns}
@@ -102,14 +99,6 @@ const styles = StyleSheet.create({
     resizeMode: "stretch",
     marginTop: 60,
   },
-
-  // background: {
-  //   position: 'absolute',
-  //   left: 0,
-  //   right: 0,
-  //   top: 0,
-  //   height: 700,
-  // },
 
   header: {
     backgroundColor: '#4364f7',

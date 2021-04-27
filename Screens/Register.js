@@ -20,7 +20,6 @@ const Register = ({ navigation }) => {
     email: '',
     password: '',
     username: '',
-    emailError:'',
     check_textInputChange: false,
     secureTextEntry: true,
     isValidUser: true,
@@ -47,21 +46,18 @@ const Register = ({ navigation }) => {
     }
   }
 
-
   const handleMailChange = (val) => {
-    if (val.trim().length >= 6) {
+    if (val.trim().length >= 10) {
       setData({
         ...data,
         email: val,
         isValidMail: true,
-        check_textInputChange: true,
       });
     } else {
       setData({
         ...data,
         email: val,
         isValidMail: false,
-        check_textInputChange: false,
       });
 
     }
@@ -84,18 +80,6 @@ const Register = ({ navigation }) => {
     }
   }
 
-  const [emailError, setEmailError] = useState('')
-  const validateEmail = (email) => {
-    var email = e.target.value;
-
-    if (validator.isEmail(email)) {
-      setEmailError('Valid Email :)')
-    } else {
-      setEmailError('Enter valid Email!')
-    }
-  }
-
-
   const registerHandle = async (email, password, username) => {
     await register({
       email,
@@ -103,6 +87,11 @@ const Register = ({ navigation }) => {
       username
     }).then(res => {
       reGister(res);
+      return;
+    }).catch(err => {
+      Alert.alert('Oops', 'Email or Username is already exist', [
+        { text: 'OK' }
+      ]);
     })
   }
 
@@ -132,12 +121,11 @@ const Register = ({ navigation }) => {
             placeholder="Email"
             style={styles.textInput}
             autoCapitalize="none"
-            onBlur={() => validateEmail(e.target.value) }
             onChangeText={(val) => handleMailChange(val)}
-            // onEndEditing={(e) => validateEmail(e.target.value)}
+            // onEndEditing={(email) => validateEmail(email)}
           >
           </TextInput>
-          {data.check_textInputChange ?
+          {/* {data.check_textInputChange ?
             <Animatable.View animation="bounceIn" style={styles.action__check}>
               <Feather
                 name="check-circle"
@@ -145,11 +133,11 @@ const Register = ({ navigation }) => {
                 size={15}
               />
             </Animatable.View>
-            : null}
+            : null} */}
         </View>
-        {data.validateEmail ? null :
+        {data.isValidMail ? null :
           <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.error}>Email is require</Text>
+            <Text style={styles.error}>Please enter email</Text>
           </Animatable.View>
         }
 

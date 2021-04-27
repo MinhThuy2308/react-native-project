@@ -19,9 +19,6 @@ import checkImage from '../../utils/checkImage';
 const { width, height } = Dimensions.get("window")
 
 function FoodDetail({ data, userId }) {
-
-  // console.log('FoodDetail De', data.id);
-
   const handleAdd = async (foodId, userId) => {
     await addFavFoodByUser({
       food: foodId,
@@ -70,7 +67,7 @@ const styles = StyleSheet.create({
 
   bg: {
     width: width - 40,
-    height: 340,
+    height: 320,
 
   },
 
@@ -92,14 +89,12 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 25,
     fontWeight: 'bold',
-    top: 10,
     paddingLeft: 20,
   },
 
   desc: {
     color: '#333',
     fontSize: 15,
-    top: 10,
     paddingTop: 5,
     paddingLeft: 20,
     paddingRight: 20,
