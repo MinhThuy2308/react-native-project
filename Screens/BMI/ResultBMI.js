@@ -53,18 +53,18 @@ const ResultBMI = ({ navigation }) => {
       {
         userBMI ? (
           <Animatable.View style={styles.result} animation="fadeInDownBig">
-            <View style={{flexDirection:'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <Text style={{ color: '#333', fontSize: 20, marginTop: 10 }}>Your BMI: </Text>
               <Text style={{ color: changetextColor(userBMI), fontSize: 20, marginTop: 10 }}>{userBMI} </Text>
             </View>
             <View style={styles.title}>
               <Text style={{ fontSize: 25, marginTop: 5, fontWeight: 'bold' }}>{analysis.title}</Text>
             </View>
-            <View style={{padding:5}}>
+            <View style={{ padding: 5 }}>
               <Text style={{ color: '#737473', fontSize: 17, marginLeft: 10 }}>{analysis.desc} </Text>
             </View>
-            <View style={{padding:5}}>
-              <Text style={{ color: 'red', fontSize: 17, marginLeft: 10}}>Tips: {analysis.tips} </Text>
+            <View style={{ padding: 5 }}>
+              <Text style={{ color: 'red', fontSize: 17, marginLeft: 10 }}>Tips: {analysis.tips} </Text>
             </View>
           </Animatable.View>
         ) : (
@@ -78,12 +78,7 @@ const ResultBMI = ({ navigation }) => {
         </Animatable.View>
         <Animatable.View animation="flipInY">
           <View style={styles.button}>
-            {/* <LinearGradient
-        colors={['#4364f7', '#fff', 'transparent']}
-        style={styles.background}
-      > */}
             <TouchableOpacity animation="flipInY" style={styles.confirm} onPress={() => navigation.navigate('Activity')}>
-
               <Text style={{ color: '#4364f7', fontWeight: 'bold', paddingLeft: 10 }}>Next</Text>
               <Icon
                 name="arrow-forward"
@@ -91,9 +86,7 @@ const ResultBMI = ({ navigation }) => {
                 color="#4364f7"
               />
             </TouchableOpacity>
-            {/* </LinearGradient> */}
           </View>
-
         </Animatable.View>
       </View>
     </View>
@@ -113,12 +106,11 @@ const styles = StyleSheet.create({
   result: {
     backgroundColor: '#fff',
     alignItems: 'center',
-    paddingTop:'2%',
-    paddingBottom:'5%',
+    paddingTop: '2%',
+    paddingBottom: '5%',
     borderRadius: 10,
-    
     width: '90%',
-
+    
   },
 
   confirm: {

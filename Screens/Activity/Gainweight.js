@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { fetchDay } from '../../services/days';
 import DayItem from './Day/DateItem';
-import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const renderItem = ({ item }) => (
@@ -24,13 +23,11 @@ const Gainweight = ({ navigation }) => {
       const res = await fetchDay();
       SetDay(res);
     }
-
     getDay();
   }, []);
 
   return (
     <View style={styles.container}>
-
       <View style={styles.header}>
         <View style={{ top: 40, left: 8 }}>
           <TouchableOpacity style={{ width: 40 }} >
@@ -40,20 +37,14 @@ const Gainweight = ({ navigation }) => {
               color="#fff"
               backgroundColor="#61b1fc"
               onPress={() => navigation.goBack()}
-
             />
           </TouchableOpacity>
-
           <View style={{bottom:30}}>
             <Text style={styles.title}>Gain Weight</Text>
           </View>
           <View style={{ borderWidth: 2, width: 150, borderColor: '#fff', left: 20, top: 30 }}></View>
         </View>
-
       </View>
-
-
-
       <View style={styles.footer}>
         <FlatList
           data={day}
@@ -61,7 +52,6 @@ const Gainweight = ({ navigation }) => {
           keyExtractor={item => item.id.toString()}
         />
         </View>
-      
     </View>
   )
 }
@@ -74,24 +64,12 @@ const styles = StyleSheet.create({
 
   },
 
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 700,
-  },
-
   header: {
     flex:1,
     backgroundColor: '#4364f7',
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
-    // position: 'absolute',
-    // left: 0,
-    // right: 0,
-    // top: 0,
-    // height: 700,
+  
   },
 
   title: {
@@ -106,8 +84,6 @@ const styles = StyleSheet.create({
     flex:2,
     alignItems: 'center',
     bottom:80,
-    // paddingHorizontal: 30,
 
   },
-
 })

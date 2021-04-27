@@ -22,7 +22,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 const Note = ({ data }) => {
    const navigation = useNavigation();
    const route = useRoute();
-
    const [userId, setUserId] = useState('');
    const [note, setNote] = useState([]);
    const [showModal, setShowModal] = useState(false);
@@ -33,21 +32,15 @@ const Note = ({ data }) => {
          const value = await AsyncStorage.getItem('userId');
          setUserId(value);
       }
-
       async function getNote() {
          const value = await fetchNoteByUser({
             userId: parseInt(userId),
          });
          setNote(value);
       }
-
       getUserId();
       getNote();
    }, [userId, route]);
-
-   // useEffect(() => {
-      
-   // }, [route]);
 
    const changeModal = (bool) => {
       setShowModal(bool)
@@ -60,7 +53,6 @@ const Note = ({ data }) => {
    const renderItem = ({ item }) => (
       <NoteItem data={item} />
    );
-
 
    return (
       <View style={styles.container}>
@@ -109,7 +101,7 @@ const Note = ({ data }) => {
                      renderItem={renderItem}
                      keyExtractor={item => item.id.toString()}
                   /> : <View style={styles.item}>
-                     <Text style={{fontSize:30, color:'#333'}}>No Data Show</Text>
+                     <Text style={{ fontSize: 30, color: '#333' }}>No Data Show</Text>
                   </View>
                }
             </View>
@@ -118,8 +110,6 @@ const Note = ({ data }) => {
 
       </View>
    )
-
-
 }
 
 export default Note;
@@ -134,18 +124,13 @@ const styles = StyleSheet.create({
    item: {
       marginBottom: 40,
       padding: 10,
-      
+
       justifyContent: "center",
       alignItems: "center",
-  },
-
-   // header: {
-
-
-   // },
+   },
 
    content: {
-      
+
 
    },
 

@@ -12,51 +12,49 @@ import {
 import { addFavFoodByUser } from '../../services/menus';
 import Icon from 'react-native-vector-icons/Ionicons';
 import checkImage from '../../utils/checkImage';
-
-
-
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get("window")
 
-function FoodDetail({ data, userId }) {
+const FoodDetail = ({ data, userId }) => {
+  const navigation = useNavigation();
   const handleAdd = async (foodId, userId) => {
     await addFavFoodByUser({
       food: foodId,
       user: userId,
     }).then(res => {
       Alert.alert('Successful');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'List' }],
+      });
       // console.log('data', res)
     })
   }
-
-
   return (
     <>
-        <View style={styles.item}>
-          {
-            data.image ? <ImageBackground
-              source={{ uri: checkImage(data.image) }}
-              style={styles.bg}
-              imageStyle={{ borderRadius: 40 }}
-              resizeMode="cover"
-            /> : <View></View>
-          }
-          <ScrollView style={{ top: 10 }}>
-            <Text style={styles.title}>{data.title}</Text>
-            <Text style={styles.desc}>{data.desc}</Text>
-          </ScrollView>
+      <View style={styles.item}>
+        {
+          data.image ? <ImageBackground
+            source={{ uri: checkImage(data.image) }}
+            style={styles.bg}
+            imageStyle={{ borderRadius: 40 }}
+            resizeMode="cover"
+          /> : <View></View>
+        }
+        <ScrollView style={{ top: 10 }}>
+          <Text style={styles.title}>{data.title}</Text>
+          <Text style={styles.desc}>{data.desc}</Text>
+        </ScrollView>
 
-          <TouchableOpacity style={{ left: 150, top: 30 }} onPress={() => { handleAdd(data.id, userId) }}>
-            <Icon
-              name="heart"
-              size={30}
-              color='red'
-            />
-          </TouchableOpacity>
-
-        </View>
-
-
+        <TouchableOpacity style={{ left: 150, top: 30 }} onPress={() => { handleAdd(data.id, userId) }}>
+          <Icon
+            name="heart"
+            size={30}
+            color='red'
+          />
+        </TouchableOpacity>
+      </View>
     </>
   )
 }
@@ -64,7 +62,6 @@ function FoodDetail({ data, userId }) {
 export default FoodDetail;
 
 const styles = StyleSheet.create({
-
   bg: {
     width: width - 40,
     height: 320,
@@ -100,6 +97,4 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     lineHeight: 23
   },
-
-
 })

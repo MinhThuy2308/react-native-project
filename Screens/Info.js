@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
-import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-community/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { updateUserById } from '../services/users';
@@ -155,15 +154,6 @@ const Info = ({ navigation }) => {
 
                 </View>
             </View>
-            {/* {
-                userBMI && (
-                    <View style={styles.userBMI}>
-                        <Text>Your BMI is {userBMI}</Text>
-                    </View>
-                )
-            } */}
-
-
 
         </View>
     )
@@ -175,7 +165,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-
 
     action: {
         display: 'flex',
@@ -202,9 +191,9 @@ const styles = StyleSheet.create({
 
     button: {
         marginTop: 30,
-        width:'95%',
-        marginLeft:10
-      },
+        width: '95%',
+        marginLeft: 10
+    },
 
     textSign: {
         fontSize: 18,
@@ -239,10 +228,8 @@ const styles = StyleSheet.create({
 
     footer: {
         flex: 2,
-        top:100,
-        borderTopLeftRadius: 40, 
+        top: 100,
+        borderTopLeftRadius: 40,
 
     },
-
-
 })

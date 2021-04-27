@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { fetchMenu } from '../../services/menus';
 import MenuItem from './MenuItem';
-import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -23,7 +22,6 @@ const Menu = ({ route }) => {
             const res = await fetchMenu();
             SetMenu(res);
         }
-
         getMenu();
     }, [route]);
 
@@ -51,25 +49,18 @@ const Menu = ({ route }) => {
 
                 <View style={{ top: 30 }}>
                     <Text style={styles.title}>Menu</Text>
-
                 </View>
-
             </View>
-
-
             <View style={styles.footer}>
                 <FlatList
                     numColumns={numColumns}
                     data={menu}
                     renderItem={renderItem}
                     keyExtractor={item => item.id.toString()}
-
                 />
             </View>
-
         </View>
     )
-
 }
 
 export default Menu;
@@ -123,6 +114,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
 
     }
-
 })
 

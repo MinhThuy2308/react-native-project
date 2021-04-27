@@ -16,7 +16,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { fetchFavFoodByUser } from '../../services/menus';
 import ListItem from '../Food/ListItem';
 
-
 const List = ({ data }) => {
     const navigation = useNavigation();
     const [userId, setUserId] = useState('');
@@ -28,14 +27,12 @@ const List = ({ data }) => {
             const value = await AsyncStorage.getItem('userId');
             setUserId(value);
         }
-
         async function getFavFood() {
             const value = await fetchFavFoodByUser({
                 userId: parseInt(userId),
             });
             setFavFood(value);
         }
-
         getUserId();
         getFavFood();
     }, [userId, route]);
@@ -62,10 +59,7 @@ const List = ({ data }) => {
                         />
                     </TouchableOpacity>
                 </View>
-
-
             </View>
-
             <View style={styles.content}>
                 <View>
                     {
@@ -78,13 +72,9 @@ const List = ({ data }) => {
                         </View>
                     }
                 </View>
-
             </View>
-
         </View>
     )
-
-
 }
 
 export default List;
@@ -113,17 +103,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
 
-    // header: {
-
-
-    // },
-
     content: {
         flex: 2,
         top: 70,
 
     },
-
-
-
 })

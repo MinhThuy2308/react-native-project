@@ -13,9 +13,6 @@ import {
 
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Avatar from './Profile/images/logo1.jpg';
-import Animated from 'react-native-reanimated';
-import BottomSheet from 'reanimated-bottom-sheet';
 import * as ImagePicker from 'expo-image-picker';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -55,7 +52,7 @@ const Profile = ({ navigation }) => {
          allowsEditing: true,
          aspect: [4, 3],
          quality: 1,
-         
+
       });
 
       console.log(result);
@@ -72,9 +69,7 @@ const Profile = ({ navigation }) => {
          aspect: [4, 3],
          quality: 1,
       });
-
       console.log(result);
-
       if (!result.cancelled) {
          setImage(result.uri);
       }
@@ -106,17 +101,17 @@ const Profile = ({ navigation }) => {
 
    const changetextColor = () => {
       if (userBMI < 18.5) {
-        return '#40639A';
+         return '#40639A';
       } else if (userBMI < 25) {
-        return '#2CD42E';
+         return '#2CD42E';
       } else if (userBMI < 30) {
-        return '#DEDE00';
+         return '#DEDE00';
       } else if (userBMI < 35) {
-        return '#FFA722';
+         return '#FFA722';
       } else {
-        return '#FF0D00';
+         return '#FF0D00';
       }
-    }
+   }
 
    return (
       <View style={{ flex: 1 }}>
@@ -138,7 +133,7 @@ const Profile = ({ navigation }) => {
             </View>
          </View>
          <View style={styles.footer}>
-            <View style={{ alignItems: 'center', bottom:60 }}>
+            <View style={{ alignItems: 'center', bottom: 60 }}>
 
                <View style={{ alignItems: 'center', justifyContent: 'center', borderRadius: 100, bottom: 70 }}>
                   <ImageBackground
@@ -172,7 +167,7 @@ const Profile = ({ navigation }) => {
             </View>
             <View style={styles.bmi}>
                <Text style={styles.title}>Your BMI: </Text>
-               <Text style={{color: changetextColor(userBMI),fontSize: 20,fontWeight: 'bold',top: 2,}}>{userBMI}</Text>
+               <Text style={{ color: changetextColor(userBMI), fontSize: 20, fontWeight: 'bold', top: 2, }}>{userBMI}</Text>
             </View>
 
             <View style={styles.chart}>
@@ -236,7 +231,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#ffffff',
       borderTopLeftRadius: 30,
       borderTopRightRadius: 30,
-      paddingVertical:50
+      paddingVertical: 50
 
    },
 
@@ -273,7 +268,6 @@ const styles = StyleSheet.create({
       flexGrow: 1,
       flexShrink: 1,
       backgroundColor: '#2CD42E',
-      // width:'20%',
       height: '25%'
    },
 
@@ -300,11 +294,6 @@ const styles = StyleSheet.create({
       backgroundColor: '#FF0D00',
       height: '25%'
    },
-
-
-
-
-
 
 })
 

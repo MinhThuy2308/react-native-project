@@ -6,21 +6,10 @@ import {
     TouchableOpacity,
     ImageBackground
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 
-const MenuItem = ({ data, menu }) => {
+const MenuItem = ({ data }) => {
     const navigation = useNavigation();
-    // const getFoodScreens = {
-    //     1: 'BeforePractice',
-    //     2: 'AfterPractice',
-    //     3: 'Lunch',
-    //     4: 'Breakfast',
-    //     5: 'Brunch',
-    //     6: 'Dinner',
-
-    //   }
 
     return (
         <>

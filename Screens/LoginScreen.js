@@ -7,11 +7,8 @@ import {
   TouchableOpacity,
   Alert
 } from 'react-native';
-import { createAnimatableComponent } from 'react-native-animatable';
 import { TextInput } from 'react-native-gesture-handler';
-import FontAwesome from 'react-native-vector-icons';
 import Feather from 'react-native-vector-icons/Feather'
-import mainLogo from '../assets/images/logo1.jpg';
 import * as Animatable from 'react-native-animatable';
 import { AuthContext } from '../components/context';
 import { login } from '../services/auth';
@@ -79,9 +76,6 @@ const LoginScreen = ({ navigation }) => {
       })
     }
   }
-
-  // const [error, setError] = useState();
-  
 
   const loginHandle = async (userName, password) => {
 
@@ -170,7 +164,6 @@ const LoginScreen = ({ navigation }) => {
           </Animatable.View>
         }
 
-
         <TouchableOpacity>
           <Text style={{ color: '#fff', marginTop: 15, right: '20%', }}>Forgot password?</Text>
         </TouchableOpacity>
@@ -186,7 +179,7 @@ const LoginScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.btnRes}>
-          <Text style={{ color: '#61b1fc', marginTop:2 }}>Don't have account?</Text>
+          <Text style={{ color: '#61b1fc', marginTop: 2 }}>Don't have account?</Text>
           <TouchableOpacity onPress={() => navigation.navigate('Register')}>
             <Text style={styles.textSign1}>Create new account</Text>
           </TouchableOpacity>
@@ -217,20 +210,13 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     justifyContent: 'center',
-    // alignItems:'center',
 
   },
 
   footer: {
-    // flex: 1,
     backgroundColor: '#ffffff',
     borderTopLeftRadius: 50,
-    // borderTopRightRadius: 30,
-    // paddingVertical: 50,
-    // paddingHorizontal: 30,
     flex: 2,
-    // paddingVertical: 30,
-
 
   },
 
@@ -253,7 +239,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 30,
-    // backgroundColor: '#ff5f6d',
     borderRadius: 20,
     borderBottomWidth: 2,
     borderBottomColor: '#4364f7',
@@ -306,31 +291,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 10,
     paddingBottom: 10,
-    // paddingLeft: 30,
-    // paddingRight: 30,
     textAlign: 'center',
 
   },
 
-  // signUp: {
-  //   width: '80%',
-  //   paddingBottom: 5,
-  //   paddingTop: 5,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   marginLeft: 45,
-  //   marginTop: 10,
-  //   borderRadius: 20,
-  //   backgroundColor: '#818BB5'
-  // },
   textSign1: {
     fontSize: 15,
     fontWeight: 'bold',
     color: '#4364f7',
     marginLeft: 10,
   }
-
-
-
-
 })

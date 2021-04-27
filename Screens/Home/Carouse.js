@@ -2,19 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
     StyleSheet,
     View,
-    SafeAreaView,
-    Text,
-    Image,
     FlatList,
     ScrollView,
     Dimensions,
     Animated
 } from 'react-native';
-
-
-
 import { fetchImage } from '../../services/homepage'
-
 import CarouseItem from './CarouseItem'
 
 const { width, heigth } = Dimensions.get('window');
@@ -32,7 +25,7 @@ function infiniteScroll(dataList, mySlide) {
             scrollValue = 0
             scrolled = 0
         }
-        if(mySlide.current) {
+        if (mySlide.current) {
             mySlide.current.scrollToOffset({
                 animated: true,
                 offset: scrollValue,
@@ -46,13 +39,13 @@ const Carouse = ({ data }) => {
 
     const [image, setImage] = useState([]);
 
-  useEffect(() => {
-    async function getImage() {
-      const res = await fetchImage();
-      setImage(res);
-    }
-    getImage();
-  }, []);
+    useEffect(() => {
+        async function getImage() {
+            const res = await fetchImage();
+            setImage(res);
+        }
+        getImage();
+    }, []);
     const mySlide = useRef();
 
     const scrollX = new Animated.Value(0);
@@ -112,8 +105,8 @@ export default Carouse;
 
 const styles = StyleSheet.create({
     Dot: {
-        flexDirection:'row',
-        justifyContent:'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
 
     },
 })

@@ -5,7 +5,6 @@ import {
     Text,
     Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import * as Animatable from 'react-native-animatable';
 
 const Workout = ({ data }) => {
@@ -17,16 +16,12 @@ const Workout = ({ data }) => {
                     <Image
                         source={{ uri: `http://10.0.2.2:1337/uploads/thumbnail_workout_c395e55456.jpg` }}
                         style={styles.bg}
-
                     />
                 </View>
-
             </View>
-
             <Animatable.View style={styles.desc} animation="fadeInUpBig">
                 <Text style={styles.text}>{data.body}</Text>
             </Animatable.View>
-
         </>
     )
 }
@@ -35,7 +30,6 @@ export default Workout;
 
 const styles = StyleSheet.create({
     item: {
-
         marginTop: 20,
     },
     title: {
@@ -69,5 +63,4 @@ const styles = StyleSheet.create({
         lineHeight: 20,
         fontSize: 16,
     }
-
 })

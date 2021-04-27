@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
     View,
@@ -14,8 +14,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const NoteItem = ({ data }) => {
     const navigation = useNavigation();
-    
-    const handleDelete = async () => { 
+
+    const handleDelete = async () => {
         const res = await fetchDeleteNote({
             noteId: data.id,
         }).then(res => {
@@ -25,9 +25,8 @@ const NoteItem = ({ data }) => {
                 routes: [{ name: 'Note' }],
             });
         })
-    } 
+    }
 
-    
     return (
         <>
             <View style={styles.item}>
@@ -36,12 +35,9 @@ const NoteItem = ({ data }) => {
                         <Text style={styles.title}>{data.title}</Text>
                         <Text style={styles.note}>{data.content}</Text>
                     </View>
-
                 </View>
                 <View style={{ flexDirection: 'row', left: 330 }}>
-              
-
-                    <View style={{left:30}}>
+                    <View style={{ left: 30 }}>
                         <TouchableOpacity onPress={(handleDelete)} >
                             <Icon
                                 name="close"
@@ -49,18 +45,13 @@ const NoteItem = ({ data }) => {
                                 color="#fff"
                                 style={{ backgroundColor: 'red', width: 25, }}
                             />
-
-                            
                         </TouchableOpacity>
                     </View>
 
                 </View>
-
-
             </View>
         </>
     )
-    
 }
 
 export default NoteItem;
@@ -99,5 +90,4 @@ const styles = StyleSheet.create({
         padding: 10,
         flex: 2,
     }
-
 })

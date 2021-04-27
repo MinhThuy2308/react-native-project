@@ -50,11 +50,11 @@ const CarouseItem = ({ item }) => {
                     </View> */}
 
                     <View style={styles.item}>
-                        <ImageBackground 
-                         style={styles.bg} 
-                         source={{ uri: item.url }} 
-                         imageStyle={{ borderRadius: 10 }}
-                         resizeMode="cover" />
+                        <ImageBackground
+                            style={styles.bg}
+                            source={{ uri: item.url }}
+                            imageStyle={{ borderRadius: 10 }}
+                            resizeMode="cover" />
                         <View style={styles.textView}>
                             <Text style={styles.text}> {item.title}</Text>
                             <Text style={styles.desc}>{item.description}</Text>
@@ -99,9 +99,6 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        // width: width - 20,
-        // height: height / 3,
-
         width: '100%',
         height: '100%',
         borderRadius: 10,
@@ -137,6 +134,5 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-
 
 })

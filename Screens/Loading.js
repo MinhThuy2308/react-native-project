@@ -13,29 +13,26 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const Loading = ({ navigation }) => {
   return (
-   
-      <View style={styles.container}>
-        <LinearGradient
-        colors={['#4364f7','#fff', 'transparent']}
+    <View style={styles.container}>
+      <LinearGradient
+        colors={['#4364f7', '#fff', 'transparent']}
         style={styles.background}
       />
-        
-        <View style={styles.header}>
-          <Animatable.Image
-            animation="bounceIn"
-            source={mainLogo}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-        </View>
-        
-        <Animatable.View style={styles.footer} animation="fadeInUpBig">
-          <Text style={styles.title}>Yoga is harmony.</Text>
-          
-          <View style={styles.button}>
-          <LinearGradient 
-          colors={['#4364f7','#6fb1fc']}
-          style={{ borderRadius:10}}
+      <View style={styles.header}>
+        <Animatable.Image
+          animation="bounceIn"
+          source={mainLogo}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
+
+      <Animatable.View style={styles.footer} animation="fadeInUpBig">
+        <Text style={styles.title}>Yoga is harmony.</Text>
+        <View style={styles.button}>
+          <LinearGradient
+            colors={['#4364f7', '#6fb1fc']}
+            style={{ borderRadius: 10 }}
           >
             <TouchableOpacity style={styles.confirm} onPress={() => navigation.navigate('Login')}>
               <Text style={styles.textlog}>Come With Us</Text>
@@ -46,14 +43,10 @@ const Loading = ({ navigation }) => {
                 style={{ top: 15, right: 15 }}
               />
             </TouchableOpacity>
-            </LinearGradient>
-          </View>
-         
-         
-        </Animatable.View>
-
-      </View>
-
+          </LinearGradient>
+        </View>
+      </Animatable.View>
+    </View>
   )
 }
 
@@ -104,15 +97,14 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'flex-end',
     marginTop: 30,
-    
+
   },
 
   confirm: {
     flexDirection: 'row',
-    // backgroundColor: '#ffc9c9',
     borderRadius: 20,
     width: '38%',
-   
+
   },
 
   textlog: {

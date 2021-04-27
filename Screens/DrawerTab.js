@@ -88,7 +88,7 @@ export function DrawerTab(props) {
                 <Awesome
                   name="list-alt"
                   size={size}
-                  color= {color}
+                  color={color}
                 />
               )}
               label="Favorite Food"
@@ -129,10 +129,7 @@ export function DrawerTab(props) {
               label="Information"
               onPress={() => { props.navigation.navigate('Information') }}
             />
-
           </Drawer.Section>
-
-
         </View>
 
       </DrawerContentScrollView>
@@ -167,19 +164,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+
   title__bmi: {
     fontSize: 14,
   },
-  menuTab: {
 
-  },
-  // background: {
-  //   position: 'absolute',
-  //   left: 0,
-  //   right: 0,
-  //   top: 0,
-  //   height: 900,
-  // },
   bottomDrawer: {
     marginBottom: 15,
     borderTopColor: '#f4f4f4',

@@ -9,8 +9,6 @@ import {
   Dimensions,
   Alert,
 } from 'react-native';
-import { useState } from 'react/cjs/react.development';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { TextInput } from 'react-native-gesture-handler';
 import Feather from 'react-native-vector-icons/Feather';
 import { addNoteByUser } from '../../services/appointment';
@@ -21,7 +19,6 @@ const Height = Dimensions.get('window').height;
 
 const AddModal = (props) => {
   const navigation = useNavigation();
-  // const [textInputValue, setTextInputValue] = React.useState('');
 
   const [data, setData] = React.useState({
     title: '',
@@ -68,7 +65,7 @@ const AddModal = (props) => {
   return (
     <View style={styles.container}>
       <View style={[styles.modal, { width: Width - 20, height: Height / 1.2 }]}>
-        <Text style={{ fontSize: 30, fontWeight: 'bold', textAlign: 'center', marginTop:20 }}>Note</Text>
+        <Text style={{ fontSize: 30, fontWeight: 'bold', textAlign: 'center', marginTop: 20 }}>Note</Text>
 
         <View style={styles.item}>
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Title</Text>
@@ -83,7 +80,6 @@ const AddModal = (props) => {
               autoCapitalize="sentences"
               editable
               onChangeText={(val) => handleTitle(val)}
-
             >
             </TextInput>
           </View>
@@ -92,11 +88,6 @@ const AddModal = (props) => {
         <View style={styles.item}>
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Note</Text>
           <View style={styles.action}>
-            {/* <Feather
-              name="edit"
-              size={25}
-              style={styles.icon}
-            /> */}
             <TextInput
               style={{ height: 200 }}
               autoCapitalize="sentences"
@@ -106,8 +97,6 @@ const AddModal = (props) => {
               numberOfLines={10}
               placeholder="Type something"
               onChangeText={(val) => handleContent(val)}
-
-
             >
             </TextInput>
           </View>
@@ -189,8 +178,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingBottom: 5,
     paddingTop: 5,
-    // width: '90%',
-    // height:'60%',
     paddingLeft: 10,
 
   },

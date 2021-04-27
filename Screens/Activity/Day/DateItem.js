@@ -15,26 +15,26 @@ const DayItem = ({ data, activity }) => {
 
   return (
     <ScrollView>
-    <View style={styles.container}>
-      <View style={styles.list}>
-        <ImageBackground
-          source={{ uri: checkImage(data.image, "medium") }}
-          style={styles.bg}
-          imageStyle={{ borderRadius: 10 }}
-          resizeMode="cover"
-        >
-          <TouchableOpacity
-            style={styles.link}
-            onPress={() => navigation.navigate('ActivityDay', {
-              activityId: activity,
-              categoryId: data.id,
-            })}
+      <View style={styles.container}>
+        <View style={styles.list}>
+          <ImageBackground
+            source={{ uri: checkImage(data.image, "medium") }}
+            style={styles.bg}
+            imageStyle={{ borderRadius: 10 }}
+            resizeMode="cover"
           >
-            <Text style={styles.text}>{data.name}</Text>
-          </TouchableOpacity>
-        </ImageBackground>
+            <TouchableOpacity
+              style={styles.link}
+              onPress={() => navigation.navigate('ActivityDay', {
+                activityId: activity,
+                categoryId: data.id,
+              })}
+            >
+              <Text style={styles.text}>{data.name}</Text>
+            </TouchableOpacity>
+          </ImageBackground>
+        </View>
       </View>
-    </View>
     </ScrollView>
   )
 }
@@ -59,11 +59,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     color: '#000',
-    fontWeight:'bold',
+    fontWeight: 'bold',
   },
 
   link: {
-    // backgroundColor:'#fff',
     flexDirection: 'row',
     paddingTop: 40,
     paddingBottom: 35,

@@ -10,13 +10,11 @@ import {
   FlatList,
   ScrollView
 } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import ActivityDetail from './Day/ActivityDetail';
 import { fetchActivity } from '../../services/activity';
-import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
-import background from './images/background7.jpg'
+
 
 const renderItem = ({ item }) => (
   <ActivityDetail data={item} />
@@ -78,8 +76,6 @@ const Activity = ({ data }) => {
       </View>
 
     </View>
-
-    
   )
 
 }
@@ -105,7 +101,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
-    
+
   },
 
   title: {
@@ -117,12 +113,7 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    // flex: 1,
-    // backgroundColor: '#4364f7',
-
     bottom: 80,
-    // paddingHorizontal: 30,
-
   },
 
   text: {

@@ -7,8 +7,6 @@ import {
     Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
-import * as Animatable from 'react-native-animatable';
 import { fetchDeleteFavFood } from '../../services/menus';
 import { useNavigation } from '@react-navigation/native';
 
@@ -25,7 +23,7 @@ const ListItem = ({ data }) => {
                 routes: [{ name: 'List' }],
             });
         })
-    } 
+    }
 
     return (
         <>
@@ -51,7 +49,6 @@ const ListItem = ({ data }) => {
             </View>
         </>
     )
-
 }
 
 export default ListItem;
@@ -69,7 +66,6 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginTop: 10
     },
-
 
     box: {
         padding: 5,
@@ -90,5 +86,4 @@ const styles = StyleSheet.create({
         padding: 10,
         flex: 2,
     }
-
 })

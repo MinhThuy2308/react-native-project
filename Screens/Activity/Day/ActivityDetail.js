@@ -8,10 +8,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const ActivityDetail = ({ data }) => {
   const navigation = useNavigation();
@@ -25,7 +22,6 @@ const ActivityDetail = ({ data }) => {
 
   return (
     <View style={styles.container}>
-     
       <TouchableOpacity
         style={styles.link}
         onPress={() => navigation.navigate(getActivityScreens[data.id], {
@@ -41,10 +37,8 @@ const ActivityDetail = ({ data }) => {
           <Text style={styles.text}>{data.title}</Text>
         </View>
       </TouchableOpacity>
-      
     </View>
   )
-
 }
 
 export default ActivityDetail;
@@ -59,7 +53,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     resizeMode: "stretch",
-    
+
   },
 
   item: {

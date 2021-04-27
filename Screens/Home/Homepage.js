@@ -19,7 +19,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Data } from './data/data'
 import Carouse from './Carouse';
 import { LinearGradient } from 'expo-linear-gradient';
-import background from '../Activity/images/background14.jpg';
 import CarouseItem from './CarouseItem/index';
 import { fetchImage } from '../../services/homepage';
 import { useNavigation } from '@react-navigation/native';
@@ -63,38 +62,38 @@ const Homepage = ({ data }) => {
   }, []);
 
 
-  const renderItem = ({ item }) => (
-    <CarouseItem data={item} />
-  );
+  // const renderItem = ({ item }) => (
+  //   <CarouseItem data={item} />
+  // );
   return (
 
     <View style={styles.container} >
-        <LinearGradient
-          colors={['#4364f7', '#fff', 'transparent']}
-          style={styles.background}
+      <LinearGradient
+        colors={['#4364f7', '#fff', 'transparent']}
+        style={styles.background}
 
-        />
-        <View style={styles.header}>
+      />
+      <View style={styles.header}>
 
-          <View style={{ top: 40, left: 8 }}>
-            <TouchableOpacity >
-              <Icon
-                name="menu-outline"
-                size={30}
-                color="#fff"
-                backgroundColor="#61b1fc"
-                onPress={() => navigation.openDrawer()}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ bottom: 10, left: 20 }}>
-            <Text style={styles.title}>Hello, {useName}</Text>
-            <Text style={styles.subtitle}>Choose the one that matches your needs</Text>
-          </View>
-
+        <View style={{ top: 40, left: 8 }}>
+          <TouchableOpacity >
+            <Icon
+              name="menu-outline"
+              size={30}
+              color="#fff"
+              backgroundColor="#61b1fc"
+              onPress={() => navigation.openDrawer()}
+            />
+          </TouchableOpacity>
         </View>
-        <Carouse data = {Data} />
-        {/* <View style={styles.footer}>
+        <View style={{ bottom: 10, left: 20 }}>
+          <Text style={styles.title}>Hello, {useName}</Text>
+          <Text style={styles.subtitle}>Choose the one that matches your needs</Text>
+        </View>
+
+      </View>
+      <Carouse data={Data} />
+      {/* <View style={styles.footer}>
           <FlatList
             horizontal
             pagingEnabled

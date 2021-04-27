@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Alert
 } from 'react-native';
-import mainLogo from '../assets/images/logo1.jpg';
 import Feather from 'react-native-vector-icons/Feather';
 import { TextInput } from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
@@ -103,11 +102,6 @@ const Register = ({ navigation }) => {
       />
       <View style={styles.header}>
         <Text style={styles.textIntro}>Register</Text>
-        {/* <Image
-          source={mainLogo}
-          style={styles.logo}
-          resizeMode="contain"
-        /> */}
       </View>
       <View style={styles.footer}>
 
@@ -122,18 +116,9 @@ const Register = ({ navigation }) => {
             style={styles.textInput}
             autoCapitalize="none"
             onChangeText={(val) => handleMailChange(val)}
-            // onEndEditing={(email) => validateEmail(email)}
+          // onEndEditing={(email) => validateEmail(email)}
           >
           </TextInput>
-          {/* {data.check_textInputChange ?
-            <Animatable.View animation="bounceIn" style={styles.action__check}>
-              <Feather
-                name="check-circle"
-                color="green"
-                size={15}
-              />
-            </Animatable.View>
-            : null} */}
         </View>
         {data.isValidMail ? null :
           <Animatable.View animation="fadeInLeft" duration={500}>
@@ -182,23 +167,6 @@ const Register = ({ navigation }) => {
             <Text style={styles.error}>Password must be 6 characters long</Text>
           </Animatable.View>
         }
-
-
-
-        {/* <View style={styles.action}>
-          <Feather
-            name="lock"
-            size={30}
-            style={styles.icon}
-          />
-          <TextInput
-            placeholder="Confirm Password"
-            secureTextEntry={true}
-            style={styles.textInput}
-            autoCapitalize="none"
-          >
-          </TextInput>
-        </View> */}
         <View style={styles.button}>
           <LinearGradient
             colors={['#4364f7', '#6fb1fc']}
@@ -225,7 +193,6 @@ export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
 
   },
 
@@ -263,7 +230,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 30,
-    // backgroundColor: '#ff5f6d',
     borderRadius: 20,
     borderBottomWidth: 2,
     borderBottomColor: '#4364f7',
@@ -295,8 +261,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 10,
     paddingBottom: 10,
-    // paddingLeft: 30,
-    // paddingRight: 30,
     textAlign: 'center',
   },
 
@@ -304,7 +268,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 14,
     marginTop: 10,
-    marginLeft:18
+    marginLeft: 18
   },
 
   button: {

@@ -102,36 +102,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  bg: {
-    width: '80%',
-    height: '80%',
-    resizeMode: "stretch",
-
-  },
-
-  card: {
-    marginTop: 20,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-
-
-  },
-
-  item: {
-    flex: 2,
-    flexDirection: 'row',
-    width: '90%',
-
-  },
-
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 700,
-  },
-
   header: {
     backgroundColor: '#4364f7',
     height: 230,
@@ -140,25 +110,7 @@ const styles = StyleSheet.create({
 
   },
 
-  title: {
-    color: '#000',
-    fontSize: 28,
-    fontWeight: 'bold',
-    top: 10,
-    paddingLeft: 20
-  },
-
-  desc: {
-    color: '#000',
-    fontSize: 16,
-    fontWeight: 'bold',
-    top: 10,
-    paddingLeft: 20
-  },
-
   footer: {
-    // flex: 2,
-    // backgroundColor: '#4364f7',
     alignItems: 'center',
     marginLeft: 10,
     bottom: 140,
@@ -172,15 +124,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
 
-
   },
 
   list: {
-    // flex: 1,
     alignItems: 'flex-end',
     justifyContent: 'flex-start',
     bottom: 10,
-
 
   },
 })

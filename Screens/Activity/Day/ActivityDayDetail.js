@@ -10,7 +10,6 @@ import {
   Dimensions
 } from 'react-native';
 import { fetchDocumentDetail } from '../../../services/documents';
-import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import checkImage from '../../../utils/checkImage';
 
@@ -26,7 +25,6 @@ function ActivityDayDetail({ navigation, route }) {
       SetData(res);
       console.log('test', data)
     }
-
     getDocumentDetail();
   }, [route]);
 
@@ -36,15 +34,10 @@ function ActivityDayDetail({ navigation, route }) {
     });
   }, [navigation]);
 
-
-
   return (
     <>
-
-
       <View style={styles.container}>
         <View style={styles.header}>
-
           <View style={{ top: 40, left: 8 }}>
             <TouchableOpacity style={{ width: 40 }} >
               <Icon
@@ -64,16 +57,12 @@ function ActivityDayDetail({ navigation, route }) {
               imageStyle={{ borderRadius: 10 }}
             /> : <View></View>
           }
-
           <ScrollView style={{ top: 20 }}>
             <Text style={styles.title}>{data.title}</Text>
-
             <Text style={styles.body}>{data.body}</Text>
           </ScrollView>
         </View>
-
       </View>
-
     </>
   )
 }
@@ -90,14 +79,6 @@ const styles = StyleSheet.create({
     height: 160,
     resizeMode: "stretch",
 
-  },
-
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 700,
   },
 
   content: {
@@ -142,7 +123,6 @@ const styles = StyleSheet.create({
     padding: 10,
     bottom:100,
     elevation:10
-    // paddingHorizontal: 30,
 
   },
 })

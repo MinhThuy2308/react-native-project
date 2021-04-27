@@ -1,9 +1,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  View,
-  Text,
-  Image
 } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Homepage from './Home/Homepage';
@@ -11,7 +8,6 @@ import Profile from './Profile';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { LinearGradient } from 'expo-linear-gradient';
 import Note from './Appointment/Note';
 
 
@@ -106,7 +102,6 @@ const NoteStackScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
 
   },
 
