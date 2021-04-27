@@ -97,7 +97,7 @@ const Register = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#61b1fc', '#4364f7', 'transparent']}
+        colors={['#4364f7', '#fff', 'transparent']}
         style={styles.background}
       />
       <View style={styles.header}>
@@ -193,7 +193,7 @@ export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+    backgroundColor:'#4364f7'
   },
 
   background: {
